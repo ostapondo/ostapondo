@@ -9,7 +9,3 @@
 </div>
 
 Eight years, TypeScript on both sides of the network. Ukrainian, based in Warsaw.
-
-<div align="center">
-  <img src="https://media.giphy.com/media/7NoNw4pMNTvgc/giphy.gif" alt="cat typing on a keyboard" width="320">
-</div>
