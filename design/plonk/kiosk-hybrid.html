@@ -1,0 +1,401 @@
+<title>Plonk Cube and Colour</title>
+<style>
+/* ============================================================
+   DECK · B + C — THE CUBE IN THE COLOUR
+   The two do not merge by being layered. They merge by being
+   given different jobs:
+
+   · The cube is the only hard object on the page. Black stroke,
+     flat fills, sharp edges. Nothing else has any of those.
+   · Everything else is soft — a mesh out of focus, glass, no
+     outlines anywhere.
+   · The mesh is mixed from the cube's own three faces, so the
+     atmosphere is the mascot, defocused. They share a cause,
+     not just a palette.
+   · A flat drawing sitting on a gradient needs the light to
+     agree, so the cube carries an ambient glow that drifts in
+     hue with the mesh behind it.
+   · And the cube overlaps the edges of the glass, which is what
+     puts it in front of the page rather than printed on it.
+   ============================================================ */
+:root{
+  /* straight off the logo: left face, right face, top face */
+  --cube-l:#ff4f81;
+  --cube-r:#3a6bff;
+  --cube-t:#fffdf9;
+  --sun:#ffc531;--mint:#12d3a4;--plum:#8b5cf6;
+  --ink:#12101c;--dim:#5f5a75;--line:rgba(18,16,28,.09);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Helvetica Neue",Arial,sans-serif;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#f4f2fa;color:var(--ink);font-family:var(--text);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+svg{display:block}
+
+/* ---- the mesh: the cube, out of focus ---- */
+.mesh{position:fixed;inset:-22%;z-index:-1;filter:blur(56px);opacity:.8;pointer-events:none}
+.mesh i{position:absolute;display:block;border-radius:50%}
+.mesh .a{width:60%;height:44%;left:-8%;top:0;background:var(--cube-l)}
+.mesh .b{width:56%;height:42%;right:-10%;top:16%;background:var(--cube-r)}
+.mesh .c{width:52%;height:40%;left:6%;bottom:8%;background:var(--mint)}
+.mesh .d{width:48%;height:36%;right:0;bottom:-6%;background:var(--sun)}
+@keyframes f1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(9%,7%) scale(1.18)}}
+@keyframes f2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-8%,10%) scale(.92)}}
+@keyframes f3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(7%,-9%) scale(1.15)}}
+@keyframes f4{0%,100%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-11%,-6%) scale(.94)}}
+.mesh .a{animation:f1 20s ease-in-out infinite}
+.mesh .b{animation:f2 24s ease-in-out infinite}
+.mesh .c{animation:f3 22s ease-in-out infinite}
+.mesh .d{animation:f4 26s ease-in-out infinite}
+
+.wrap{max-width:460px;margin:0 auto;padding:0 12px 70px}
+.hdr{padding:46px 10px 20px}
+.hdr .kick{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);margin:0 0 14px}
+.hdr h1{font-family:var(--display);font-size:clamp(38px,12.5vw,54px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin:0 0 12px}
+.hdr p{margin:0 0 10px;color:var(--dim);font-size:16px;max-width:37ch}
+.hdr p b{color:var(--ink);font-weight:600}
+
+/* ---- glass: everything soft ---- */
+.glass{
+  background:rgba(255,255,255,.6);
+  -webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 12px 44px rgba(18,16,28,.11),inset 0 1px 0 rgba(255,255,255,.85)
+}
+.nav{display:flex;align-items:center;justify-content:space-between;border-radius:999px;padding:9px 14px;margin-bottom:12px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;font-size:15px}
+.brand svg{width:25px;height:28px}
+.pill{border-radius:999px;padding:9px 17px;font-size:14px;font-weight:700;text-decoration:none;color:#fff;background:var(--ink)}
+.pill:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+
+.deck{display:flex;flex-direction:column;gap:12px}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.c{border-radius:32px;padding:28px 22px;opacity:0;animation:rise .65s cubic-bezier(.2,.9,.3,1) forwards;position:relative}
+.c:nth-child(1){animation-delay:.05s}.c:nth-child(2){animation-delay:.13s}
+.c:nth-child(3){animation-delay:.21s}.c:nth-child(4){animation-delay:.29s}
+.c:nth-child(5){animation-delay:.37s}.c:nth-child(6){animation-delay:.45s}
+.c.ink{background:linear-gradient(155deg,rgba(26,22,48,.94),rgba(12,10,22,.96));color:#fff;
+  border:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);overflow:hidden}
+
+h2.big{font-family:var(--display);font-weight:900;letter-spacing:-.055em;line-height:.88;font-size:clamp(38px,12vw,52px);margin:0 0 14px;text-wrap:balance}
+h3.mid{font-family:var(--display);font-weight:900;letter-spacing:-.045em;line-height:.94;font-size:clamp(27px,8.5vw,36px);margin:0 0 10px;text-wrap:balance}
+.grad-text{
+  background:linear-gradient(100deg,var(--cube-l),var(--plum) 45%,var(--cube-r));
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.lead{margin:0 0 20px;font-size:17px;line-height:1.42;color:var(--dim);max-width:31ch}
+.c.ink .lead{color:rgba(255,255,255,.72)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 14px}
+.c.ink .eyebrow{color:rgba(255,255,255,.5)}
+
+.btn{display:inline-flex;align-items:center;border-radius:999px;padding:16px 26px;font-size:16.5px;font-weight:700;text-decoration:none}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.ghost{background:rgba(18,16,28,.06);color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+.cta{display:flex;gap:9px;flex-wrap:wrap}
+
+/* ---- the cube: the only hard thing here ---- */
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-10px) rotate(1.5deg)}}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+@keyframes hue{0%{filter:blur(26px) hue-rotate(0deg)}100%{filter:blur(26px) hue-rotate(360deg)}}
+.cubeholder{position:relative;width:132px;height:148px;flex:none}
+.cubeholder::before{                       /* the ambient light it stands in */
+  content:"";position:absolute;left:8%;top:22%;width:84%;height:70%;border-radius:50%;
+  background:radial-gradient(circle,var(--cube-l),rgba(255,79,129,0) 70%);
+  opacity:.75;animation:hue 26s linear infinite
+}
+.mascot{position:relative;width:132px;height:148px;animation:bob 4.4s ease-in-out infinite}
+.mascot .eye{transform-box:fill-box;transform-origin:center;animation:blink 5.6s ease-in-out infinite}
+.mascot .eye.b{animation-delay:.05s}
+
+/* the cube breaks out of the glass — that is what puts it in front */
+.hero{padding-top:0;margin-top:56px}
+.hero .stage{display:flex;align-items:flex-end;gap:6px;margin:-78px 0 4px}
+.bubble{
+  background:#fff;border:2.5px solid var(--ink);border-radius:18px 18px 18px 5px;
+  padding:10px 14px;font-size:14.5px;font-weight:600;margin-bottom:26px
+}
+
+/* ---- product graphic: zones filled with the same gradients ---- */
+.screen{aspect-ratio:16/10;border-radius:18px;position:relative;overflow:hidden;background:rgba(18,16,28,.06);padding:8px;margin-top:18px}
+.c.ink .screen{background:rgba(255,255,255,.06)}
+.z{position:absolute;border-radius:11px;display:flex;align-items:flex-end;padding:8px;font-family:var(--mono);font-size:12px;font-weight:600;color:#fff}
+.z.g1{background:linear-gradient(160deg,#ff7fa4,var(--cube-l))}
+.z.g2{background:linear-gradient(160deg,#a98cff,var(--plum))}
+.z.g3{background:linear-gradient(160deg,#6f92ff,var(--cube-r))}
+.z.g4{background:linear-gradient(160deg,#5ff0cd,var(--mint));color:#04241b}
+.z.g5{background:linear-gradient(160deg,#ffe08a,var(--sun));color:#1c1400}
+@keyframes fly{
+  0%,12%{left:6%;top:46%;width:34%;height:46%;opacity:.9}
+  44%,68%{left:33%;top:4%;width:42%;height:92%;opacity:1}
+  92%,100%{left:6%;top:46%;width:34%;height:46%;opacity:.9}
+}
+@keyframes lift{
+  0%,18%{opacity:.42;transform:scale(.96)}
+  30%,70%{opacity:1;transform:scale(1)}
+  86%,100%{opacity:.42;transform:scale(.96)}
+}
+.win{position:absolute;border-radius:11px;background:#fff;border:2.5px solid var(--ink);box-shadow:0 16px 32px rgba(18,16,28,.26)}
+.win .bar{height:13px;border-radius:7px 7px 0 0;background:var(--ink);display:flex;gap:3px;align-items:center;padding:0 6px}
+.win .bar i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.65)}
+.win.fly{animation:fly 6.8s cubic-bezier(.34,1.3,.4,1) infinite}
+.z.lift{animation:lift 6.8s ease infinite}
+.z.lift.d{animation-delay:.08s}
+
+/* ---- a face per section, each on its own light ---- */
+.rows{display:flex;flex-direction:column;margin-top:14px}
+.rw{display:flex;gap:15px;align-items:flex-start;padding:16px 0;border-top:1px solid var(--line)}
+.c.ink .rw{border-color:rgba(255,255,255,.14)}
+.faceholder{position:relative;width:56px;height:63px;flex:none}
+.faceholder::before{
+  content:"";position:absolute;left:-6px;top:6px;width:110%;height:88%;border-radius:50%;
+  background:radial-gradient(circle,var(--g),transparent 70%);filter:blur(11px);opacity:.85
+}
+.faceholder svg{position:relative;width:56px;height:63px}
+.rw b{font-size:16.5px;font-weight:700;letter-spacing:-.02em;display:block}
+.rw p{margin:3px 0 0;font-size:13.5px;line-height:1.4;color:var(--dim)}
+.c.ink .rw p{color:rgba(255,255,255,.66)}
+
+.keys{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.keys kbd{font-family:var(--mono);font-size:16px;font-weight:600;border-radius:13px;padding:13px 15px;
+  background:rgba(18,16,28,.06);box-shadow:inset 0 -2px 0 rgba(18,16,28,.09)}
+.c.ink .keys kbd{background:rgba(255,255,255,.12);box-shadow:inset 0 -2px 0 rgba(0,0,0,.22)}
+
+/* sets rail */
+.rail-mask{overflow:hidden;margin:18px -22px 0}
+@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.rail{display:flex;gap:10px;width:max-content;animation:roll 26s linear infinite}
+.set{width:146px;border-radius:20px;padding:10px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.15)}
+.set .g{aspect-ratio:16/10;display:grid;gap:4px}
+.set .g b{border-radius:6px;background:linear-gradient(150deg,rgba(255,255,255,.55),rgba(255,255,255,.2))}
+.set .n{margin-top:9px;font-size:12.5px;font-weight:700;display:flex;justify-content:space-between}
+.set .n span{font-family:var(--mono);font-size:10.5px;opacity:.6;font-weight:400}
+.g.halves{grid-template-columns:1fr 1fr}
+.g.thirds{grid-template-columns:1fr 1fr 1fr}
+.g.sixty{grid-template-columns:1.5fr 1fr}
+.g.quarters{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.g.prio{grid-template-columns:.7fr 1.5fr .9fr;grid-template-rows:1fr 1fr}
+.g.prio b:nth-child(2){grid-row:span 2}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:20px 14px}
+.stat b{display:block;font-family:var(--display);font-weight:900;letter-spacing:-.06em;font-size:clamp(42px,13.5vw,56px);line-height:.85;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:7px;font-size:13px;line-height:1.3;color:rgba(255,255,255,.6)}
+
+.code{border-radius:16px;padding:15px 17px;font-family:var(--mono);font-size:13.5px;overflow-x:auto;white-space:nowrap;
+  background:rgba(18,16,28,.92);color:#8ef0c4}
+.checks{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.checks li{display:flex;gap:11px;font-size:15px;line-height:1.35}
+.checks li::before{content:"";width:10px;height:10px;border-radius:4px;flex:none;margin-top:6px;
+  background:linear-gradient(150deg,var(--cube-l),var(--cube-r))}
+.foot{display:flex;flex-wrap:wrap;gap:7px 16px;font-size:13px;color:var(--dim);margin-top:22px}
+
+/* privacy: the light goes quiet, and so does the cube */
+.quiet{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.quiet .faceholder{width:78px;height:88px}
+.quiet .faceholder::before{opacity:.32;filter:blur(14px)}
+.quiet .faceholder svg{width:78px;height:88px}
+
+.note{margin:16px 0 0;padding:16px 18px;border-radius:22px;color:var(--dim);font-size:13.5px;line-height:1.6}
+.note b{color:var(--ink);font-weight:600}
+.note + .note{margin-top:10px}
+
+@media (prefers-reduced-motion:reduce){
+  .c{opacity:1;animation:none}
+  .mesh i,.mascot,.mascot .eye,.cubeholder::before,.rail,.win.fly,.z.lift{animation:none}
+  .win.fly{left:33%;top:4%;width:42%;height:92%;opacity:1}
+  .z.lift{opacity:1;transform:none}
+}
+</style>
+
+<div class="mesh" aria-hidden="true"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i></div>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="cube" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#12101c" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="f-wink" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <ellipse cx="25" cy="63" rx="5.2" ry="6.4" fill="#fffdf9"/>
+    <ellipse cx="26.2" cy="64.6" rx="2.6" ry="3.2" fill="#12101c"/>
+    <path d="M34,72 Q39,67 44,72" stroke="#12101c" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M27,77 Q33,83 40,80" stroke="#12101c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path fill="none" stroke="#12101c" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="f-focus" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <ellipse cx="25" cy="63" rx="5.4" ry="2.6" fill="#fffdf9"/>
+    <ellipse cx="25" cy="63" rx="2.4" ry="2.2" fill="#12101c"/>
+    <ellipse cx="39" cy="71" rx="5.4" ry="2.6" fill="#fffdf9"/>
+    <ellipse cx="39" cy="71" rx="2.4" ry="2.2" fill="#12101c"/>
+    <path d="M28,79 L39,82" stroke="#12101c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path fill="none" stroke="#12101c" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="f-talk" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <ellipse cx="25" cy="61" rx="5.2" ry="6.4" fill="#fffdf9"/>
+    <ellipse cx="26.2" cy="62.6" rx="2.6" ry="3.2" fill="#12101c"/>
+    <ellipse cx="39" cy="69" rx="5.2" ry="6.4" fill="#fffdf9"/>
+    <ellipse cx="40.2" cy="70.6" rx="2.6" ry="3.2" fill="#12101c"/>
+    <ellipse cx="33" cy="80" rx="4" ry="5" fill="#12101c"/>
+    <path fill="none" stroke="#12101c" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="f-shut" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <path d="M20,64 Q25,58 30,64" stroke="#12101c" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M34,72 Q39,66 44,72" stroke="#12101c" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M27,78 Q33,84 40,81" stroke="#12101c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path fill="none" stroke="#12101c" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="hdr">
+    <p class="kick">Deck · B + C</p>
+    <h1>Cube<br>and colour</h1>
+    <p>The mascot and the gradient, reconciled by <b>giving them opposite jobs</b>: the cube is the only hard-edged, outlined, flat thing on the page, and everything else is soft.</p>
+    <p>The mesh behind the page is mixed from the cube's own three faces — so the colour is the mascot, out of focus.</p>
+  </header>
+
+  <nav class="nav glass">
+    <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> Plonk</span>
+    <a class="pill" href="#get">Get it — free</a>
+  </nav>
+
+  <div class="deck">
+
+    <div class="c glass hero">
+      <div class="stage">
+        <div class="cubeholder">
+          <svg class="mascot" viewBox="0 0 100 112" aria-label="The Plonk cube, holding a window">
+            <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+            <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+            <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+            <g>
+              <ellipse class="eye" cx="25" cy="63" rx="5.2" ry="6.4" fill="#fffdf9"/>
+              <ellipse class="eye" cx="26.2" cy="64.6" rx="2.6" ry="3.2" fill="#12101c"/>
+              <ellipse class="eye b" cx="39" cy="71" rx="5.2" ry="6.4" fill="#fffdf9"/>
+              <ellipse class="eye b" cx="40.2" cy="72.6" rx="2.6" ry="3.2" fill="#12101c"/>
+            </g>
+            <path d="M27,78 Q33,84 40,81" stroke="#12101c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <path fill="none" stroke="#12101c" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+          </svg>
+        </div>
+        <span class="bubble">Right — where does this one go?</span>
+      </div>
+
+      <h2 class="big">Give every window <span class="grad-text">a place to live.</span></h2>
+      <p class="lead">Draw the boxes you actually want. Then drop windows into them — with a drag, a key, or by saying so out loud.</p>
+      <div class="cta">
+        <a class="btn dark" href="#get">Get Plonk</a>
+        <a class="btn ghost" href="#ways">Show me first</a>
+      </div>
+
+      <div class="screen">
+        <div class="z g1 lift" style="left:2%;top:3%;width:29%;height:94%">1</div>
+        <div class="z g2 lift d" style="left:33%;top:3%;width:42%;height:94%">2</div>
+        <div class="z g3 lift" style="left:77%;top:3%;width:21%;height:45%">3</div>
+        <div class="z g4 lift d" style="left:77%;top:52%;width:21%;height:45%">4</div>
+        <div class="win fly" style="left:6%;top:46%;width:34%;height:46%"><div class="bar"><i></i><i></i><i></i></div></div>
+      </div>
+    </div>
+
+    <div class="c glass" id="ways">
+      <p class="eyebrow">Three ways</p>
+      <h3 class="mid">Whichever your hands prefer.</h3>
+      <div class="rows">
+        <div class="rw">
+          <span class="faceholder" style="--g:#ff4f81"><svg viewBox="0 0 100 112"><use href="#f-wink"/></svg></span>
+          <div><b>Drag it</b><p>The zones light up while the window is in your hand. Hold ⌘ and it takes two at once.</p></div>
+        </div>
+        <div class="rw">
+          <span class="faceholder" style="--g:#8b5cf6"><svg viewBox="0 0 100 112"><use href="#f-focus"/></svg></span>
+          <div><b>Press a key</b><p>Nine zones live on the digits. Zero is the oops key — it puts a window back exactly where it was.</p></div>
+        </div>
+        <div class="rw">
+          <span class="faceholder" style="--g:#3a6bff"><svg viewBox="0 0 100 112"><use href="#f-talk"/></svg></span>
+          <div><b>Say it</b><p>Hold ⌃⌥V and name the place. It listens on the Mac, offline. Nobody hears you but the laptop.</p></div>
+        </div>
+      </div>
+      <div class="keys"><kbd>⌃⌥1</kbd><kbd>⌃⌥←</kbd><kbd>⌃⌥0</kbd><kbd>⌃⌥V</kbd></div>
+    </div>
+
+    <div class="c ink">
+      <p class="eyebrow">Five in the box</p>
+      <h3 class="mid">Or draw your own.<br>It takes a minute.</h3>
+      <p class="lead" style="margin-bottom:0">Click a zone to cut it in half. ⇧-click cuts the other way. That is the whole editor — there is no more of it.</p>
+      <div class="rail-mask">
+        <div class="rail">
+          <div class="set"><div class="g prio"><b></b><b></b><b></b><b></b><b></b></div><div class="n">Priority <span>5</span></div></div>
+          <div class="set"><div class="g halves"><b></b><b></b></div><div class="n">Halves <span>2</span></div></div>
+          <div class="set"><div class="g thirds"><b></b><b></b><b></b></div><div class="n">Thirds <span>3</span></div></div>
+          <div class="set"><div class="g sixty"><b></b><b></b></div><div class="n">60 / 40 <span>2</span></div></div>
+          <div class="set"><div class="g quarters"><b></b><b></b><b></b><b></b></div><div class="n">Quarters <span>4</span></div></div>
+          <div class="set"><div class="g prio"><b></b><b></b><b></b><b></b><b></b></div><div class="n">Priority <span>5</span></div></div>
+          <div class="set"><div class="g halves"><b></b><b></b></div><div class="n">Halves <span>2</span></div></div>
+          <div class="set"><div class="g thirds"><b></b><b></b><b></b></div><div class="n">Thirds <span>3</span></div></div>
+          <div class="set"><div class="g sixty"><b></b><b></b></div><div class="n">60 / 40 <span>2</span></div></div>
+          <div class="set"><div class="g quarters"><b></b><b></b><b></b><b></b></div><div class="n">Quarters <span>4</span></div></div>
+        </div>
+      </div>
+      <div class="stats" style="margin-top:26px">
+        <div class="stat"><b>20</b><span>tools for your agent</span></div>
+        <div class="stat"><b>10</b><span>utilities, one icon</span></div>
+      </div>
+    </div>
+
+    <div class="c glass">
+      <p class="eyebrow">Desks</p>
+      <h3 class="mid">It remembers <span class="grad-text">which monitor.</span></h3>
+      <p class="lead">Save the desk once. Close the lot, go home, come back — and it builds itself again on the right screens, with the right files already open.</p>
+      <div class="screen" style="aspect-ratio:16/7">
+        <div class="z g1" style="left:2%;top:6%;width:30%;height:88%">Safari</div>
+        <div class="z g3" style="left:34%;top:6%;width:38%;height:88%">Terminal</div>
+        <div class="z g5" style="left:74%;top:6%;width:24%;height:88%">Notes</div>
+      </div>
+    </div>
+
+    <div class="c glass">
+      <div class="quiet">
+        <span class="faceholder" style="--g:#12d3a4"><svg viewBox="0 0 100 112"><use href="#f-shut"/></svg></span>
+        <p class="eyebrow" style="margin:0">Privacy</p>
+      </div>
+      <h3 class="mid">It isn't watching you.</h3>
+      <p class="lead">No account, no cloud, no telemetry. Plonk moves rectangles around, and that is all it wants from your Mac.</p>
+      <p class="lead">You needn't take our word for it, either — every release comes with a receipt you can check yourself.</p>
+      <div class="code">gh attestation verify Plonk-0.2.4.zip -R ostapondo/plonk</div>
+    </div>
+
+    <div class="c glass" id="get">
+      <h3 class="mid">One line, and it's yours.</h3>
+      <div class="code" style="margin-top:14px">brew install --cask ostapondo/plonk/plonk</div>
+      <ul class="checks">
+        <li>macOS 13 or newer, Apple silicon</li>
+        <li>Say yes to Accessibility, then relaunch</li>
+        <li>No Full Disk Access, no Automation, no Keychain</li>
+        <li>Gets along fine with Rectangle and Magnet</li>
+      </ul>
+      <div class="cta" style="margin-top:22px"><a class="btn dark" href="#get">Download 0.2.4</a></div>
+      <div class="foot">MIT © ostapondo · Swift 6 · still early, and there's only one of me</div>
+    </div>
+
+  </div>
+
+  <p class="note glass"><b>The five decisions that make it one thing rather than two.</b> The cube keeps its black outline and flat fills, and nothing else on the page is allowed either — so it reads as the one solid object in a soft room. The mesh is mixed from its three face colours. It stands in an ambient glow whose hue drifts with the mesh, which is what stops a flat drawing from looking pasted onto a gradient. It overlaps the top edge of the glass instead of sitting inside it. And the window it is holding is drawn with the same 2.5 px outline as the cube — so the thing being carried belongs to the character, while the zones it lands in belong to the colour.</p>
+
+  <p class="note glass"><b>What I'd still watch.</b> Glass over a moving mesh is the most expensive thing here on an old Mac in Safari, and it is the first thing I would drop to a flat translucent white if the page ever feels heavy. The mesh also has to stay quiet enough that the coloured zones still read as the loudest thing on screen — the moment the background competes with the product graphic, the page stops being about windows.</p>
+
+</div>
