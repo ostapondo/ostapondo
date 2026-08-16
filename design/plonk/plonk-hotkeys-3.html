@@ -1,10 +1,11 @@
 <title>Plonk Hotkeys, Three Ways</title>
 <style>
 /* ============================================================
-   ОБОЛОНКА ПОРІВНЯННЯ
-   Навмисно тиха: три зразки всередині мають власні, дуже гучні
-   палітри, і оболонка не має з ними змагатися. Нейтраль із
-   легким синім ухилом, волосяні лінії, моношрифт на службовому.
+   COMPARISON SHELL
+   Deliberately quiet: the three specimens inside carry very loud
+   palettes of their own, and the shell must not compete with
+   them. A neutral with a slight blue bias, hairlines, monospace
+   on anything that is scaffolding rather than content.
    ============================================================ */
 :root{
   --bg:#0a0b0e;
@@ -31,18 +32,19 @@ svg{display:block}
 .cover{padding:54px 2px 8px}
 .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
 .cover h1{font-family:var(--display);font-size:clamp(38px,11.5vw,54px);font-weight:900;letter-spacing:-.045em;line-height:.94;margin:0 0 16px;text-wrap:balance}
-.cover p{margin:0 0 14px;color:var(--dim);font-size:16.5px;max-width:38ch}
+.cover p{margin:0 0 14px;color:var(--dim);font-size:16.5px;max-width:42ch}
 .cover p b{color:var(--ink);font-weight:600}
+.cover code{font-family:var(--mono);font-size:14px;color:var(--ink)}
 
 h2.sec{
   font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
   margin:52px 0 0;padding:0 0 9px;border-bottom:1px solid var(--line);display:flex;gap:12px
 }
 h2.sec span{color:var(--accent)}
-.sub{margin:13px 0 20px;color:var(--dim);font-size:14.5px;max-width:42ch}
+.sub{margin:13px 0 20px;color:var(--dim);font-size:14.5px;max-width:46ch}
 .sub b{color:var(--ink);font-weight:600}
 
-/* карта сайту */
+/* site map */
 .map{width:100%;min-width:100%;border-collapse:collapse;font-size:13.5px;display:block;overflow-x:auto}
 .map td:first-child,.map td:last-child{white-space:nowrap}
 .map th{
@@ -56,7 +58,7 @@ h2.sec span{color:var(--accent)}
 .tag.has{background:rgba(139,124,246,.16);color:#b3a6ff}
 .tag.md{background:#1a1d26;color:var(--dim)}
 
-/* рамка зразка */
+/* specimen frame */
 .spec{margin:22px 0 0}
 .spec-bar{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
@@ -69,7 +71,7 @@ h2.sec span{color:var(--accent)}
 .verdict b{color:var(--ink);font-weight:600}
 
 /* ============================================================
-   ЗРАЗОК 01 — ПЛИТКА
+   SPECIMEN 01 — TILE
    ============================================================ */
 .d1{
   --v:#7b5cff;--co:#ff6a4d;--am:#ffc24d;--bl:#3b9bff;--pan:#121215;--ln:#2a2a31;--dm:#8b8b93;
@@ -88,17 +90,15 @@ h2.sec span{color:var(--accent)}
 .d1 .t.b{background:var(--bl);color:#04121f}
 .d1 .stack{display:flex;flex-direction:column;gap:10px}
 .d1 h1{font-family:var(--display);font-weight:900;letter-spacing:-.05em;line-height:.9;font-size:clamp(42px,13.5vw,58px);margin:0 0 14px}
-.d1 .lead{margin:0;font-size:16.5px;line-height:1.4;color:var(--dm);max-width:30ch}
+.d1 .lead{margin:0;font-size:16.5px;line-height:1.4;color:var(--dm);max-width:32ch}
 .d1 .lead b{color:#fff;font-weight:600}
 .d1 .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin:0 0 12px}
 .d1 h2{font-family:var(--display);font-weight:900;letter-spacing:-.04em;line-height:.96;font-size:clamp(26px,8vw,34px);margin:0 0 16px}
-/* карта клавіш */
 .d1 .map3{display:grid;grid-template-columns:1fr 1.25fr 1fr;grid-template-rows:repeat(3,1fr);gap:6px;aspect-ratio:16/10;background:#000;border-radius:16px;padding:8px;margin-top:18px}
 .d1 .map3 b{border-radius:9px;background:#1b1b20;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;font-weight:600;color:#7a7a86}
 .d1 .map3 b.mid{background:var(--v);color:#fff}
 .d1 .map3 b.edge{background:#26262e;color:#c9c9d4}
 .d1 .cap{font-family:var(--mono);font-size:11px;color:var(--dm);margin:10px 0 0;text-align:center}
-/* рядки клавіш */
 .d1 .rows{display:flex;flex-direction:column;gap:8px;margin-top:16px}
 .d1 .row{display:flex;gap:12px;align-items:flex-start;background:rgba(0,0,0,.16);border-radius:14px;padding:13px 14px}
 .d1 .t.dark .row{background:#000}
@@ -108,7 +108,7 @@ h2.sec span{color:var(--accent)}
 .d1 .foot{display:flex;flex-wrap:wrap;gap:8px 16px;padding:20px 22px;color:var(--dm);font-size:13px}
 
 /* ============================================================
-   ЗРАЗОК 02 — КОЛОДА
+   SPECIMEN 02 — DECK
    ============================================================ */
 .d2{
   --ye:#ffd400;--mg:#ff2d78;--bu:#2b5bff;--mi:#00d2a0;--pa:#fff;--wa:#ececed;--nk:#0b0b0d;
@@ -130,7 +130,7 @@ h2.sec span{color:var(--accent)}
 .d2 .c.nk{background:var(--nk);color:#fff}
 .d2 h1{font-family:var(--display);font-weight:900;letter-spacing:-.055em;line-height:.88;font-size:clamp(44px,14vw,62px);margin:0 0 16px}
 .d2 h1 em{font-style:normal;background:var(--ye);border-radius:.1em;padding:0 .1em}
-.d2 .lead{margin:0;font-size:17px;line-height:1.4;opacity:.7;max-width:30ch}
+.d2 .lead{margin:0;font-size:17px;line-height:1.4;opacity:.7;max-width:32ch}
 .d2 .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 12px;opacity:.55;display:flex;align-items:center;gap:8px}
 .d2 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
 .d2 h2{font-family:var(--display);font-weight:900;letter-spacing:-.045em;line-height:.94;font-size:clamp(28px,8.5vw,38px);margin:0 0 14px}
@@ -150,7 +150,7 @@ h2.sec span{color:var(--accent)}
 .d2 .foot{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;opacity:.55;padding:18px 22px 4px}
 
 /* ============================================================
-   ЗРАЗОК 03 — МОНО
+   SPECIMEN 03 — MONO
    ============================================================ */
 .d3{
   --sg:#8b7cf6;--ln:#212128;--ln2:#33333d;--dm:#7d7d88;--dmr:#4a4a54;--pan:#0f0f13;
@@ -168,7 +168,7 @@ h2.sec span{color:var(--accent)}
 .d3 .rule::after{content:"";flex:1;height:1px;background:var(--ln)}
 .d3 h1{font-family:var(--mono);font-weight:700;letter-spacing:-.065em;line-height:.94;font-size:clamp(34px,10.5vw,48px);margin:0 0 16px}
 .d3 h1 em{font-style:normal;color:var(--sg)}
-.d3 .lead{margin:0;color:var(--dm);font-size:15.5px;line-height:1.55;max-width:36ch}
+.d3 .lead{margin:0;color:var(--dm);font-size:15.5px;line-height:1.55;max-width:40ch}
 .d3 .lead b{color:#f2f2f4;font-weight:600}
 .d3 .map3{
   display:grid;grid-template-columns:1fr 1.25fr 1fr;grid-template-rows:repeat(3,1fr);gap:5px;
@@ -182,7 +182,7 @@ h2.sec span{color:var(--accent)}
 .d3 .grp{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dmr);margin:22px 0 0;padding:0 0 8px;border-bottom:1px solid var(--ln)}
 .d3 .tab{width:100%;border-collapse:collapse;font-size:13.5px}
 .d3 .tab td{padding:11px 10px 11px 0;border-bottom:1px solid var(--ln);vertical-align:top;color:var(--dm);line-height:1.45}
-.d3 .tab td:first-child{font-family:var(--mono);color:#f2f2f4;white-space:nowrap;width:104px}
+.d3 .tab td:first-child{font-family:var(--mono);color:#f2f2f4;white-space:nowrap;width:112px}
 .d3 .tab tr:last-child td{border-bottom:0}
 .d3 .note{margin:16px 0 0;font-size:13.5px;color:var(--dm);line-height:1.6}
 .d3 .note b{color:#f2f2f4;font-weight:600}
@@ -213,205 +213,205 @@ h2.sec span{color:var(--accent)}
 <div class="wrap">
 
   <header class="cover">
-    <p class="kicker">Сайт · внутрішні сторінки</p>
-    <h1>Hotkeys,<br>три рази</h1>
-    <p>Спершу карта: <b>що взагалі є на сайті</b> і чого немає. Далі та сама сторінка довідки по клавішах у трьох напрямках — на справжньому вмісті <code>docs/hotkeys.md</code>, усі чотирнадцять рядків.</p>
-    <p>Довідка — найважча сторінка з дев'яти. Якщо напрямок витримує таблицю з чотирнадцяти комбінацій, він витримає решту.</p>
+    <p class="kicker">Website · inner pages</p>
+    <h1>Hotkeys,<br>three ways</h1>
+    <p>First the map: <b>what the site actually has</b> and what it does not. Then the same reference page in all three directions, on the real contents of <code>docs/hotkeys.md</code> — all fourteen rows.</p>
+    <p>The reference is the hardest of the nine pages. A direction that survives a table of fourteen combinations will survive the rest.</p>
   </header>
 
-  <h2 class="sec"><span>·</span> Карта сайту</h2>
-  <p class="sub">Головна — єдина сторінка, яка існує як сторінка. Решта дев'ять живуть у репозиторії як Markdown, і головна веде на них <b>назовні, на github.com</b>. Тобто в дизайн їх треба не перефарбувати, а спершу створити.</p>
+  <h2 class="sec"><span>·</span> Site map</h2>
+  <p class="sub">The front page is the only page that exists as a page. The other nine live in the repository as Markdown, and the front page links to them <b>outward, to github.com</b>. So they do not need recolouring — they need building first.</p>
 
   <table class="map">
-    <thead><tr><th>Адреса</th><th>Що на ній</th><th>Стан</th></tr></thead>
+    <thead><tr><th>Address</th><th>What is on it</th><th>State</th></tr></thead>
     <tbody>
-      <tr><td>/</td><td>Головна: зони, три способи, агенти, приватність, установка</td><td><span class="tag has">є сторінка</span></td></tr>
-      <tr><td>/zones</td><td>Редактор, перекриття, span на ⌘, набори, зазори, винятки — 13 рядків</td><td><span class="tag md">лише .md</span></td></tr>
-      <tr><td>/workspaces</td><td>Стіл, який можна прибрати. Файли на старті, монітори по UUID, застереження</td><td><span class="tag md">лише .md</span></td></tr>
-      <tr class="now"><td>/hotkeys</td><td>Уся розкладка на ⌃⌥. Схема екрана + 14 рядків</td><td><span class="tag has">нижче ×3</span></td></tr>
-      <tr><td>/features</td><td>Не засинати, скриншоти, OCR, лінійка, пін, довідка, курсор, оновлення</td><td><span class="tag md">лише .md</span></td></tr>
-      <tr><td>/agents</td><td>20 інструментів MCP, багатоагентні правила, HTTP-транспорт, CLI</td><td><span class="tag md">лише .md</span></td></tr>
-      <tr><td>/verify</td><td>Кожна обіцянка про приватність + команда, якою її перевірити</td><td><span class="tag md">лише .md</span></td></tr>
-      <tr><td>/clients/cursor</td><td>Однасторінківка налаштування</td><td><span class="tag md">лише .md</span></td></tr>
-      <tr><td>/clients/zed</td><td>Однасторінківка налаштування</td><td><span class="tag md">лише .md</span></td></tr>
-      <tr><td>/clients/cline</td><td>Однасторінківка налаштування</td><td><span class="tag md">лише .md</span></td></tr>
+      <tr><td>/</td><td>Zones, three ways, agents, privacy, install</td><td><span class="tag has">a real page</span></td></tr>
+      <tr><td>/zones</td><td>Editor, overlap, ⌘ span, sets, gaps, exceptions — 13 rows</td><td><span class="tag md">.md only</span></td></tr>
+      <tr><td>/workspaces</td><td>A desk you can put away. Files on launch, monitors by UUID, the catch</td><td><span class="tag md">.md only</span></td></tr>
+      <tr class="now"><td>/hotkeys</td><td>The whole ⌃⌥ layout. A screen map plus 14 rows</td><td><span class="tag has">below ×3</span></td></tr>
+      <tr><td>/features</td><td>Keep awake, screenshots, OCR, ruler, pins, guide, pointer, updates</td><td><span class="tag md">.md only</span></td></tr>
+      <tr><td>/agents</td><td>20 MCP tools, multi-agent rules, HTTP transport, the CLI</td><td><span class="tag md">.md only</span></td></tr>
+      <tr><td>/verify</td><td>Every privacy claim with the command that tests it</td><td><span class="tag md">.md only</span></td></tr>
+      <tr><td>/clients/cursor</td><td>A setup one-pager</td><td><span class="tag md">.md only</span></td></tr>
+      <tr><td>/clients/zed</td><td>A setup one-pager</td><td><span class="tag md">.md only</span></td></tr>
+      <tr><td>/clients/cline</td><td>A setup one-pager</td><td><span class="tag md">.md only</span></td></tr>
     </tbody>
   </table>
 
-  <!-- ================= ЗРАЗОК 01 ================= -->
-  <h2 class="sec"><span>01</span> Плитка</h2>
-  <p class="sub">Групи клавіш стають кольоровими плитками. Колір тут — <b>розділювач, а не прикраса</b>: він каже, де закінчується «розкласти вікно» і починається «захопити екран».</p>
+  <!-- ================= SPECIMEN 01 ================= -->
+  <h2 class="sec"><span>01</span> Tile</h2>
+  <p class="sub">Groups of keys become colour tiles. Colour here is <b>a divider, not decoration</b>: it says where “place a window” ends and “take something off the screen” begins.</p>
 
   <div class="spec">
-    <div class="spec-bar"><b>/hotkeys</b><span>напрямок 01</span></div>
+    <div class="spec-bar"><b>/hotkeys</b><span>direction 01</span></div>
     <div class="spec-body">
       <div class="d1">
         <nav class="nav">
           <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube1"/></svg> Plonk</span>
-          <span class="crumb">Довідка / Клавіші</span>
+          <span class="crumb">Docs / Hotkeys</span>
         </nav>
 
         <div class="stack">
           <div class="t dark">
-            <h1>Усе на<br>⌃⌥.</h1>
-            <p class="lead">Кожну комбінацію можна <b>перепризначити</b>, і будь-яку — просто зняти.</p>
+            <h1>All on<br>⌃⌥.</h1>
+            <p class="lead">Every one of them is <b>rebindable</b>, and any of them can be unbound.</p>
             <div class="map3" aria-hidden="true">
               <b>U</b><b class="edge">↑</b><b>I</b>
               <b class="edge">←</b><b class="mid">C</b><b class="edge">→</b>
               <b>J</b><b class="edge">↓</b><b>K</b>
             </div>
-            <p class="cap">↩ — на весь екран · C — по центру</p>
+            <p class="cap">↩ maximize · C centre</p>
           </div>
 
           <div class="t v">
-            <p class="eyebrow">Покласти вікно</p>
-            <h2>Куди воно сяде.</h2>
+            <p class="eyebrow">Place a window</p>
+            <h2>Where it lands.</h2>
             <div class="rows">
-              <div class="row"><span class="k">↑ ↓ ← →<br>U I J K<br>↩ · C</span><span class="d">Половини, чверті, на весь екран, по центру</span></div>
-              <div class="row"><span class="k">1 — 9</span><span class="d">У зону з таким номером на цьому екрані</span></div>
-              <div class="row"><span class="k">0</span><span class="d">Назад, у ту рамку, що була до Plonk</span></div>
+              <div class="row"><span class="k">↑ ↓ ← →<br>U I J K<br>↩ · C</span><span class="d">Halves, quarters, maximize, centre</span></div>
+              <div class="row"><span class="k">1 — 9</span><span class="d">Into the numbered zone on this screen</span></div>
+              <div class="row"><span class="k">0</span><span class="d">Back to the frame it had before Plonk</span></div>
             </div>
           </div>
 
           <div class="t c">
-            <p class="eyebrow">Набори зон</p>
-            <h2>Змінити всю сітку.</h2>
+            <p class="eyebrow">Zone sets</p>
+            <h2>Change the whole grid.</h2>
             <div class="rows">
-              <div class="row"><span class="k">⇧1 — ⇧9</span><span class="d">Замінити набір зон на цьому екрані цілком</span></div>
-              <div class="row"><span class="k">L</span><span class="d">Набори списком на екрані: обрати, або E — редагувати</span></div>
-              <div class="row"><span class="k">Z</span><span class="d">Блимнути зонами, щоб побачити, де вони</span></div>
+              <div class="row"><span class="k">⇧1 — ⇧9</span><span class="d">Swap the entire zone set on this screen</span></div>
+              <div class="row"><span class="k">L</span><span class="d">The sets as a list on screen — pick one, or press E to edit it</span></div>
+              <div class="row"><span class="k">Z</span><span class="d">Flash the zones, to see where they are</span></div>
             </div>
           </div>
 
           <div class="t a">
-            <p class="eyebrow">Фокус</p>
-            <h2>Перейти у вікно.</h2>
+            <p class="eyebrow">Focus</p>
+            <h2>Go to a window.</h2>
             <div class="rows">
-              <div class="row"><span class="k">⇧← ⇧→<br>⇧↑ ⇧↓</span><span class="d">У вікно, яке справді в тому боці — не в те, яким користувались востаннє</span></div>
-              <div class="row"><span class="k">`</span><span class="d">Наступне вікно в цій зоні</span></div>
+              <div class="row"><span class="k">⇧← ⇧→<br>⇧↑ ⇧↓</span><span class="d">The window that is actually in that direction, not the one you used last</span></div>
+              <div class="row"><span class="k">`</span><span class="d">Next window in this zone</span></div>
             </div>
           </div>
 
           <div class="t b">
-            <p class="eyebrow">Захопити</p>
-            <h2>Зняти з екрана.</h2>
+            <p class="eyebrow">Capture</p>
+            <h2>Take it off the screen.</h2>
             <div class="rows">
-              <div class="row"><span class="k">S · T</span><span class="d">Виділити ділянку · дістати з неї текст</span></div>
-              <div class="row"><span class="k">P · ⇧P</span><span class="d">Приколоти живий кроп згори · приколоти застиглий</span></div>
-              <div class="row"><span class="k">R</span><span class="d">Виміряти те, що під курсором</span></div>
+              <div class="row"><span class="k">S · T</span><span class="d">Grab a region · lift the text out of one</span></div>
+              <div class="row"><span class="k">P · ⇧P</span><span class="d">Pin a live crop on top · pin a still one</span></div>
+              <div class="row"><span class="k">R</span><span class="d">Measure what is under the pointer</span></div>
             </div>
           </div>
 
           <div class="t dark">
-            <p class="eyebrow">Решта</p>
-            <h2>І чотири на додачу.</h2>
+            <p class="eyebrow">The rest</p>
+            <h2>And four more.</h2>
             <div class="rows">
-              <div class="row"><span class="k">⇧/</span><span class="d">Усі клавіші застосунку, що зараз попереду</span></div>
-              <div class="row"><span class="k">/ · \</span><span class="d">Знайти курсор · перекинути на наступний екран</span></div>
-              <div class="row"><span class="k">V</span><span class="d">Тримати й говорити</span></div>
-              <div class="row"><span class="k">A</span><span class="d">Палітра команд: виконати будь-що на ім'я, або написати речення агентові</span></div>
+              <div class="row"><span class="k">⇧/</span><span class="d">Every shortcut the front app has</span></div>
+              <div class="row"><span class="k">/ · \</span><span class="d">Find the pointer · jump it to the next screen</span></div>
+              <div class="row"><span class="k">V</span><span class="d">Hold to talk</span></div>
+              <div class="row"><span class="k">A</span><span class="d">Command palette — run anything by name, or type a sentence for the agent</span></div>
             </div>
           </div>
 
           <div class="t dark foot">
-            <span>Зони</span><span>Робочі столи</span><span>Решта</span><span>README</span>
+            <span>Zones</span><span>Workspaces</span><span>Everything else</span><span>README</span>
           </div>
         </div>
       </div>
     </div>
-    <p class="verdict"><b>Що вийшло:</b> сторінка гортається як стрічка, кожна група читається з відстані. <b>Що болить:</b> чотирнадцять рядків розтягуються на шість екранів телефона, і швидко знайти одну комбінацію оком важче, ніж у таблиці. Це сторінка, яку <b>читають</b>, а не сторінка, до якої <b>повертаються</b>.</p>
+    <p class="verdict"><b>What works:</b> the page scrolls like a feed and each group reads from across the room. <b>What hurts:</b> fourteen rows stretch across six phone screens, and finding one combination by eye is harder than in a table. This is a page you <b>read</b>, not a page you <b>come back to</b>.</p>
   </div>
 
-  <!-- ================= ЗРАЗОК 02 ================= -->
-  <h2 class="sec"><span>02</span> Колода</h2>
-  <p class="sub">Той самий поділ на групи, але картки лягають у стос, а рядки всередині — звичайним списком з волосяною лінією. Найтихіший з трьох на довгому тексті.</p>
+  <!-- ================= SPECIMEN 02 ================= -->
+  <h2 class="sec"><span>02</span> Deck</h2>
+  <p class="sub">The same grouping, but the cards stack and the rows inside them are a plain list on a hairline. The quietest of the three on long prose.</p>
 
   <div class="spec">
-    <div class="spec-bar"><b>/hotkeys</b><span>напрямок 02</span></div>
+    <div class="spec-bar"><b>/hotkeys</b><span>direction 02</span></div>
     <div class="spec-body">
       <div class="d2">
         <nav class="nav">
           <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube2"/></svg> Plonk</span>
-          <span class="crumb">Довідка / Клавіші</span>
+          <span class="crumb">Docs / Hotkeys</span>
         </nav>
 
         <div class="deck">
           <div class="c paper">
-            <p class="eyebrow">Довідка</p>
-            <h1>Усе на <em>⌃⌥</em></h1>
-            <p class="lead">Кожну комбінацію можна перепризначити, і будь-яку — просто зняти.</p>
+            <p class="eyebrow">Reference</p>
+            <h1>All on <em>⌃⌥</em></h1>
+            <p class="lead">Every one of them is rebindable, and any of them can be unbound.</p>
             <div class="map3" aria-hidden="true">
               <b>U</b><b class="edge">↑</b><b>I</b>
               <b class="edge">←</b><b class="mid">C</b><b class="edge">→</b>
               <b>J</b><b class="edge">↓</b><b>K</b>
             </div>
-            <p class="cap">↩ — на весь екран · C — по центру</p>
+            <p class="cap">↩ maximize · C centre</p>
           </div>
 
           <div class="c ye">
-            <p class="eyebrow">Покласти вікно</p>
-            <h2>Куди воно сяде</h2>
+            <p class="eyebrow">Place a window</p>
+            <h2>Where it lands</h2>
             <div class="bigkeys"><kbd>⌃⌥←</kbd><kbd>⌃⌥U</kbd><kbd>⌃⌥↩</kbd><kbd>⌃⌥C</kbd></div>
             <div class="keys">
-              <div class="row"><span class="k">стрілки<br>U I J K</span><span class="d">Половини та чверті</span></div>
-              <div class="row"><span class="k">↩ · C</span><span class="d">На весь екран · по центру</span></div>
-              <div class="row"><span class="k">1 — 9</span><span class="d">У зону з таким номером</span></div>
-              <div class="row"><span class="k">0</span><span class="d">Назад, у рамку до Plonk</span></div>
+              <div class="row"><span class="k">arrows<br>U I J K</span><span class="d">Halves and quarters</span></div>
+              <div class="row"><span class="k">↩ · C</span><span class="d">Maximize · centre</span></div>
+              <div class="row"><span class="k">1 — 9</span><span class="d">Into the zone with that number</span></div>
+              <div class="row"><span class="k">0</span><span class="d">Back to the frame before Plonk</span></div>
             </div>
           </div>
 
           <div class="c mg">
-            <p class="eyebrow">Набори зон</p>
-            <h2>Змінити всю сітку</h2>
+            <p class="eyebrow">Zone sets</p>
+            <h2>Change the whole grid</h2>
             <div class="keys">
-              <div class="row"><span class="k">⇧1 — ⇧9</span><span class="d">Замінити набір на цьому екрані цілком</span></div>
-              <div class="row"><span class="k">L</span><span class="d">Набори списком: обрати, E — редагувати, N — новий</span></div>
-              <div class="row"><span class="k">Z</span><span class="d">Блимнути зонами</span></div>
+              <div class="row"><span class="k">⇧1 — ⇧9</span><span class="d">Swap the entire set on this screen</span></div>
+              <div class="row"><span class="k">L</span><span class="d">The sets as a list: pick one, E to edit, N for a new one</span></div>
+              <div class="row"><span class="k">Z</span><span class="d">Flash the zones</span></div>
             </div>
           </div>
 
           <div class="c bu">
-            <p class="eyebrow">Фокус</p>
-            <h2>Перейти у вікно</h2>
+            <p class="eyebrow">Focus</p>
+            <h2>Go to a window</h2>
             <div class="keys">
-              <div class="row"><span class="k">⇧ стрілки</span><span class="d">У вікно, яке справді в тому боці</span></div>
-              <div class="row"><span class="k">`</span><span class="d">Наступне вікно в цій зоні</span></div>
+              <div class="row"><span class="k">⇧ arrows</span><span class="d">The window actually in that direction</span></div>
+              <div class="row"><span class="k">`</span><span class="d">Next window in this zone</span></div>
             </div>
           </div>
 
           <div class="c mi">
-            <p class="eyebrow">Захопити</p>
-            <h2>Зняти з екрана</h2>
+            <p class="eyebrow">Capture</p>
+            <h2>Take it off the screen</h2>
             <div class="keys">
-              <div class="row"><span class="k">S · T</span><span class="d">Виділити ділянку · дістати з неї текст</span></div>
-              <div class="row"><span class="k">P · ⇧P</span><span class="d">Приколоти живий кроп · приколоти застиглий</span></div>
-              <div class="row"><span class="k">R</span><span class="d">Виміряти те, що під курсором</span></div>
+              <div class="row"><span class="k">S · T</span><span class="d">Grab a region · lift the text out of one</span></div>
+              <div class="row"><span class="k">P · ⇧P</span><span class="d">Pin a live crop · pin a still one</span></div>
+              <div class="row"><span class="k">R</span><span class="d">Measure what is under the pointer</span></div>
             </div>
           </div>
 
           <div class="c nk">
-            <p class="eyebrow">Решта</p>
-            <h2>І чотири на додачу</h2>
+            <p class="eyebrow">The rest</p>
+            <h2>And four more</h2>
             <div class="keys">
-              <div class="row"><span class="k">⇧/</span><span class="d">Усі клавіші застосунку, що попереду</span></div>
-              <div class="row"><span class="k">/ · \</span><span class="d">Знайти курсор · на наступний екран</span></div>
-              <div class="row"><span class="k">V</span><span class="d">Тримати й говорити</span></div>
-              <div class="row"><span class="k">A</span><span class="d">Палітра команд, або речення агентові</span></div>
+              <div class="row"><span class="k">⇧/</span><span class="d">Every shortcut the front app has</span></div>
+              <div class="row"><span class="k">/ · \</span><span class="d">Find the pointer · send it to the next screen</span></div>
+              <div class="row"><span class="k">V</span><span class="d">Hold to talk</span></div>
+              <div class="row"><span class="k">A</span><span class="d">Command palette, or a sentence for the agent</span></div>
             </div>
-            <div class="foot"><span>Зони</span><span>Робочі столи</span><span>Решта</span><span>README</span></div>
+            <div class="foot"><span>Zones</span><span>Workspaces</span><span>Everything else</span><span>README</span></div>
           </div>
         </div>
       </div>
     </div>
-    <p class="verdict"><b>Що вийшло:</b> найкраще з трьох читається довгий опис — рядок описи має повітря, і око не втомлюється. <b>Що болить:</b> нахльост карток, який чудово працює на головній, тут з'їдає верх кожної групи, і на шести картках поспіль жест починає здаватися механічним. Для сторінок-довідок нахльост варто прибрати, лишивши тільки колір.</p>
+    <p class="verdict"><b>What works:</b> long descriptions read best of the three — the description column has air, and the eye does not tire. <b>What hurts:</b> the overlap that carries the front page eats the top of every group here, and six cards in a row makes the gesture feel mechanical. On reference pages the overlap should go and only the colour stay.</p>
   </div>
 
-  <!-- ================= ЗРАЗОК 03 ================= -->
-  <h2 class="sec"><span>03</span> Моно</h2>
-  <p class="sub">Групи лишаються, але стають підписами над таблицею. Клавіша і опис — дві колонки, які не рухаються. Схема екрана підписана дробами, як і скрізь у цьому напрямку.</p>
+  <!-- ================= SPECIMEN 03 ================= -->
+  <h2 class="sec"><span>03</span> Mono</h2>
+  <p class="sub">The groups stay, but become labels over a table. Key and meaning are two columns that never move. The screen map is labelled with fractions, as everything is in this direction.</p>
 
   <div class="spec">
-    <div class="spec-bar"><b>/hotkeys</b><span>напрямок 03</span></div>
+    <div class="spec-bar"><b>/hotkeys</b><span>direction 03</span></div>
     <div class="spec-body">
       <div class="d3">
         <nav class="nav">
@@ -420,79 +420,79 @@ h2.sec span{color:var(--accent)}
         </nav>
 
         <div class="sec">
-          <p class="rule">Довідка</p>
-          <h1>Усе на ⌃⌥.<br><em>Усе знімається.</em></h1>
-          <p class="lead">Кожна комбінація <b>перепризначається</b>, будь-яку можна лишити порожньою. Нижче — те, що стоїть із коробки.</p>
+          <p class="rule">Reference</p>
+          <h1>All on ⌃⌥.<br><em>All of it unbindable.</em></h1>
+          <p class="lead">Every combination is <b>rebindable</b>, and any of them can be left empty. Below is what ships in the box.</p>
           <div class="map3" aria-hidden="true">
             <b>U<i>0.5×0.5</i></b><b class="edge">↑<i>1×0.5</i></b><b>I<i>0.5×0.5</i></b>
             <b class="edge">←<i>0.5×1</i></b><b class="mid">C<i>0.6×0.6</i></b><b class="edge">→<i>0.5×1</i></b>
             <b>J<i>0.5×0.5</i></b><b class="edge">↓<i>1×0.5</i></b><b>K<i>0.5×0.5</i></b>
           </div>
-          <p class="cap">↩ = 1 × 1 · дріб — частка видимої площі екрана</p>
+          <p class="cap">↩ = 1 × 1 · a fraction is a share of the screen's visible area</p>
         </div>
 
         <div class="sec pan">
-          <p class="grp">Покласти вікно</p>
+          <p class="grp">Place a window</p>
           <table class="tab">
-            <tr><td>⌃⌥ ← ↑ → ↓</td><td>Половини</td></tr>
-            <tr><td>⌃⌥ U I J K</td><td>Чверті</td></tr>
-            <tr><td>⌃⌥↩ · ⌃⌥C</td><td>На весь екран · по центру</td></tr>
-            <tr><td>⌃⌥1 — ⌃⌥9</td><td>У зону, на якій оверлей малює цей номер</td></tr>
-            <tr><td>⌃⌥0</td><td>Повернути рамку, яку вікно мало до Plonk</td></tr>
+            <tr><td>⌃⌥ ← ↑ → ↓</td><td>Halves</td></tr>
+            <tr><td>⌃⌥ U I J K</td><td>Quarters</td></tr>
+            <tr><td>⌃⌥↩ · ⌃⌥C</td><td>Maximize · centre</td></tr>
+            <tr><td>⌃⌥1 — ⌃⌥9</td><td>Into the zone the overlay draws that number on</td></tr>
+            <tr><td>⌃⌥0</td><td>Give back the frame it had before Plonk first moved it</td></tr>
           </table>
 
-          <p class="grp">Набори зон</p>
+          <p class="grp">Zone sets</p>
           <table class="tab">
-            <tr><td>⌃⌥⇧1 — 9</td><td>Замінити набір на екрані, де курсор. Вікна, що вже стоять у пронумерованій зоні, їдуть за своїм номером</td></tr>
-            <tr><td>⌃⌥L</td><td>Набори списком: стрілки або цифра — вибір, ↩ — застосувати, E — редактор, N — новий</td></tr>
-            <tr><td>⌃⌥Z</td><td>Блимнути зонами</td></tr>
+            <tr><td>⌃⌥⇧1 — 9</td><td>Swap the set on the screen the cursor is on. Windows already in a numbered zone move to where that number is now</td></tr>
+            <tr><td>⌃⌥L</td><td>The sets as a list: arrows or the digit to pick, ↩ to use it, E for the editor, N for a new one</td></tr>
+            <tr><td>⌃⌥Z</td><td>Flash the zones</td></tr>
           </table>
 
-          <p class="grp">Фокус</p>
+          <p class="grp">Focus</p>
           <table class="tab">
-            <tr><td>⌃⌥⇧ стрілки</td><td>У вікно, яке справді в тому напрямку, а не в те, яким користувались востаннє</td></tr>
-            <tr><td>⌃⌥`</td><td>Наступне вікно в цій зоні</td></tr>
+            <tr><td>⌃⌥⇧ arrows</td><td>The window that is actually in that direction, not the one you used last</td></tr>
+            <tr><td>⌃⌥`</td><td>Next window in this zone</td></tr>
           </table>
 
-          <p class="grp">Захопити</p>
+          <p class="grp">Capture</p>
           <table class="tab">
-            <tr><td>⌃⌥S · ⌃⌥T</td><td>Виділити ділянку · дістати з неї текст</td></tr>
-            <tr><td>⌃⌥P · ⌃⌥⇧P</td><td>Приколоти живий кроп згори · приколоти застиглий</td></tr>
-            <tr><td>⌃⌥R</td><td>Виміряти те, що під курсором</td></tr>
+            <tr><td>⌃⌥S · ⌃⌥T</td><td>Grab a region · lift the text out of one</td></tr>
+            <tr><td>⌃⌥P · ⌃⌥⇧P</td><td>Pin a live crop on top · pin a still one</td></tr>
+            <tr><td>⌃⌥R</td><td>Measure what is under the pointer</td></tr>
           </table>
 
-          <p class="grp">Решта</p>
+          <p class="grp">The rest</p>
           <table class="tab">
-            <tr><td>⌃⌥⇧/</td><td>Усі клавіші застосунку, що зараз попереду</td></tr>
-            <tr><td>⌃⌥/ · ⌃⌥\</td><td>Знайти курсор · перекинути його на наступний екран</td></tr>
-            <tr><td>⌃⌥V</td><td>Тримати й говорити</td></tr>
-            <tr><td>⌃⌥A</td><td>Палітра команд: виконати будь-що на ім'я, або написати речення агентові</td></tr>
+            <tr><td>⌃⌥⇧/</td><td>Every shortcut the front app has</td></tr>
+            <tr><td>⌃⌥/ · ⌃⌥\</td><td>Find the pointer · jump it to the next screen</td></tr>
+            <tr><td>⌃⌥V</td><td>Hold to talk</td></tr>
+            <tr><td>⌃⌥A</td><td>Command palette — run anything by name, or type a sentence for the agent</td></tr>
           </table>
 
-          <p class="note"><b>Чотирнадцять рядків, один екран прокрутки.</b> Префікс ⌃⌥ винесено в заголовок і повторюється в таблиці лише там, де без нього рядок читався б неоднозначно.</p>
+          <p class="note"><b>Fourteen rows, about one screen of scrolling.</b> The ⌃⌥ prefix is lifted into the headline and repeated in the table only where a row would read ambiguously without it.</p>
         </div>
 
         <div class="foot"><span>ZONES</span><span>WORKSPACES</span><span>FEATURES</span><span>AGENTS</span><span>README</span></div>
       </div>
     </div>
-    <p class="verdict"><b>Що вийшло:</b> уся довідка вміщається приблизно в один-два екрани телефона, комбінація знаходиться оком за секунду, і колонка клавіш вирівняна, бо моношрифт. <b>Що болить:</b> сторінка виглядає як документація, а не як продукт — після яскравої головної перехід відчувається різким.</p>
+    <p class="verdict"><b>What works:</b> the whole reference fits in one or two phone screens, a combination is found by eye in a second, and the key column aligns itself because the face is monospaced. <b>What hurts:</b> it looks like documentation rather than a product — after a loud front page the transition feels abrupt.</p>
   </div>
 
-  <h2 class="sec"><span>·</span> Висновок</h2>
-  <p class="sub" style="max-width:44ch">Три напрямки програють і виграють у різних місцях, і це не проблема вибору — це підказка, що <b>сторінки сайту не однакові</b>.</p>
+  <h2 class="sec"><span>·</span> Verdict</h2>
+  <p class="sub" style="max-width:46ch">The three directions win and lose in different places, and that is not a problem with the choice — it is a hint that <b>the pages are not the same kind of thing</b>.</p>
   <table class="map">
-    <thead><tr><th>Сторінка</th><th>Що на ній переважає</th><th>Кому пасує</th></tr></thead>
+    <thead><tr><th>Page</th><th>What dominates it</th><th>Best served by</th></tr></thead>
     <tbody>
-      <tr><td>/</td><td>Переконати за 10 секунд</td><td>01 Плитка</td></tr>
-      <tr><td>/zones</td><td>Схеми, поведінка, приклади</td><td>01 або 02</td></tr>
-      <tr><td>/workspaces</td><td>Опис і одне застереження</td><td>02 Колода</td></tr>
-      <tr><td>/hotkeys</td><td>Таблиця, до якої повертаються</td><td>03 Моно</td></tr>
-      <tr><td>/features</td><td>Десять довгих абзаців</td><td>02 Колода</td></tr>
-      <tr><td>/agents</td><td>Інструменти, JSON, CLI</td><td>03 Моно</td></tr>
-      <tr><td>/verify</td><td>Обіцянка + команда, парами</td><td>03 Моно</td></tr>
-      <tr><td>/clients/×3</td><td>Три кроки й блок коду</td><td>03 Моно</td></tr>
+      <tr><td>/</td><td>Convince in ten seconds</td><td>01 Tile</td></tr>
+      <tr><td>/zones</td><td>Diagrams, behaviour, examples</td><td>01 or 02</td></tr>
+      <tr><td>/workspaces</td><td>Prose and one caveat</td><td>02 Deck</td></tr>
+      <tr><td>/hotkeys</td><td>A table you come back to</td><td>03 Mono</td></tr>
+      <tr><td>/features</td><td>Ten long paragraphs</td><td>02 Deck</td></tr>
+      <tr><td>/agents</td><td>Tools, JSON, the CLI</td><td>03 Mono</td></tr>
+      <tr><td>/verify</td><td>A claim and its command, in pairs</td><td>03 Mono</td></tr>
+      <tr><td>/clients/×3</td><td>Three steps and a code block</td><td>03 Mono</td></tr>
     </tbody>
   </table>
-  <p class="verdict" style="margin-top:20px">Найпрактичніший розклад — <b>01 на головній, 03 на довідкових</b>, з однією спільною палітрою і однією типографікою, щоб перехід не читався як інший сайт. Це не компроміс: у monobank так само — головна кричить кольором, а тарифи й умови набрані спокійно й щільно.</p>
+  <p class="verdict" style="margin-top:20px">The most practical split is <b>01 on the front page, 03 on the reference pages</b>, sharing one palette and one type scale so the move between them never reads as a different site. That is not a compromise: monobank does the same — the front page shouts in colour, the terms and the tariffs are set quietly and tight.</p>
 
 </div>

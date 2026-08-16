@@ -1,11 +1,12 @@
 <title>Plonk Tile System</title>
 <style>
 /* ============================================================
-   НАПРЯМОК 01 — ПЛИТКА
-   Ідея: monobank будує сторінку з великих кольорових плиток.
-   Plonk будує екран з великих прямокутників. Це те саме.
-   Сторінка = набір зон. Проміжки між плитками = gaps у Plonk.
-   Тема одна, чорна, свідомо: бренд не перевертається.
+   DIRECTION 01 — TILE
+   The idea: monobank builds a page out of large colour tiles.
+   Plonk builds a screen out of large rectangles. Same shape.
+   The page is a zone set. The gaps between tiles are the gaps
+   setting in Plonk. One theme, black, deliberately: a brand
+   should not flip over.
    ============================================================ */
 :root{
   --ground:#000000;
@@ -41,7 +42,7 @@ body{
 }
 img,svg{max-width:100%}
 
-/* ---------- оболонка презентації ---------- */
+/* ---------- presentation shell ---------- */
 .s-wrap{max-width:520px;margin:0 auto;padding:0 var(--gap) 64px}
 @media (min-width:900px){.s-wrap{max-width:560px}}
 
@@ -56,7 +57,7 @@ img,svg{max-width:100%}
   font-weight:900;letter-spacing:-.045em;line-height:.92;
   margin:0 0 16px;text-wrap:balance
 }
-.s-cover p{margin:0;color:var(--dim);font-size:17px;line-height:1.45;max-width:34ch}
+.s-cover p{margin:0;color:var(--dim);font-size:17px;line-height:1.45;max-width:36ch}
 .s-cover p b{color:var(--ink);font-weight:600}
 
 .s-spec{
@@ -78,7 +79,6 @@ img,svg{max-width:100%}
 .s-type{font-family:var(--display);font-weight:900;letter-spacing:-.04em;font-size:28px;line-height:1}
 .s-type small{display:block;font-family:var(--mono);font-weight:400;letter-spacing:0;font-size:11px;color:var(--dim);margin-top:8px}
 
-/* смуга-роздільник між частинами презентації */
 .s-lane{margin:44px 0 0}
 .s-lane > h2{
   font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
@@ -86,7 +86,7 @@ img,svg{max-width:100%}
   display:flex;align-items:baseline;gap:10px
 }
 .s-lane > h2 span{color:var(--violet)}
-.s-lane > .s-sub{margin:0 0 18px;padding:0 12px;color:var(--dim);font-size:14px;max-width:38ch}
+.s-lane > .s-sub{margin:0 0 18px;padding:0 12px;color:var(--dim);font-size:14px;max-width:42ch}
 
 .s-note{
   margin:14px 0 0;padding:14px 16px;border-left:2px solid var(--violet);
@@ -95,7 +95,7 @@ img,svg{max-width:100%}
 .s-note b{color:var(--ink);font-weight:600}
 
 /* ============================================================
-   САЙТ  (префікс w-)
+   WEBSITE  (prefix w-)
    ============================================================ */
 .w-site{display:flex;flex-direction:column;gap:var(--gap)}
 .w-t{border-radius:var(--r);padding:var(--pad);position:relative;overflow:hidden}
@@ -120,7 +120,7 @@ img,svg{max-width:100%}
   font-size:clamp(44px,14.5vw,64px);margin:0 0 18px;text-wrap:balance
 }
 .w-hero h1 em{font-style:normal;color:var(--violet)}
-.w-hero p{margin:0 0 24px;color:var(--dim);font-size:17px;line-height:1.4;max-width:30ch}
+.w-hero p{margin:0 0 24px;color:var(--dim);font-size:17px;line-height:1.4;max-width:32ch}
 .w-hero p b{color:var(--ink);font-weight:600}
 .w-cta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .w-btn{
@@ -131,7 +131,7 @@ img,svg{max-width:100%}
 .w-btn.sec{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
 .w-btn:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 
-/* герой: жива сітка зон, у яку "падає" вікно */
+/* hero: a live zone set with a window dropping into it */
 .w-stage{
   margin-top:26px;background:#08080a;border-radius:20px;padding:10px;
   box-shadow:inset 0 0 0 1px var(--line)
@@ -165,7 +165,6 @@ img,svg{max-width:100%}
 .w-win.floating{animation:drift 5s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.w-win.floating{animation:none}}
 
-/* заголовки секцій */
 .w-eyebrow{
   font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   opacity:.6;margin:0 0 12px
@@ -177,7 +176,6 @@ img,svg{max-width:100%}
 .w-p{margin:0;font-size:16px;line-height:1.45;opacity:.85}
 .w-t.dark .w-p{color:var(--dim);opacity:1}
 
-/* три способи — кольорові плитки */
 .w-way{display:flex;flex-direction:column;gap:18px}
 .w-keycap{
   display:inline-flex;gap:5px;font-family:var(--mono);font-size:14px;font-weight:600
@@ -193,7 +191,6 @@ img,svg{max-width:100%}
   font-size:clamp(64px,22vw,96px);opacity:.22;margin:0 0 -6px
 }
 
-/* міні-схема екрана всередині плиток */
 .w-mini{
   aspect-ratio:16/10;border-radius:14px;background:rgba(0,0,0,.16);padding:7px;
   display:grid;gap:5px
@@ -210,7 +207,6 @@ img,svg{max-width:100%}
 .w-mini.p6 > b:nth-child(2){grid-row:span 2}
 .w-mini.ultra{grid-template-columns:1fr 2fr 1fr}
 
-/* цифри */
 .w-stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
 .w-stat{background:var(--panel);border-radius:var(--r-sm);padding:18px}
 .w-stat b{
@@ -223,7 +219,6 @@ img,svg{max-width:100%}
 .w-stat.a b{color:var(--amber)}
 .w-stat.b b{color:var(--blue)}
 
-/* термінал для агентів */
 .w-term{
   background:#000;border-radius:var(--r-sm);padding:16px;font-family:var(--mono);
   font-size:13px;line-height:1.85;box-shadow:inset 0 0 0 1px var(--line);
@@ -236,7 +231,6 @@ img,svg{max-width:100%}
 .w-term .r::before{content:"  ";white-space:pre}
 .w-term .ok{color:#4ade80}
 
-/* дрібні утиліти — бенто */
 .w-bento{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
 .w-cell{
   background:var(--panel);border-radius:var(--r-sm);padding:16px;min-height:118px;
@@ -249,7 +243,6 @@ img,svg{max-width:100%}
 .w-cell b{font-size:15px;font-weight:700;letter-spacing:-.02em;display:block}
 .w-cell span{display:block;color:var(--dim);font-size:13px;line-height:1.35;margin-top:3px}
 
-/* установка */
 .w-code{
   background:#000;border-radius:14px;padding:14px 16px;font-family:var(--mono);
   font-size:13px;color:#c9f7d6;box-shadow:inset 0 0 0 1px var(--line);
@@ -267,7 +260,7 @@ img,svg{max-width:100%}
 .w-foot a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--line)}
 
 /* ============================================================
-   ЗАСТОСУНОК  (префікс a-)
+   APP  (prefix a-)
    ============================================================ */
 .a-scaler{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r-sm)}
 .a-win{
@@ -320,7 +313,6 @@ img,svg{max-width:100%}
 .a-tog::after{content:"";position:absolute;top:3px;right:3px;width:23px;height:23px;border-radius:50%;background:#fff}
 .a-kbd{font-family:var(--mono);font-size:13px;background:#000;border-radius:9px;padding:7px 10px;color:var(--ink)}
 
-/* меню-бар */
 .a-menubar{
   width:360px;zoom:.82;background:var(--panel);border-radius:18px;padding:12px;
   box-shadow:0 0 0 1px var(--line),0 30px 60px rgba(0,0,0,.7);display:flex;flex-direction:column;gap:6px
@@ -340,7 +332,6 @@ img,svg{max-width:100%}
 }
 .a-mb-grid b.on{background:var(--violet);color:#fff}
 
-/* HUD під час перетягування */
 .a-hud{
   border-radius:var(--r-sm);background:#08080a;padding:10px;box-shadow:inset 0 0 0 1px var(--line)
 }
@@ -357,7 +348,7 @@ img,svg{max-width:100%}
 .a-toast em{font-style:normal;color:var(--violet)}
 
 /* ============================================================
-   README  (префікс r-)
+   README  (prefix r-)
    ============================================================ */
 .r-gh{
   background:#0d1117;border:1px solid #30363d;border-radius:14px;overflow:hidden;
@@ -378,7 +369,7 @@ img,svg{max-width:100%}
   font-size:clamp(34px,10vw,46px);margin:0;color:#fff
 }
 .r-banner h1 em{font-style:normal;color:var(--violet)}
-.r-banner p{margin:0;color:var(--dim);font-size:14.5px;line-height:1.4;max-width:32ch}
+.r-banner p{margin:0;color:var(--dim);font-size:14.5px;line-height:1.4;max-width:34ch}
 .r-banner .zones{display:flex;gap:6px;height:54px}
 .r-banner .zones b{border-radius:8px;flex:1}
 .r-banner .zones b:nth-child(1){background:var(--coral)}
@@ -413,13 +404,6 @@ img,svg{max-width:100%}
 .r-shot .g b{border-radius:8px;background:#1b1b20;display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:13px;color:#5a5a66}
 .r-shot .g b.on{background:rgba(123,92,255,.18);color:#fff;box-shadow:inset 0 0 0 1.5px var(--violet)}
-
-/* спільний куб */
-.cube-top{fill:#f5f5f3}
-.cube-l{fill:var(--coral)}
-.cube-r{fill:var(--blue)}
-.cube-s{stroke:#0a0a0c;stroke-width:2.4;stroke-linejoin:round;fill:none}
-.cube-g{stroke:#0a0a0c;stroke-width:1.4;opacity:.55}
 </style>
 
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -439,14 +423,14 @@ img,svg{max-width:100%}
 <div class="s-wrap">
 
   <header class="s-cover">
-    <p class="s-kicker">Напрямок 01 з 3</p>
-    <h1>Плитка</h1>
-    <p>monobank будує сторінку з великих кольорових плиток. Plonk будує екран з великих прямокутників. <b>Це та сама форма.</b> Тут сайт, README і застосунок зроблені з однієї деталі — зони.</p>
+    <p class="s-kicker">Direction 01 of 3</p>
+    <h1>Tile</h1>
+    <p>monobank builds a page out of large colour tiles. Plonk builds a screen out of large rectangles. <b>It is the same shape.</b> Here the site, the README and the app are all made from one part: a zone.</p>
   </header>
 
   <div class="s-spec">
     <div class="s-card wide">
-      <p class="s-lab">Палітра</p>
+      <p class="s-lab">Palette</p>
       <div class="s-sw">
         <i style="background:#000"></i>
         <i style="background:#7b5cff"></i>
@@ -458,23 +442,23 @@ img,svg{max-width:100%}
       </div>
     </div>
     <div class="s-card">
-      <p class="s-lab">Шрифт</p>
+      <p class="s-lab">Type</p>
       <div class="s-type">Aa
-        <small>SF Pro Display 900<br>трекінг −0.05em</small>
+        <small>SF Pro Display 900<br>tracking −0.05em</small>
       </div>
     </div>
     <div class="s-card">
-      <p class="s-lab">Форма</p>
+      <p class="s-lab">Shape</p>
       <div class="s-type" style="font-size:20px">28 / 16 px
-        <small>радіус плитки<br>проміжок 10 px</small>
+        <small>tile radius<br>10 px gap</small>
       </div>
     </div>
   </div>
 
-  <!-- ================= САЙТ ================= -->
+  <!-- ================= WEBSITE ================= -->
   <section class="s-lane">
-    <h2><span>01</span> Сайт</h2>
-    <p class="s-sub">ostapondo.github.io/Plonk — головна, як її бачить телефон.</p>
+    <h2><span>01</span> Website</h2>
+    <p class="s-sub">ostapondo.github.io/Plonk — the front page as a phone sees it.</p>
 
     <div class="w-site">
 
@@ -484,11 +468,11 @@ img,svg{max-width:100%}
       </nav>
 
       <div class="w-t dark w-hero">
-        <h1>Вікно<br>сідає<br><em>саме туди.</em></h1>
-        <p>Мак-менеджер вікон із зонами, які <b>ви малюєте самі</b>. Перетягніть, натисніть клавішу або просто скажіть.</p>
+        <h1>Put it<br>exactly<br><em>there.</em></h1>
+        <p>A Mac window manager with zones <b>you draw yourself</b>. Drag a window in, press a key, or just say where it goes.</p>
         <div class="w-cta">
-          <a class="w-btn pri" href="#install">Завантажити</a>
-          <a class="w-btn sec" href="#zones">Як це працює</a>
+          <a class="w-btn pri" href="#install">Download</a>
+          <a class="w-btn sec" href="#zones">See how it works</a>
         </div>
 
         <div class="w-stage" aria-hidden="true">
@@ -505,9 +489,9 @@ img,svg{max-width:100%}
       </div>
 
       <div class="w-t violet" id="zones">
-        <p class="w-eyebrow">Зони</p>
-        <h2 class="w-h2">Не сітка з половинок. Ваша сітка.</h2>
-        <p class="w-p">Скільки завгодно зон, будь-якого розміру, свій набір на кожному моніторі. Клік ділить зону навпіл, ⇧-клік — упоперек.</p>
+        <p class="w-eyebrow">Zones</p>
+        <h2 class="w-h2">Not a grid of halves. Your grid.</h2>
+        <p class="w-p">Any number of zones, any size, a different set per monitor, overlapping if that suits you. Click a zone to split it, ⇧-click to split the other way.</p>
         <div class="w-mini p6" style="margin-top:20px">
           <b>1</b><b>2</b><b>3</b><b>4</b><b>5</b>
         </div>
@@ -515,141 +499,141 @@ img,svg{max-width:100%}
 
       <div class="w-t coral">
         <p class="w-num">3</p>
-        <p class="w-eyebrow">Способи покласти вікно</p>
+        <p class="w-eyebrow">Ways to move a window</p>
         <div class="w-way">
           <div>
-            <h2 class="w-h2">Перетягніть.</h2>
-            <p class="w-p">Зони підсвічуються, поки ви тягнете. Затисніть ⌘ — вікно займе одразу дві.</p>
+            <h2 class="w-h2">Drag it.</h2>
+            <p class="w-p">Zones light up as you move a window, and it drops into one. Hold ⌘ too and it takes two of them at once.</p>
           </div>
           <div>
-            <h2 class="w-h2">Натисніть.</h2>
+            <h2 class="w-h2">Press a key.</h2>
             <span class="w-keycap"><kbd>⌃⌥1</kbd><kbd>⌃⌥←</kbd><kbd>⌃⌥0</kbd></span>
-            <p class="w-p" style="margin-top:12px">Дев'ять зон на цифрах. Нуль повертає вікно туди, де воно було до Plonk.</p>
+            <p class="w-p" style="margin-top:12px">Nine zones live on the digits. Zero puts a window back where it was before Plonk touched it.</p>
           </div>
           <div>
-            <h2 class="w-h2">Скажіть.</h2>
+            <h2 class="w-h2">Say it.</h2>
             <span class="w-keycap"><kbd>⌃⌥V</kbd></span>
-            <p class="w-p" style="margin-top:12px">«Zone three». Розпізнавання йде в застосунку, офлайн, на пристрої.</p>
+            <p class="w-p" style="margin-top:12px">Hold it and name the place: “zone three”. That runs in the app, offline, on-device.</p>
           </div>
         </div>
       </div>
 
       <div class="w-t dark">
-        <p class="w-eyebrow">Робочі столи</p>
-        <h2 class="w-h2">Пам'ятає навіть, <em style="font-style:normal;color:var(--amber)">на якому моніторі.</em></h2>
-        <p class="w-p">Збережіть стіл: застосунки, рамку кожного вікна і екран, якому воно належить. Монітори підписані UUID — від'єднали й повернули, нічого не поплило.</p>
+        <p class="w-eyebrow">Workspaces</p>
+        <h2 class="w-h2">It remembers <em style="font-style:normal;color:var(--amber)">which monitor,</em> too.</h2>
+        <p class="w-p">Save the desk: the apps, every window's frame, and the display each one belongs on. Monitors are keyed by UUID, so unplugging one does not scramble them.</p>
         <div class="w-bento" style="margin-top:18px">
-          <div class="w-cell"><span class="k">review</span><b>Safari · Terminal · Notes<span>3 екрани</span></b></div>
-          <div class="w-cell"><span class="k">writing</span><b>iA Writer · Music<span>1 екран</span></b></div>
+          <div class="w-cell"><span class="k">review</span><b>Safari · Terminal · Notes<span>3 displays</span></b></div>
+          <div class="w-cell"><span class="k">writing</span><b>iA Writer · Music<span>1 display</span></b></div>
         </div>
       </div>
 
       <div class="w-t blue">
-        <p class="w-eyebrow">Для агентів</p>
-        <h2 class="w-h2">Скажіть це реченням.</h2>
-        <p class="w-p" style="margin-bottom:18px">MCP-сервер на 20 інструментів. Це не «покрутити чуже вікно» — це сам менеджер вікон.</p>
+        <p class="w-eyebrow">For agents</p>
+        <h2 class="w-h2">One sentence, not a script.</h2>
+        <p class="w-p" style="margin-bottom:18px">An MCP server across 20 tools. Generic automation can nudge someone else's window around. This is the window manager itself.</p>
         <div class="w-term">
-          <div class="u">браузер ліворуч на 60%, термінал згори праворуч</div>
-          <div class="r ok">✓ 3 вікна розкладено</div>
-          <div class="u">збережи як робочий стіл «review»</div>
-          <div class="r ok">✓ збережено · 2 монітори</div>
-          <div class="u">тримай мак у тонусі, поки йде білд</div>
-          <div class="r">awake · до виходу npm run build</div>
+          <div class="u">browser on the left 60%, terminal top right</div>
+          <div class="r ok">✓ 3 windows placed</div>
+          <div class="u">save that as a workspace called "review"</div>
+          <div class="r ok">✓ saved · 2 monitors</div>
+          <div class="u">keep the Mac awake until this build finishes</div>
+          <div class="r">awake · until npm run build exits</div>
         </div>
       </div>
 
       <div class="w-stats">
-        <div class="w-stat v"><b>20</b><span>MCP-інструментів для агента</span></div>
-        <div class="w-stat c"><b>0</b><span>залежностей у застосунку</span></div>
-        <div class="w-stat a"><b>10</b><span>утиліт під однією іконкою</span></div>
-        <div class="w-stat b"><b>0</b><span>байтів у хмару</span></div>
+        <div class="w-stat v"><b>20</b><span>MCP tools an agent can call</span></div>
+        <div class="w-stat c"><b>0</b><span>dependencies in the app</span></div>
+        <div class="w-stat a"><b>10</b><span>utilities behind one icon</span></div>
+        <div class="w-stat b"><b>0</b><span>bytes sent to a cloud</span></div>
       </div>
 
       <div class="w-t dark">
-        <p class="w-eyebrow">І ще сім дрібниць</p>
-        <h2 class="w-h2">Кожна з них колись була окремою іконкою в меню.</h2>
+        <p class="w-eyebrow">And seven smaller things</p>
+        <h2 class="w-h2">Each was otherwise its own icon in the menu bar.</h2>
         <div class="w-bento" style="margin-top:18px">
-          <div class="w-cell"><span class="k">⌃⌥T</span><b>Текст з екрана<span>Виділіть ділянку — слова в буфері. На пристрої</span></b></div>
-          <div class="w-cell"><span class="k">⌃⌥R</span><b>Лінійка<span>Скільки пікселів до краю. І в пунктах теж</span></b></div>
-          <div class="w-cell"><b>Шматок екрана згори<span>Живий кроп над усім: лог білда, графік, дзвінок</span></b></div>
-          <div class="w-cell"><b>Не засинати<span>Справжні assertions, не сіпалка курсора</span></b></div>
-          <div class="w-cell"><b>Скриншоти<span>Ручка, стрілка, рамка, маркер. Рідна роздільність</span></b></div>
-          <div class="w-cell"><b>Довідка по клавішах<span>Читається з меню самого застосунку — не застаріває</span></b></div>
+          <div class="w-cell"><span class="k">⌃⌥T</span><b>Text off the screen<span>Select an area and the words are in your clipboard. On-device</span></b></div>
+          <div class="w-cell"><span class="k">⌃⌥R</span><b>A ruler<span>How far the pointer can go before it meets an edge. Points and pixels both</span></b></div>
+          <div class="w-cell"><b>Pin part of the screen<span>A live crop above everything else: a build log, a chart, a call</span></b></div>
+          <div class="w-cell"><b>Keep awake<span>Real power assertions, not a jiggler. Sessions end by themselves</span></b></div>
+          <div class="w-cell"><b>Screenshots<span>Pen, arrow, rectangle, highlighter. Saved at native resolution</span></b></div>
+          <div class="w-cell"><b>A shortcut guide<span>Read from the front app's own menus, so it is never out of date</span></b></div>
         </div>
       </div>
 
       <div class="w-t amber">
-        <p class="w-eyebrow">Приватність</p>
-        <h2 class="w-h2">Ні акаунта. Ні хмари. Ні телеметрії.</h2>
-        <p class="w-p">API слухає лише 127.0.0.1 і закритий токеном, який читаєте тільки ви. Єдине з'єднання назовні — перевірка оновлень, і її можна вимкнути.</p>
-        <p class="w-p" style="margin-top:14px"><b>І це не треба брати на віру.</b> Релізи збираються на раннерах GitHub і їдуть з атестацією.</p>
+        <p class="w-eyebrow">Privacy</p>
+        <h2 class="w-h2">No account. No cloud. No telemetry.</h2>
+        <p class="w-p">The API binds to 127.0.0.1, refuses anything carrying headers a browser cannot suppress, and is gated on a token only you can read. The one outbound connection is the update check, and it can be switched off.</p>
+        <p class="w-p" style="margin-top:14px"><b>None of that is a claim you have to take on trust.</b> Releases are built on GitHub's runners and ship with an attestation.</p>
         <div class="w-code" style="margin-top:14px;color:#ffe6b8">gh attestation verify Plonk-0.2.4.zip -R ostapondo/plonk</div>
       </div>
 
       <div class="w-t paper" id="install">
-        <p class="w-eyebrow" style="color:#5b3df0;opacity:1">Установка</p>
-        <h2 class="w-h2">Один рядок.</h2>
+        <p class="w-eyebrow" style="color:#5b3df0;opacity:1">Install</p>
+        <h2 class="w-h2">One line.</h2>
         <div class="w-code" style="margin:16px 0 0">brew install --cask ostapondo/plonk/plonk</div>
         <ul class="w-checks">
-          <li>macOS 13 і новіший, Apple silicon</li>
-          <li>Accessibility — коли попросить. Далі перезапуск</li>
-          <li>Ні Full Disk Access, ні Automation, ні Keychain</li>
-          <li>Поруч з Rectangle чи Magnet живе спокійно</li>
+          <li>macOS 13 or newer, Apple silicon</li>
+          <li>Grant Accessibility when it asks, then relaunch</li>
+          <li>No Full Disk Access, no Automation, no Keychain</li>
+          <li>Runs happily next to Rectangle or Magnet</li>
         </ul>
-        <a class="w-btn pri" style="margin-top:20px;background:#0a0a0a;color:#fff" href="#install">Завантажити 0.2.4</a>
+        <a class="w-btn pri" style="margin-top:20px;background:#0a0a0a;color:#fff" href="#install">Download 0.2.4</a>
       </div>
 
       <div class="w-t dark w-foot">
-        <a href="#zones">Зони</a><a href="#zones">Робочі столи</a><a href="#zones">Клавіші</a>
-        <a href="#zones">Для агентів</a><a href="#zones">Перевірити самому</a><a href="#zones">GitHub</a>
+        <a href="#zones">Zones</a><a href="#zones">Workspaces</a><a href="#zones">Hotkeys</a>
+        <a href="#zones">For agents</a><a href="#zones">Check it yourself</a><a href="#zones">GitHub</a>
         <span style="width:100%;margin-top:8px">MIT © ostapondo · Swift 6 · macOS 13+</span>
       </div>
 
     </div>
 
-    <p class="s-note">Що змінилося проти теперішнього сайту: замість рівномірних карток на сірому — <b>чорне тло і плитки в повну ширину</b>, кожна свого кольору. Заголовок один на екран, 900-та вага, мінусовий трекінг. Кнопка — таблетка. Цифри великі й окремо.</p>
+    <p class="s-note">What changes against today's page: even cards on a grey ground give way to <b>a black ground and full-bleed tiles</b>, each in its own colour. One headline per screen, weight 900, negative tracking. Buttons become pills. Numbers get large and get their own row.</p>
   </section>
 
-  <!-- ================= ЗАСТОСУНОК ================= -->
+  <!-- ================= APP ================= -->
   <section class="s-lane">
-    <h2><span>02</span> Застосунок</h2>
-    <p class="s-sub">Та сама плитка всередині Plonk.app — бічне меню чорне, вибране фіолетове, полотно зон таке ж, як плитки на сайті.</p>
+    <h2><span>02</span> App</h2>
+    <p class="s-sub">The same tile inside Plonk.app — a black sidebar, the selected item filled violet, and a zone canvas built exactly like the tiles on the site.</p>
 
     <div class="a-scaler">
       <div class="a-win">
         <aside class="a-side">
           <span class="brand"><svg style="width:28px;height:28px"><use href="#cube"/></svg> Plonk</span>
-          <div class="a-search">Виконати команду <em>⌘K</em></div>
-          <div class="a-nav"><i class="d"></i> Головна</div>
-          <div class="a-nav on"><i class="d"></i> Зони</div>
-          <div class="a-nav"><i class="d"></i> Робочі столи</div>
-          <div class="a-nav"><i class="d"></i> Захоплення</div>
-          <div class="a-nav"><i class="d"></i> Автоматизація</div>
-          <div class="a-nav"><i class="d"></i> Налаштування</div>
+          <div class="a-search">Run a command <em>⌃⌥A</em></div>
+          <div class="a-nav"><i class="d"></i> Home</div>
+          <div class="a-nav on"><i class="d"></i> Zones</div>
+          <div class="a-nav"><i class="d"></i> Workspaces</div>
+          <div class="a-nav"><i class="d"></i> Capture</div>
+          <div class="a-nav"><i class="d"></i> Automation</div>
+          <div class="a-nav"><i class="d"></i> Settings</div>
         </aside>
         <main class="a-body">
-          <h3 class="a-title">Зони</h3>
+          <h3 class="a-title">Zones</h3>
           <div class="a-sets">
             <span class="a-chip">60 / 40</span>
             <span class="a-chip on">Halves</span>
             <span class="a-chip">Priority</span>
             <span class="a-chip">Quarters</span>
             <span class="a-chip">Thirds</span>
-            <span class="a-chip">+ Новий</span>
+            <span class="a-chip">+ New set</span>
           </div>
           <div class="a-canvas">
             <b>1</b><b class="sel">2</b>
           </div>
           <div class="a-row">
-            <div><div class="t">Кидати вікна в зони</div><div class="s">Перетягування і краї екрана</div></div>
+            <div><div class="t">Drag to snap</div><div class="s">Drop windows into zones or screen edges</div></div>
             <span class="a-tog"></span>
           </div>
           <div class="a-row">
-            <div><div class="t">Ліва половина</div><div class="s">Зона 1 на цьому екрані</div></div>
+            <div><div class="t">Left half</div><div class="s">Zone 1 on this screen</div></div>
             <span class="a-kbd">⌃⌥←</span>
           </div>
           <div class="a-row">
-            <div><div class="t">Повернути як було</div><div class="s">Рамка до втручання Plonk</div></div>
+            <div><div class="t">Put it back</div><div class="s">The frame it had before Plonk</div></div>
             <span class="a-kbd">⌃⌥0</span>
           </div>
         </main>
@@ -658,15 +642,15 @@ img,svg{max-width:100%}
 
     <div style="display:flex;gap:var(--gap);flex-wrap:wrap;margin-top:var(--gap);align-items:flex-start">
       <div class="a-menubar">
-        <div class="a-mb-head"><b>Plonk</b><span>2 екрани · Halves</span></div>
+        <div class="a-mb-head"><b>Plonk</b><span>2 displays · Halves</span></div>
         <div class="a-mb-grid">
           <b>1</b><b class="on">2</b><b>3</b><b>4</b>
         </div>
-        <div class="a-mi on">Робочий стіл «review» <span>⌃⌥⇧R</span></div>
-        <div class="a-mi">Текст з екрана <span>⌃⌥T</span></div>
-        <div class="a-mi">Лінійка <span>⌃⌥R</span></div>
-        <div class="a-mi">Не засинати <span>вимк.</span></div>
-        <div class="a-mi">Голосом <span>⌃⌥V</span></div>
+        <div class="a-mi on">Workspace “review” <span>⌃⌥⇧R</span></div>
+        <div class="a-mi">Text off the screen <span>⌃⌥T</span></div>
+        <div class="a-mi">Ruler <span>⌃⌥R</span></div>
+        <div class="a-mi">Keep awake <span>off</span></div>
+        <div class="a-mi">Hold to talk <span>⌃⌥V</span></div>
       </div>
     </div>
 
@@ -675,17 +659,17 @@ img,svg{max-width:100%}
         <div class="w-zone" style="left:3%;top:6%;width:28%;height:88%">1</div>
         <div class="w-zone on" style="left:33%;top:6%;width:40%;height:88%">2</div>
         <div class="w-zone" style="left:75%;top:6%;width:22%;height:88%">3</div>
-        <div class="a-toast">Відпустіть — <em>зона 2</em> · ⌘ візьме дві</div>
+        <div class="a-toast">Release for <em>zone 2</em> · hold ⌘ for two</div>
       </div>
     </div>
 
-    <p class="s-note">Головне для застосунку: <b>заголовок сторінки стає великим</b> (40 px, 900), рядки налаштувань — окремі плитки з проміжком, а не таблиця з лініями. Активний пункт заливається фіолетовим повністю, як у monobank виділена картка.</p>
+    <p class="s-note">The move that matters most in the app: <b>the page title gets big</b> (40 px, 900), and settings rows become separate tiles with a gap instead of a table with rules. The selected item fills with violet edge to edge, the way a chosen card does at monobank.</p>
   </section>
 
   <!-- ================= README ================= -->
   <section class="s-lane">
     <h2><span>03</span> README</h2>
-    <p class="s-sub">GitHub не дає стилів. Тому дизайн приходить банером-SVG, кольоровими бейджами і схемами замість скріншотів.</p>
+    <p class="s-sub">GitHub gives you no stylesheet. So the design arrives as an SVG banner, recoloured badges, and diagrams in place of screenshots.</p>
 
     <div class="r-gh">
       <div class="r-gh-bar"><b>ostapondo</b> / <b>Plonk</b> · README.md</div>
@@ -693,7 +677,7 @@ img,svg{max-width:100%}
 
         <div class="r-banner">
           <svg style="width:52px;height:58px"><use href="#cube"/></svg>
-          <h1>Plonk<br><em>— клади рівно.</em></h1>
+          <h1>Plonk<br><em>put it there.</em></h1>
           <p>A Mac window manager with zones you draw yourself.</p>
           <div class="zones"><b></b><b></b><b></b><b></b></div>
         </div>
@@ -725,12 +709,12 @@ img,svg{max-width:100%}
       </div>
     </div>
 
-    <p class="s-note">Три правки, які роблять README «своїм»: <b>банер малюється як SVG</b> (той самий чорний фон і фіолет), бейджі перефарбовані в палітру замість дефолтних сірих, а замість гіфки з інтерфейсом — <b>схема зон</b>, яка читається навіть у мобільному GitHub.</p>
+    <p class="s-note">Three edits make the README look like it belongs to the product: <b>the banner is drawn as SVG</b> in the same black and violet, the badges are recoloured into the palette instead of the default greys, and the interface GIF is replaced by <b>a zone diagram</b> that still reads on GitHub mobile.</p>
   </section>
 
   <footer class="s-lane">
-    <h2><span>·</span> Що це коштує</h2>
-    <p class="s-sub" style="max-width:44ch">Один CSS-файл на сайті, один SVG-банер у репозиторії, і кольори SwiftUI у застосунку. Жодного нового залежності, жодного шрифта з мережі: скрізь SF Pro, рідний шрифт мака — того самого, для якого написаний Plonk.</p>
+    <h2><span>·</span> What it costs</h2>
+    <p class="s-sub" style="max-width:48ch">One CSS file on the site, one SVG banner in the repository, and a set of SwiftUI colours in the app. No new dependency and no webfont: everything sits on SF Pro, the Mac's own typeface — the Mac this thing is written for.</p>
   </footer>
 
 </div>

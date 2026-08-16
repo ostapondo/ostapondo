@@ -1,12 +1,12 @@
 <title>Plonk Colour Deck</title>
 <style>
 /* ============================================================
-   НАПРЯМОК 02 — КОЛОДА
-   Ідея: у monobank головний предмет — картка. Її показують
-   великою, кольоровою, у стосі, і гортають убік.
-   Головний предмет Plonk — набір зон. Тож кожен набір зон і
-   кожна можливість тут теж картка: велика, кольорова, у колоді.
-   Світла тема, одна, свідомо.
+   DIRECTION 02 — DECK
+   The idea: at monobank the hero object is a card. It is shown
+   large, in colour, in a stack, and you swipe through it.
+   Plonk's hero object is a zone set. So here every set — and
+   every capability — is a card too: large, colour, stacked.
+   One light theme, deliberately.
    ============================================================ */
 :root{
   --paper:#ffffff;
@@ -33,12 +33,12 @@ body{
 }
 svg{display:block}
 
-/* ---------- оболонка ---------- */
+/* ---------- shell ---------- */
 .s-wrap{max-width:520px;margin:0 auto;padding:0 12px 64px}
 .s-cover{padding:56px 10px 26px}
 .s-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--magenta);margin:0 0 18px}
 .s-cover h1{font-family:var(--display);font-size:clamp(48px,16vw,72px);font-weight:900;letter-spacing:-.05em;line-height:.88;margin:0 0 16px}
-.s-cover p{margin:0;color:var(--dim);font-size:17px;line-height:1.45;max-width:34ch}
+.s-cover p{margin:0;color:var(--dim);font-size:17px;line-height:1.45;max-width:36ch}
 .s-cover p b{color:var(--ink);font-weight:600}
 .s-spec{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:26px 0 40px}
 .s-card{background:var(--paper);border-radius:var(--r-sm);padding:16px;border:1px solid var(--line)}
@@ -51,19 +51,19 @@ svg{display:block}
 .s-lane{margin:46px 0 0}
 .s-lane > h2{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:0 0 4px;padding:0 10px;display:flex;gap:10px}
 .s-lane > h2 span{color:var(--magenta)}
-.s-lane > .s-sub{margin:0 0 18px;padding:0 10px;color:var(--dim);font-size:14px;max-width:38ch}
+.s-lane > .s-sub{margin:0 0 18px;padding:0 10px;color:var(--dim);font-size:14px;max-width:42ch}
 .s-note{margin:16px 0 0;padding:14px 16px;background:var(--paper);border-radius:var(--r-sm);border:1px solid var(--line);color:var(--dim);font-size:13.5px;line-height:1.5}
 .s-note b{color:var(--ink);font-weight:600}
 
 /* ============================================================
-   САЙТ — колода карток
+   WEBSITE — a deck of cards
    ============================================================ */
 .w-deck{display:flex;flex-direction:column}
 .w-c{
   border-radius:var(--r);padding:30px 24px;position:relative;
   box-shadow:0 -2px 0 rgba(0,0,0,.06),0 -18px 40px rgba(0,0,0,.10)
 }
-.w-c + .w-c{margin-top:-22px}          /* картки лягають одна на одну */
+.w-c + .w-c{margin-top:-22px}          /* the cards lie on one another */
 .w-c > *{position:relative}
 .w-c.paper{background:var(--paper)}
 .w-c.yellow{background:var(--yellow)}
@@ -81,7 +81,7 @@ svg{display:block}
 .w-h1{font-family:var(--display);font-weight:900;letter-spacing:-.055em;line-height:.86;font-size:clamp(48px,15.5vw,70px);margin:0 0 20px;text-wrap:balance}
 .w-h1 em{font-style:normal;display:inline-block;padding:0 .12em;border-radius:.12em}
 .w-h2{font-family:var(--display);font-weight:900;letter-spacing:-.045em;line-height:.92;font-size:clamp(32px,10vw,44px);margin:0 0 14px;text-wrap:balance}
-.w-lead{margin:0 0 22px;font-size:17.5px;line-height:1.4;max-width:30ch;opacity:.75}
+.w-lead{margin:0 0 22px;font-size:17.5px;line-height:1.4;max-width:32ch;opacity:.75}
 .w-c.magenta .w-lead,.w-c.blue .w-lead,.w-c.night .w-lead{opacity:.85}
 .w-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px;opacity:.55;display:flex;align-items:center;gap:8px}
 .w-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
@@ -92,7 +92,6 @@ svg{display:block}
 .w-c.magenta .w-btn.light,.w-c.blue .w-btn.light{background:rgba(255,255,255,.18);color:#fff}
 .w-btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 
-/* стос екранів у герої */
 .w-stack{position:relative;height:210px;margin-top:26px}
 .w-scr{
   position:absolute;left:50%;width:78%;aspect-ratio:16/10;border-radius:16px;
@@ -106,7 +105,6 @@ svg{display:block}
 .w-scr.s3 b:nth-child(2){grid-row:span 2}
 .w-scr.s3 b.on{background:var(--blue);color:#fff}
 
-/* горизонтальна карусель наборів зон */
 .w-rail{
   display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
   padding:4px 24px 18px;margin:0 -24px;-webkit-overflow-scrolling:touch
@@ -129,7 +127,6 @@ svg{display:block}
 .g.priority{grid-template-columns:.7fr 1.6fr .9fr;grid-template-rows:1fr 1fr}
 .g.priority b:nth-child(2){grid-row:span 2}
 
-/* гігантські клавіші */
 .w-keys{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
 .w-keys kbd{
   font-family:var(--mono);font-size:19px;font-weight:600;background:rgba(255,255,255,.2);
@@ -137,7 +134,6 @@ svg{display:block}
 }
 .w-c.yellow .w-keys kbd,.w-c.mint .w-keys kbd{background:rgba(0,0,0,.09);box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
 
-/* смуга цифр */
 .w-stats{display:grid;grid-template-columns:1fr 1fr;gap:22px 14px;margin-top:6px}
 .w-stat b{display:block;font-family:var(--display);font-weight:900;letter-spacing:-.06em;font-size:clamp(46px,15vw,62px);line-height:.85;font-variant-numeric:tabular-nums}
 .w-stat span{display:block;margin-top:9px;font-size:13.5px;line-height:1.3;opacity:.6}
@@ -146,13 +142,11 @@ svg{display:block}
 .w-stat.bl b{color:#6f92ff}
 .w-stat.mi b{color:var(--mint)}
 
-/* чат з агентом */
 .w-chat{display:flex;flex-direction:column;gap:9px;margin-top:20px}
 .w-bub{border-radius:20px;padding:13px 16px;font-size:14.5px;line-height:1.4;max-width:88%}
 .w-bub.me{align-self:flex-end;background:#fff;color:var(--ink);border-bottom-right-radius:7px}
 .w-bub.it{align-self:flex-start;background:rgba(255,255,255,.16);border-bottom-left-radius:7px;font-family:var(--mono);font-size:13px}
 
-/* список дрібниць */
 .w-list{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column}
 .w-list li{display:flex;gap:14px;align-items:baseline;padding:15px 0;border-top:1px solid rgba(0,0,0,.1)}
 .w-c.night .w-list li{border-color:#25252b}
@@ -168,7 +162,7 @@ svg{display:block}
 .w-foot{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;opacity:.6;padding-top:6px}
 
 /* ============================================================
-   ЗАСТОСУНОК
+   APP
    ============================================================ */
 .a-scaler{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .a-win{
@@ -225,7 +219,7 @@ svg{display:block}
 .r-gh-body{padding:18px 16px 24px}
 .r-banner{border-radius:20px;background:var(--yellow);padding:26px 22px;display:flex;flex-direction:column;gap:16px;overflow:hidden}
 .r-banner h1{font-family:var(--display);font-weight:900;letter-spacing:-.055em;line-height:.86;font-size:clamp(38px,11vw,52px);margin:0}
-.r-banner p{margin:0;font-size:15px;line-height:1.35;max-width:30ch;opacity:.7}
+.r-banner p{margin:0;font-size:15px;line-height:1.35;max-width:32ch;opacity:.7}
 .r-banner .strip{display:flex;gap:6px;height:56px}
 .r-banner .strip b{border-radius:10px;flex:1;background:var(--ink)}
 .r-banner .strip b:nth-child(2){flex:2.2;background:var(--blue)}
@@ -245,12 +239,6 @@ svg{display:block}
 .r-tab{width:100%;border-collapse:collapse;font-size:13.5px;margin:0 0 12px}
 .r-tab td{border:1px solid #d0d7de;padding:9px 11px;vertical-align:top;line-height:1.45}
 .r-tab td:first-child{width:32%;font-weight:700;white-space:nowrap}
-
-.cube-top{fill:#fafaf8}
-.cube-l{fill:var(--magenta)}
-.cube-r{fill:var(--blue)}
-.cube-s{stroke:#0b0b0d;stroke-width:2.4;stroke-linejoin:round;fill:none}
-.cube-g{stroke:#0b0b0d;stroke-width:1.4;opacity:.5}
 </style>
 
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -270,14 +258,14 @@ svg{display:block}
 <div class="s-wrap">
 
   <header class="s-cover">
-    <p class="s-kicker">Напрямок 02 з 3</p>
-    <h1>Колода</h1>
-    <p>У monobank головний предмет — картка: велика, кольорова, у стосі, і її гортають убік. У Plonk головний предмет — <b>набір зон</b>. Тут він теж картка.</p>
+    <p class="s-kicker">Direction 02 of 3</p>
+    <h1>Deck</h1>
+    <p>At monobank the hero object is a card: large, colour, in a stack, and you swipe through it. Plonk's hero object is <b>a zone set</b>. Here it is a card too.</p>
   </header>
 
   <div class="s-spec">
     <div class="s-card wide">
-      <p class="s-lab">Палітра</p>
+      <p class="s-lab">Palette</p>
       <div class="s-sw">
         <i style="background:#ffffff"></i>
         <i style="background:#ffd400"></i>
@@ -287,29 +275,29 @@ svg{display:block}
         <i style="background:#0b0b0d"></i>
       </div>
     </div>
-    <div class="s-card"><p class="s-lab">Шрифт</p><div class="s-type">Aa<small>SF Pro Display 900<br>інтерліньяж 0.86</small></div></div>
-    <div class="s-card"><p class="s-lab">Форма</p><div class="s-type" style="font-size:20px">36 px<small>радіус картки<br>нахльост −22 px</small></div></div>
+    <div class="s-card"><p class="s-lab">Type</p><div class="s-type">Aa<small>SF Pro Display 900<br>leading 0.86</small></div></div>
+    <div class="s-card"><p class="s-lab">Shape</p><div class="s-type" style="font-size:20px">36 px<small>card radius<br>−22 px overlap</small></div></div>
   </div>
 
-  <!-- ================= САЙТ ================= -->
+  <!-- ================= WEBSITE ================= -->
   <section class="s-lane">
-    <h2><span>01</span> Сайт</h2>
-    <p class="s-sub">Картки лягають одна на одну, як стос у гаманці. Набори зон гортаються вбік пальцем.</p>
+    <h2><span>01</span> Website</h2>
+    <p class="s-sub">Cards lie on one another like a stack in a wallet. The zone sets are swiped sideways with a thumb.</p>
 
     <nav class="w-nav">
       <span class="w-brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> Plonk</span>
-      <a class="w-pill" href="#install">Завантажити</a>
+      <a class="w-pill" href="#install">Download</a>
     </nav>
 
     <div class="w-deck">
 
       <div class="w-c paper">
-        <p class="w-eyebrow">macOS 13+ · безкоштовно · MIT</p>
-        <h1 class="w-h1">Кожне вікно <em style="background:var(--yellow)">на своє</em> місце.</h1>
-        <p class="w-lead">Зони ви малюєте самі. Вікно потрапляє в них перетягуванням, клавішею, голосом — або реченням до агента.</p>
+        <p class="w-eyebrow">macOS 13+ · free · MIT</p>
+        <h1 class="w-h1">Every window <em style="background:var(--yellow)">in its</em> place.</h1>
+        <p class="w-lead">You draw the zones. A window gets into one by being dragged, by a keystroke, by voice — or by a sentence to an agent.</p>
         <div class="w-cta">
-          <a class="w-btn dark" href="#install">Завантажити</a>
-          <a class="w-btn light" href="#sets">Подивитись набори</a>
+          <a class="w-btn dark" href="#install">Download</a>
+          <a class="w-btn light" href="#sets">See the sets</a>
         </div>
         <div class="w-stack" aria-hidden="true">
           <div class="w-scr s1"><b></b><b></b></div>
@@ -319,22 +307,22 @@ svg{display:block}
       </div>
 
       <div class="w-c night" id="sets">
-        <p class="w-eyebrow">П'ять наборів у коробці</p>
-        <h2 class="w-h2">Гортайте.<br>Далі малюйте свій.</h2>
+        <p class="w-eyebrow">Five sets in the box</p>
+        <h2 class="w-h2">Swipe.<br>Then draw your own.</h2>
         <div class="w-rail">
-          <div class="w-set"><div class="g priority"><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b></div><div class="n">Priority <span>5 зон</span></div></div>
-          <div class="w-set"><div class="g halves"><b>1</b><b>2</b></div><div class="n">Halves <span>2 зони</span></div></div>
-          <div class="w-set"><div class="g thirds"><b>1</b><b>2</b><b>3</b></div><div class="n">Thirds <span>3 зони</span></div></div>
-          <div class="w-set"><div class="g sixty"><b>1</b><b>2</b></div><div class="n">60 / 40 <span>2 зони</span></div></div>
-          <div class="w-set"><div class="g quarters"><b>1</b><b>2</b><b>3</b><b>4</b></div><div class="n">Quarters <span>4 зони</span></div></div>
+          <div class="w-set"><div class="g priority"><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b></div><div class="n">Priority <span>5 zones</span></div></div>
+          <div class="w-set"><div class="g halves"><b>1</b><b>2</b></div><div class="n">Halves <span>2 zones</span></div></div>
+          <div class="w-set"><div class="g thirds"><b>1</b><b>2</b><b>3</b></div><div class="n">Thirds <span>3 zones</span></div></div>
+          <div class="w-set"><div class="g sixty"><b>1</b><b>2</b></div><div class="n">60 / 40 <span>2 zones</span></div></div>
+          <div class="w-set"><div class="g quarters"><b>1</b><b>2</b><b>3</b><b>4</b></div><div class="n">Quarters <span>4 zones</span></div></div>
         </div>
-        <p class="w-lead" style="margin:6px 0 0">Поміняли набір на екрані — і вікна, що вже стояли в пронумерованих зонах, самі переїжджають туди, де тепер їхній номер.</p>
+        <p class="w-lead" style="margin:6px 0 0">Swap the set on a screen and any window already sitting in a numbered zone moves to wherever that number is now.</p>
       </div>
 
       <div class="w-c yellow">
-        <p class="w-eyebrow">Спосіб перший</p>
-        <h2 class="w-h2">Просто тягніть.</h2>
-        <p class="w-lead">Зони світяться, поки вікно в руці. Затисніть ще й ⌘ — воно ляже одразу на дві.</p>
+        <p class="w-eyebrow">Way one</p>
+        <h2 class="w-h2">Just drag it.</h2>
+        <p class="w-lead">Zones light up while the window is in your hand. Hold ⌘ as well and it takes two of them at once.</p>
         <div class="w-scr" style="position:static;transform:none;width:100%;grid-template-columns:1fr 1.4fr;border:0;background:rgba(0,0,0,.08);box-shadow:none">
           <b style="background:rgba(255,255,255,.6)">1</b>
           <b style="background:var(--ink);color:#fff">2</b>
@@ -342,105 +330,105 @@ svg{display:block}
       </div>
 
       <div class="w-c magenta">
-        <p class="w-eyebrow">Спосіб другий</p>
-        <h2 class="w-h2">Або клавішею.</h2>
-        <p class="w-lead">Дев'ять зон живуть на цифрах. Нуль — кнопка «вибач», повертає вікно туди, де воно було до Plonk.</p>
+        <p class="w-eyebrow">Way two</p>
+        <h2 class="w-h2">Or press a key.</h2>
+        <p class="w-lead">Nine zones live on the digits. Zero is the sorry button: it puts a window back where it was before Plonk touched it.</p>
         <div class="w-keys">
           <kbd>⌃⌥1</kbd><kbd>⌃⌥2</kbd><kbd>⌃⌥←</kbd><kbd>⌃⌥0</kbd>
         </div>
       </div>
 
       <div class="w-c blue">
-        <p class="w-eyebrow">Спосіб третій</p>
-        <h2 class="w-h2">Або скажіть уголос.</h2>
-        <p class="w-lead">Затисніть ⌃⌥V і назвіть місце. Розпізнавання йде всередині застосунку, офлайн, на пристрої — жодного слова назовні.</p>
+        <p class="w-eyebrow">Way three</p>
+        <h2 class="w-h2">Or say it out loud.</h2>
+        <p class="w-lead">Hold ⌃⌥V and name the place. Recognition runs inside the app, offline, on-device — not a word of it leaves the Mac.</p>
         <div class="w-chat">
-          <div class="w-bub me">«snap this left»</div>
-          <div class="w-bub it">Safari → зона 1</div>
-          <div class="w-bub me">«zone three»</div>
-          <div class="w-bub it">Terminal → зона 3</div>
+          <div class="w-bub me">“snap this left”</div>
+          <div class="w-bub it">Safari → zone 1</div>
+          <div class="w-bub me">“zone three”</div>
+          <div class="w-bub it">Terminal → zone 3</div>
         </div>
       </div>
 
       <div class="w-c mint">
-        <p class="w-eyebrow">Спосіб четвертий, новий</p>
-        <h2 class="w-h2">Або попросіть агента.</h2>
-        <p class="w-lead">20 інструментів MCP: розкладки, робочі столи, зони, скриншоти, OCR, лінійка. Це не «покрутити чуже вікно» — це сам менеджер вікон.</p>
-        <div class="w-code" style="white-space:normal;color:#a8ffdf;line-height:1.7">браузер ліворуч на 60%, термінал згори праворуч<br>збережи це як стіл «review»<br>тримай мак у тонусі, поки йде білд</div>
+        <p class="w-eyebrow">Way four, the new one</p>
+        <h2 class="w-h2">Or ask an agent.</h2>
+        <p class="w-lead">Twenty MCP tools: layouts, workspaces, zones, screenshots, OCR, a ruler. Not nudging someone else's window around — this is the window manager itself.</p>
+        <div class="w-code" style="white-space:normal;color:#a8ffdf;line-height:1.7">browser on the left 60%, terminal top right<br>save that as a workspace called “review”<br>keep the Mac awake until this build finishes</div>
       </div>
 
       <div class="w-c night">
         <div class="w-stats">
-          <div class="w-stat y"><b>20</b><span>інструментів MCP</span></div>
-          <div class="w-stat m"><b>10</b><span>утиліт під однією іконкою</span></div>
-          <div class="w-stat bl"><b>0</b><span>залежностей</span></div>
-          <div class="w-stat mi"><b>0</b><span>байтів у хмару</span></div>
+          <div class="w-stat y"><b>20</b><span>MCP tools</span></div>
+          <div class="w-stat m"><b>10</b><span>utilities behind one icon</span></div>
+          <div class="w-stat bl"><b>0</b><span>dependencies</span></div>
+          <div class="w-stat mi"><b>0</b><span>bytes sent to a cloud</span></div>
         </div>
         <ul class="w-list" style="margin-top:30px">
-          <li><span class="k">⌃⌥T</span><div><b>Текст з екрана</b><p>Скриншот, пауза у відео, діалог, який не дає виділити</p></div></li>
-          <li><span class="k">⌃⌥R</span><div><b>Лінійка</b><p>Скільки пікселів до краю. У пунктах теж</p></div></li>
-          <li><span class="k">—</span><div><b>Шматок екрана згори</b><p>Живий кроп над усім: лог білда, графік, дзвінок</p></div></li>
-          <li><span class="k">—</span><div><b>Не засинати</b><p>Справжні power assertions, не сіпалка курсора</p></div></li>
+          <li><span class="k">⌃⌥T</span><div><b>Text off the screen</b><p>A screenshot, a paused video, a dialog that will not let you select</p></div></li>
+          <li><span class="k">⌃⌥R</span><div><b>A ruler</b><p>How far to the edge, in pixels. And in points</p></div></li>
+          <li><span class="k">⌃⌥P</span><div><b>Pin part of the screen</b><p>A live crop above everything: a build log, a chart, a call</p></div></li>
+          <li><span class="k">—</span><div><b>Keep awake</b><p>Real power assertions, not a jiggler</p></div></li>
         </ul>
       </div>
 
       <div class="w-c paper" id="install">
-        <p class="w-eyebrow">Установка</p>
-        <h2 class="w-h2">Один рядок — і воно ваше.</h2>
+        <p class="w-eyebrow">Install</p>
+        <h2 class="w-h2">One line and it is yours.</h2>
         <div class="w-code">brew install --cask ostapondo/plonk/plonk</div>
         <ul class="w-checks">
-          <li>macOS 13 і новіший, Apple silicon</li>
-          <li>Accessibility, коли попросить. Далі перезапуск</li>
-          <li>Ні Full Disk Access, ні Automation, ні Keychain</li>
-          <li>Ні акаунта, ні хмари, ні телеметрії</li>
+          <li>macOS 13 or newer, Apple silicon</li>
+          <li>Grant Accessibility when it asks, then relaunch</li>
+          <li>No Full Disk Access, no Automation, no Keychain</li>
+          <li>No account, no cloud, no telemetry</li>
         </ul>
-        <div class="w-cta" style="margin-top:22px"><a class="w-btn dark" href="#install">Завантажити 0.2.4</a></div>
-        <div class="w-foot" style="margin-top:24px">MIT © ostapondo · Swift 6 · 0.2.x, один автор</div>
+        <div class="w-cta" style="margin-top:22px"><a class="w-btn dark" href="#install">Download 0.2.4</a></div>
+        <div class="w-foot" style="margin-top:24px">MIT © ostapondo · Swift 6 · 0.2.x, one author</div>
       </div>
 
     </div>
 
-    <p class="s-note">Проти теперішнього сайту: <b>світлий, але не блідий</b> — колір заливає цілу картку, а не живе в дрібних акцентах. Нахльост карток дає відчуття стосу вже на першому дотику скролу. Набори зон гортаються пальцем, як каруселька продуктів у monobank.</p>
+    <p class="s-note">Against today's page: <b>light, but never pale</b> — colour floods a whole card instead of living in small accents. The overlap makes the deck felt on the very first scroll. Zone sets are swiped with a thumb, the way a product carousel is at monobank.</p>
   </section>
 
-  <!-- ================= ЗАСТОСУНОК ================= -->
+  <!-- ================= APP ================= -->
   <section class="s-lane">
-    <h2><span>02</span> Застосунок</h2>
-    <p class="s-sub">Світла тема Plonk отримує ті самі картки: рядки налаштувань з рамкою й радіусом 16, вибране — суцільний синій.</p>
+    <h2><span>02</span> App</h2>
+    <p class="s-sub">Plonk's light theme gets the same cards: settings rows with a border and a 16 px radius, and the selection filled solid blue.</p>
 
     <div class="a-scaler">
       <div class="a-win">
         <aside class="a-side">
           <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> Plonk</span>
-          <div class="a-search">Виконати команду <em>⌘K</em></div>
-          <div class="a-nav"><i class="d"></i> Головна</div>
-          <div class="a-nav on"><i class="d"></i> Зони</div>
-          <div class="a-nav"><i class="d"></i> Робочі столи</div>
-          <div class="a-nav"><i class="d"></i> Захоплення</div>
-          <div class="a-nav"><i class="d"></i> Автоматизація</div>
-          <div class="a-nav"><i class="d"></i> Налаштування</div>
+          <div class="a-search">Run a command <em>⌃⌥A</em></div>
+          <div class="a-nav"><i class="d"></i> Home</div>
+          <div class="a-nav on"><i class="d"></i> Zones</div>
+          <div class="a-nav"><i class="d"></i> Workspaces</div>
+          <div class="a-nav"><i class="d"></i> Capture</div>
+          <div class="a-nav"><i class="d"></i> Automation</div>
+          <div class="a-nav"><i class="d"></i> Settings</div>
         </aside>
         <main class="a-body">
-          <h3 class="a-title">Зони</h3>
+          <h3 class="a-title">Zones</h3>
           <div class="a-sets">
             <span class="a-chip">60 / 40</span>
             <span class="a-chip">Halves</span>
             <span class="a-chip on">Priority</span>
             <span class="a-chip">Quarters</span>
             <span class="a-chip">Thirds</span>
-            <span class="a-chip">+ Новий</span>
+            <span class="a-chip">+ New set</span>
           </div>
           <div class="a-canvas"><b>1</b><b class="sel">2</b><b>3</b><b>4</b><b>5</b></div>
           <div class="a-row">
-            <div><div class="t">Кидати вікна в зони</div><div class="s">Перетягування і краї екрана</div></div>
+            <div><div class="t">Drag to snap</div><div class="s">Drop windows into zones or screen edges</div></div>
             <span class="a-tog"></span>
           </div>
           <div class="a-row">
-            <div><div class="t">Показувати зони</div><div class="s">Поки тягнеш · з модифікатором</div></div>
+            <div><div class="t">Show zones</div><div class="s">While dragging · with the modifier</div></div>
             <span class="a-kbd">⇧</span>
           </div>
           <div class="a-row">
-            <div><div class="t">Повернути як було</div><div class="s">Рамка до втручання Plonk</div></div>
+            <div><div class="t">Put it back</div><div class="s">The frame it had before Plonk</div></div>
             <span class="a-kbd">⌃⌥0</span>
           </div>
         </main>
@@ -449,22 +437,22 @@ svg{display:block}
 
     <div style="margin-top:14px">
       <div class="a-mb">
-        <div class="a-mb-head"><b>Plonk</b><span>2 екрани · Priority</span></div>
+        <div class="a-mb-head"><b>Plonk</b><span>2 displays · Priority</span></div>
         <div class="a-mb-grid"><b>1</b><b class="on">2</b><b>3</b><b>4</b><b>5</b></div>
-        <div class="a-mi on">Стіл «review» <span>⌃⌥⇧R</span></div>
-        <div class="a-mi">Текст з екрана <span>⌃⌥T</span></div>
-        <div class="a-mi">Лінійка <span>⌃⌥R</span></div>
-        <div class="a-mi">Не засинати <span>вимк.</span></div>
+        <div class="a-mi on">Workspace “review” <span>⌃⌥⇧R</span></div>
+        <div class="a-mi">Text off the screen <span>⌃⌥T</span></div>
+        <div class="a-mi">Ruler <span>⌃⌥R</span></div>
+        <div class="a-mi">Keep awake <span>off</span></div>
       </div>
     </div>
 
-    <p class="s-note">Ключова відмінність від напрямку 01: у застосунку колір <b>несе стан, а не настрій</b> — синій це «вибрано», м'ятний це «увімкнено», жовтий у меню це «зараз активний стіл». Палітра одна із сайтом, роль інша.</p>
+    <p class="s-note">The key difference from direction 01: in the app colour <b>carries state, not mood</b> — blue means selected, mint means on, and the yellow row in the menu bar means this is the workspace you are in. Same palette as the site, different job.</p>
   </section>
 
   <!-- ================= README ================= -->
   <section class="s-lane">
     <h2><span>03</span> README</h2>
-    <p class="s-sub">Жовтий банер видно в стрічці GitHub здалеку — саме те, чого бракує сірим README.</p>
+    <p class="s-sub">A yellow banner is visible from across a GitHub feed — exactly what grey READMEs never manage.</p>
 
     <div class="r-gh">
       <div class="r-gh-bar"><b>ostapondo</b> / <b>Plonk</b> · README.md</div>
@@ -509,7 +497,7 @@ svg{display:block}
       </div>
     </div>
 
-    <p class="s-note">Чотири кольорові картки замість таблиці «три способи» — <b>найдешевша правка з найбільшим ефектом</b>: один SVG, який однаково читається на телефоні й на десктопі, у світлій і темній темі GitHub.</p>
+    <p class="s-note">Four colour cards in place of the “three ways” table are <b>the cheapest edit with the biggest effect</b>: one SVG that reads the same on a phone and a desktop, in GitHub's light theme and its dark one.</p>
   </section>
 
 </div>
