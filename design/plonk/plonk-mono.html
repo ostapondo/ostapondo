@@ -1,0 +1,554 @@
+<title>Plonk Mono Grid</title>
+<style>
+/* ============================================================
+   НАПРЯМОК 03 — МОНО
+   Ідея: у monobank є ще один бік, крім кольорових карток —
+   чорна картка. Нуль кольору, все тримає типографіка і цифра.
+   Plonk — інструмент, у якому все і так вимірюється: номери зон,
+   відсотки, пікселі, клавіші. Тож тут кольору немає взагалі:
+   лише чорне, біле, інверсія — і один фіолетовий раз на екран,
+   рівно там, куди сяде вікно.
+   Кути гострі. Шрифт моноширинний. Тема одна, свідомо.
+   ============================================================ */
+:root{
+  --ground:#08080a;
+  --ink:#f2f2f4;
+  --dim:#7d7d88;
+  --dimmer:#4a4a54;
+  --line:#212128;
+  --line-2:#33333d;
+  --panel:#0f0f13;
+  --signal:#8b7cf6;
+  --paper:#f2f2f0;
+  --paper-ink:#08080a;
+  --r:10px;
+  --r-sm:6px;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--text);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased
+}
+svg{display:block}
+
+/* ---------- оболонка ---------- */
+.s-wrap{max-width:520px;margin:0 auto;padding:0 14px 64px}
+.s-cover{padding:56px 2px 26px}
+.s-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);margin:0 0 20px}
+.s-cover h1{font-family:var(--mono);font-size:clamp(44px,14vw,62px);font-weight:700;letter-spacing:-.06em;line-height:.9;margin:0 0 18px}
+.s-cover p{margin:0;color:var(--dim);font-size:16.5px;line-height:1.5;max-width:36ch}
+.s-cover p b{color:var(--ink);font-weight:600}
+.s-spec{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:28px 0 40px;background:var(--line);border:1px solid var(--line)}
+.s-card{background:var(--ground);padding:16px}
+.s-card.wide{grid-column:1/-1}
+.s-lab{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dimmer);margin:0 0 12px}
+.s-sw{display:flex;gap:0;border:1px solid var(--line-2)}
+.s-sw i{flex:1;height:40px;display:block}
+.s-type{font-family:var(--mono);font-weight:700;letter-spacing:-.05em;font-size:26px;line-height:1}
+.s-type small{display:block;font-weight:400;letter-spacing:0;font-size:11px;color:var(--dim);margin-top:9px;line-height:1.5}
+.s-lane{margin:48px 0 0}
+.s-lane > h2{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:0;padding:0 0 8px;border-bottom:1px solid var(--line);display:flex;gap:12px}
+.s-lane > h2 span{color:var(--signal)}
+.s-lane > .s-sub{margin:12px 0 20px;color:var(--dim);font-size:14px;max-width:40ch}
+.s-note{margin:18px 0 0;padding:14px 0 0;border-top:1px solid var(--line);color:var(--dim);font-size:13.5px;line-height:1.55}
+.s-note b{color:var(--ink);font-weight:600}
+
+/* ============================================================
+   САЙТ
+   ============================================================ */
+.w-site{border:1px solid var(--line)}
+.w-sec{padding:26px 20px;border-bottom:1px solid var(--line)}
+.w-sec:last-child{border-bottom:0}
+.w-sec.invert{background:var(--paper);color:var(--paper-ink)}
+.w-sec.panel{background:var(--panel)}
+
+.w-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px}
+.w-brand{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:.02em;font-size:14px}
+.w-brand svg{width:22px;height:25px}
+.w-nav .v{color:var(--dim)}
+
+.w-rule{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dimmer);
+  display:flex;align-items:center;gap:12px;margin:0 0 18px
+}
+.w-rule::after{content:"";flex:1;height:1px;background:var(--line)}
+.w-sec.invert .w-rule{color:#8a8a86}
+.w-sec.invert .w-rule::after{background:#d4d4d0}
+
+.w-h1{
+  font-family:var(--mono);font-weight:700;letter-spacing:-.065em;line-height:.92;
+  font-size:clamp(38px,11.5vw,54px);margin:0 0 20px;text-wrap:balance
+}
+.w-h1 em{font-style:normal;color:var(--signal)}
+.w-h2{font-family:var(--mono);font-weight:700;letter-spacing:-.05em;line-height:.98;font-size:clamp(26px,8vw,34px);margin:0 0 14px;text-wrap:balance}
+.w-p{margin:0 0 16px;color:var(--dim);font-size:16px;line-height:1.55;max-width:34ch}
+.w-sec.invert .w-p{color:#55555c}
+.w-p b{color:var(--ink);font-weight:600}
+.w-sec.invert .w-p b{color:var(--paper-ink)}
+
+.w-cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.w-btn{
+  font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:-.01em;
+  padding:14px 20px;border-radius:var(--r-sm);text-decoration:none;display:inline-flex;gap:8px
+}
+.w-btn.pri{background:var(--ink);color:var(--ground)}
+.w-btn.sec{color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}
+.w-sec.invert .w-btn.pri{background:var(--paper-ink);color:var(--paper)}
+.w-btn:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+
+/* екран у сітці — головна графіка напрямку */
+.w-screen{
+  margin-top:24px;aspect-ratio:16/10;border:1px solid var(--line-2);border-radius:var(--r-sm);
+  position:relative;background:
+    repeating-linear-gradient(to right,transparent,transparent calc(8.333% - 1px),var(--line) calc(8.333% - 1px),var(--line) 8.333%),
+    repeating-linear-gradient(to bottom,transparent,transparent calc(16.666% - 1px),var(--line) calc(16.666% - 1px),var(--line) 16.666%),
+    var(--panel);
+  overflow:hidden
+}
+.w-z{
+  position:absolute;border:1px solid var(--line-2);border-radius:4px;
+  font-family:var(--mono);font-size:11px;color:var(--dimmer);
+  display:flex;align-items:flex-end;justify-content:flex-start;padding:6px
+}
+.w-z.on{border-color:var(--signal);background:rgba(139,124,246,.12);color:var(--signal)}
+.w-z .frac{position:absolute;top:6px;right:7px;font-size:9.5px;color:var(--dimmer)}
+.w-z.on .frac{color:var(--signal)}
+.w-caret{
+  position:absolute;width:13px;height:13px;border-left:1.5px solid var(--ink);border-top:1.5px solid var(--ink)
+}
+
+/* клавіатурна стіна */
+.w-keys{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.w-key{background:var(--ground);padding:14px 12px;display:flex;flex-direction:column;gap:7px;min-height:86px}
+.w-sec.invert .w-key{background:var(--paper)}
+.w-key b{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:-.03em}
+.w-key span{font-size:12px;color:var(--dim);line-height:1.3}
+.w-sec.invert .w-key span{color:#6a6a70}
+.w-key.hot b{color:var(--signal)}
+
+/* таблиця даних */
+.w-tab{width:100%;border-collapse:collapse;font-size:13.5px;font-family:var(--mono)}
+.w-tab th{
+  text-align:left;font-weight:400;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dimmer);padding:0 10px 9px 0;border-bottom:1px solid var(--line)
+}
+.w-tab td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim);line-height:1.45}
+.w-tab td:first-child{color:var(--ink);white-space:nowrap}
+.w-tab td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--signal);padding-right:0}
+.w-sec.invert .w-tab th,.w-sec.invert .w-tab td{border-color:#d8d8d4}
+.w-sec.invert .w-tab td{color:#5a5a60}
+.w-sec.invert .w-tab td:first-child{color:var(--paper-ink)}
+
+/* термінал */
+.w-term{
+  font-family:var(--mono);font-size:12.5px;line-height:1.9;background:#000;
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:14px;overflow-x:auto
+}
+.w-term div{white-space:nowrap}
+.w-term .p{color:var(--signal)}
+.w-term .c{color:var(--ink)}
+.w-term .o{color:var(--dim)}
+
+/* великі цифри */
+.w-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.w-stat{background:var(--ground);padding:18px 16px}
+.w-stat b{
+  display:block;font-family:var(--mono);font-weight:700;letter-spacing:-.07em;
+  font-size:clamp(40px,13vw,54px);line-height:.86;font-variant-numeric:tabular-nums
+}
+.w-stat span{display:block;margin-top:10px;font-size:12.5px;color:var(--dim);line-height:1.35}
+.w-stat.s b{color:var(--signal)}
+.w-stat.sm b{font-size:clamp(21px,6.6vw,28px);letter-spacing:-.04em;line-height:1.05}
+
+.w-code{
+  font-family:var(--mono);font-size:13px;background:#000;border:1px solid var(--line);
+  border-radius:var(--r-sm);padding:14px;color:var(--ink);overflow-x:auto;white-space:nowrap
+}
+.w-sec.invert .w-code{background:var(--paper-ink);border-color:var(--paper-ink);color:var(--paper)}
+.w-ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:0}
+.w-ul li{display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.4}
+.w-sec.invert .w-ul li{border-color:#d8d8d4}
+.w-ul li::before{content:"→";font-family:var(--mono);color:var(--signal)}
+.w-foot{font-family:var(--mono);font-size:11.5px;color:var(--dimmer);display:flex;flex-wrap:wrap;gap:6px 16px;padding:18px 20px}
+
+/* ============================================================
+   ЗАСТОСУНОК
+   ============================================================ */
+.a-scaler{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.a-win{
+  width:880px;zoom:.44;background:var(--ground);border:1px solid var(--line-2);border-radius:12px;
+  overflow:hidden;display:grid;grid-template-columns:230px 1fr;box-shadow:0 40px 80px rgba(0,0,0,.6)
+}
+@media (min-width:470px){.a-win{zoom:.52}}
+@media (min-width:620px){.a-win{zoom:.62}}
+.a-side{background:#000;border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;gap:2px}
+.a-side .brand{display:flex;align-items:center;gap:9px;padding:6px 8px 16px;font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:-.02em}
+.a-side .brand svg{width:24px;height:27px}
+.a-search{border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 11px;color:var(--dimmer);font-family:var(--mono);font-size:12.5px;display:flex;justify-content:space-between;margin-bottom:12px}
+.a-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 11px;border-radius:var(--r-sm);font-family:var(--mono);font-size:13.5px;color:var(--dim)}
+.a-nav em{font-style:normal;font-size:11px;color:var(--dimmer)}
+.a-nav.on{background:var(--signal);color:#fff}
+.a-nav.on em{color:rgba(255,255,255,.75)}
+.a-body{padding:20px;display:flex;flex-direction:column;gap:14px}
+.a-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px}
+.a-title{font-family:var(--mono);font-weight:700;letter-spacing:-.055em;font-size:32px;line-height:1;margin:0}
+.a-meta{font-family:var(--mono);font-size:11.5px;color:var(--dimmer)}
+.a-sets{display:flex;gap:1px;background:var(--line);border:1px solid var(--line)}
+.a-chip{flex:1;text-align:center;background:var(--ground);padding:10px 6px;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+.a-chip.on{background:var(--ink);color:var(--ground);font-weight:700}
+.a-canvas{
+  border:1px solid var(--line-2);border-radius:var(--r-sm);padding:8px;display:grid;gap:6px;
+  grid-template-columns:.8fr 1.6fr .9fr;grid-template-rows:1fr 1fr;aspect-ratio:16/9;background:var(--panel)
+}
+.a-canvas > b{
+  border:1px solid var(--line-2);border-radius:4px;display:flex;align-items:flex-end;padding:8px;
+  font-family:var(--mono);font-size:12px;color:var(--dimmer);position:relative
+}
+.a-canvas > b:nth-child(2){grid-row:span 2}
+.a-canvas > b.sel{border-color:var(--signal);background:rgba(139,124,246,.12);color:var(--signal)}
+.a-canvas > b i{position:absolute;top:8px;right:9px;font-style:normal;font-size:10px}
+.a-rows{border:1px solid var(--line)}
+.a-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px;border-bottom:1px solid var(--line)}
+.a-row:last-child{border-bottom:0}
+.a-row .t{font-family:var(--mono);font-size:13.5px}
+.a-row .s{font-size:12px;color:var(--dimmer);margin-top:3px}
+.a-tog{width:44px;height:24px;border-radius:4px;background:var(--signal);position:relative;flex:none}
+.a-tog::after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:3px;background:#fff}
+.a-kbd{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line-2);border-radius:4px;padding:6px 9px}
+
+/* палітра команд */
+.a-cmd{width:400px;zoom:.8;border:1px solid var(--line-2);border-radius:10px;background:rgba(10,10,13,.97);overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.75)}
+@media (min-width:470px){.a-cmd{zoom:1}}
+.a-cmd .in{padding:15px 16px;font-family:var(--mono);font-size:15px;border-bottom:1px solid var(--line)}
+.a-cmd .in i{font-style:normal;color:var(--signal)}
+.a-cmd .in u{text-decoration:none;color:var(--dimmer)}
+.a-cmd .it{display:flex;justify-content:space-between;padding:11px 16px;font-size:13.5px;color:var(--dim);font-family:var(--mono)}
+.a-cmd .it.on{background:var(--signal);color:#fff}
+.a-cmd .it span{color:var(--dimmer)}
+.a-cmd .it.on span{color:rgba(255,255,255,.75)}
+
+/* HUD */
+.a-hud{border:1px solid var(--line);border-radius:var(--r-sm);padding:8px;background:#000}
+.a-hud .scr{aspect-ratio:16/9;position:relative;border-radius:4px;overflow:hidden;background:var(--panel)}
+.a-badge{
+  position:absolute;left:50%;bottom:9%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:11.5px;padding:8px 13px;border-radius:5px;
+  background:#000;border:1px solid var(--line-2);white-space:nowrap
+}
+.a-badge i{font-style:normal;color:var(--signal)}
+
+/* ============================================================
+   README
+   ============================================================ */
+.r-gh{background:#0d1117;border:1px solid #30363d;border-radius:10px;overflow:hidden;font-size:14px;color:#e6edf3}
+.r-gh-bar{display:flex;gap:6px;padding:11px 14px;border-bottom:1px solid #30363d;color:#8b949e;font-size:12.5px;font-family:var(--mono)}
+.r-gh-bar b{color:#4493f8;font-weight:400}
+.r-gh-body{padding:18px 16px 24px}
+.r-banner{border:1px solid #30363d;border-radius:8px;background:#000;padding:22px 18px;display:flex;flex-direction:column;gap:16px}
+.r-banner h1{font-family:var(--mono);font-weight:700;letter-spacing:-.06em;line-height:.94;font-size:clamp(30px,9vw,40px);margin:0}
+.r-banner h1 em{font-style:normal;color:var(--signal)}
+.r-banner p{margin:0;font-family:var(--mono);font-size:12.5px;color:#7d7d88;line-height:1.5;max-width:38ch}
+.r-banner .grid{display:grid;grid-template-columns:.8fr 1.6fr .9fr;grid-template-rows:1fr 1fr;gap:5px;height:96px}
+.r-banner .grid b{border:1px solid #33333d;border-radius:3px;font-family:var(--mono);font-size:10px;color:#4a4a54;display:flex;align-items:flex-end;padding:5px}
+.r-banner .grid b:nth-child(2){grid-row:span 2}
+.r-banner .grid b.on{border-color:#8b7cf6;background:rgba(139,124,246,.12);color:#8b7cf6}
+.r-badges{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}
+.r-badges b{font-family:var(--mono);font-size:11px;border-radius:4px;overflow:hidden;display:inline-flex;font-weight:500}
+.r-badges b i{font-style:normal;padding:5px 8px;background:#161b22;color:#8b949e;border:1px solid #30363d;border-right:0}
+.r-badges b u{text-decoration:none;padding:5px 8px;background:#e6edf3;color:#08080a;font-weight:700}
+.r-badges b.s u{background:#8b7cf6;color:#fff}
+.r-h2{font-family:var(--mono);font-size:21px;font-weight:700;letter-spacing:-.04em;margin:26px 0 10px;padding-bottom:8px;border-bottom:1px solid #21262d;color:#fff}
+.r-gh-body p{margin:0 0 12px;color:#c9d1d9;line-height:1.6}
+.r-gh-body p b{color:#fff}
+.r-pre{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:12px 13px;font-family:var(--mono);font-size:12.5px;color:#e6edf3;overflow-x:auto;white-space:nowrap;margin:0 0 12px}
+.r-tab{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 12px;font-family:var(--mono)}
+.r-tab th{text-align:left;font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6e7681;border-bottom:1px solid #30363d;padding:0 8px 8px 0}
+.r-tab td{border-bottom:1px solid #21262d;padding:9px 8px 9px 0;color:#8b949e;line-height:1.45;vertical-align:top}
+.r-tab td:first-child{color:#e6edf3;white-space:nowrap}
+
+.cube-top{fill:#f2f2f0}
+.cube-l{fill:#3a3a44}
+.cube-r{fill:#8b7cf6}
+.cube-s{stroke:#08080a;stroke-width:2.4;stroke-linejoin:round;fill:none}
+.cube-g{stroke:#08080a;stroke-width:1.4;opacity:.45}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="cube" viewBox="0 0 100 112">
+    <polygon fill="#f2f2f0" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#3a3a44" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#8b7cf6" points="88,34 50,56 50,100 88,78"/>
+    <g stroke="#08080a" stroke-width="1.4" opacity=".45" fill="none">
+      <path d="M24.67,41.33 L62.67,19.33 M37.33,48.67 L75.33,26.67 M24.67,26.67 L62.67,48.67 M37.33,19.33 L75.33,41.33"/>
+      <path d="M12,48.67 L50,70.67 M12,63.33 L50,85.33 M24.67,41.33 L24.67,85.33 M37.33,48.67 L37.33,92.67"/>
+      <path d="M88,48.67 L50,70.67 M88,63.33 L50,85.33 M75.33,41.33 L75.33,85.33 M62.67,48.67 L62.67,92.67"/>
+    </g>
+    <path fill="none" stroke="#08080a" stroke-width="2.4" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+</svg>
+
+<div class="s-wrap">
+
+  <header class="s-cover">
+    <p class="s-kicker">Напрямок 03 з 3</p>
+    <h1>Моно</h1>
+    <p>У monobank поруч із кольоровими картками є ще одна — <b>чорна</b>, де кольору нема взагалі і все тримає типографіка. Plonk і так весь у числах: номери зон, відсотки, пікселі, клавіші. Тож тут <b>один фіолетовий на екран</b> — рівно там, куди сяде вікно.</p>
+  </header>
+
+  <div class="s-spec">
+    <div class="s-card wide">
+      <p class="s-lab">Палітра — сім значень, з них один колір</p>
+      <div class="s-sw">
+        <i style="background:#08080a"></i>
+        <i style="background:#0f0f13"></i>
+        <i style="background:#212128"></i>
+        <i style="background:#4a4a54"></i>
+        <i style="background:#7d7d88"></i>
+        <i style="background:#f2f2f0"></i>
+        <i style="background:#8b7cf6"></i>
+      </div>
+    </div>
+    <div class="s-card"><p class="s-lab">Шрифт</p><div class="s-type">Aa 0123<small>SF Mono 700<br>трекінг −0.065em<br>цифри табличні</small></div></div>
+    <div class="s-card"><p class="s-lab">Форма</p><div class="s-type" style="font-size:19px">10 / 6 / 4<small>радіус: блок,<br>кнопка, зона.<br>Волосяна лінія 1 px</small></div></div>
+  </div>
+
+  <!-- ================= САЙТ ================= -->
+  <section class="s-lane">
+    <h2><span>01</span> Сайт</h2>
+    <p class="s-sub">Секції не картки, а поверхи однієї сітки, розділені лініями. Одна секція перевертається в біле — там, де йдеться про приватність.</p>
+
+    <div class="w-site">
+
+      <nav class="w-nav">
+        <span class="w-brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> PLONK</span>
+        <span class="v">v0.2.4 · macOS 13+</span>
+      </nav>
+
+      <div class="w-sec">
+        <p class="w-rule">Менеджер вікон</p>
+        <h1 class="w-h1">Вікно —<br>це прямокутник.<br><em>Скажіть який.</em></h1>
+        <p class="w-p">Зони ви малюєте самі: скільки завгодно, будь-якого розміру, свій набір на кожному моніторі. Рамка задається дробом від екрана, а не «половинкою».</p>
+        <div class="w-cta">
+          <a class="w-btn pri" href="#install">brew install plonk</a>
+          <a class="w-btn sec" href="#agents">API для агентів</a>
+        </div>
+        <div class="w-screen" aria-hidden="true">
+          <div class="w-z" style="left:2.5%;top:4%;width:28%;height:92%"><span class="frac">0.28 × 1</span>1</div>
+          <div class="w-z on" style="left:32%;top:4%;width:44%;height:92%"><span class="frac">0.44 × 1</span>2</div>
+          <div class="w-z" style="left:77.5%;top:4%;width:20%;height:44%"><span class="frac">0.20 × 0.5</span>3</div>
+          <div class="w-z" style="left:77.5%;top:52%;width:20%;height:44%"><span class="frac">0.20 × 0.5</span>4</div>
+          <span class="w-caret" style="left:52%;top:44%"></span>
+        </div>
+      </div>
+
+      <div class="w-sec panel">
+        <p class="w-rule">Три способи · один результат</p>
+        <div class="w-keys">
+          <div class="w-key hot"><b>drag</b><span>Зони світяться, поки вікно в руці</span></div>
+          <div class="w-key"><b>⌃⌥1—9</b><span>Пронумеровані зони екрана</span></div>
+          <div class="w-key"><b>⌃⌥V</b><span>«zone three», офлайн</span></div>
+          <div class="w-key"><b>⌃⌥←→</b><span>Половини й краї</span></div>
+          <div class="w-key"><b>⌃⌥0</b><span>Повернути як було</span></div>
+          <div class="w-key"><b>⌃⌥⇧2</b><span>Змінити набір зон</span></div>
+          <div class="w-key"><b>⌃⌥⇧←</b><span>Фокус на вікно ліворуч</span></div>
+          <div class="w-key"><b>⌃⌥`</b><span>Цикл по стосу в зоні</span></div>
+          <div class="w-key"><b>⌘ + drag</b><span>Вікно бере дві зони</span></div>
+        </div>
+        <p class="w-p" style="margin:18px 0 0">⌃⌥0 — це <b>кнопка «вибач»</b>: рамка повертається такою, якою була до втручання Plonk.</p>
+      </div>
+
+      <div class="w-sec" id="agents">
+        <p class="w-rule">MCP · 20 інструментів</p>
+        <h2 class="w-h2">Речення замість скрипта.</h2>
+        <p class="w-p">Рамки — дроби видимої площі монітора, початок у лівому верхньому куті. Тому «ліві 60%» це буквально <b>{x:0, y:0, w:0.6, h:1}</b>.</p>
+        <div class="w-term">
+          <div><span class="p">$</span> <span class="c">plonk state</span></div>
+          <div class="o">2 screens · 5 zones · 11 windows · set=Priority</div>
+          <div><span class="p">$</span> <span class="c">plonk launch review</span></div>
+          <div class="o">restored 6 windows across 2 displays</div>
+          <div><span class="p">$</span> <span class="c">plonk awake while npm run build</span></div>
+          <div class="o">assertion held · 4m 12s</div>
+          <div><span class="p">$</span> <span class="c">plonk measure 0.5 0.5</span></div>
+          <div class="o">712 × 398 pt · 1424 × 796 px</div>
+        </div>
+        <table class="w-tab" style="margin-top:22px">
+          <thead><tr><th>Група</th><th>Що вміє</th><th style="text-align:right">Шт.</th></tr></thead>
+          <tbody>
+            <tr><td>layouts</td><td>розкласти, прочитати, повернути</td><td class="num">6</td></tr>
+            <tr><td>workspaces</td><td>зберегти стіл, підняти його назад</td><td class="num">4</td></tr>
+            <tr><td>zones</td><td>набори, номери, геометрія</td><td class="num">3</td></tr>
+            <tr><td>capture</td><td>скриншот, OCR, лінійка</td><td class="num">5</td></tr>
+            <tr><td>awake</td><td>тримати мак у тонусі</td><td class="num">2</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="w-sec invert">
+        <p class="w-rule">Приватність</p>
+        <h2 class="w-h2">Ні акаунта.<br>Ні хмари.<br>Ні телеметрії.</h2>
+        <p class="w-p">API слухає лише <b>127.0.0.1</b>, відмовляє всьому, що несе заголовки, які браузер не може прибрати, і закритий токеном, який читаєте тільки ви.</p>
+        <p class="w-p">Це не треба брати на віру. Релізи збираються на раннерах GitHub і їдуть з атестацією:</p>
+        <div class="w-code">gh attestation verify Plonk-0.2.4.zip -R ostapondo/plonk</div>
+        <ul class="w-ul">
+          <li>Ні Full Disk Access, ні Automation, ні Keychain</li>
+          <li>Конфіг — звичайний JSON, який можна відкрити й прочитати</li>
+          <li>Єдине з'єднання назовні — перевірка оновлень, вимикається</li>
+        </ul>
+      </div>
+
+      <div class="w-stats">
+        <div class="w-stat s"><b>20</b><span>інструментів MCP</span></div>
+        <div class="w-stat"><b>10</b><span>утиліт під однією іконкою</span></div>
+        <div class="w-stat"><b>0</b><span>залежностей</span></div>
+        <div class="w-stat sm"><b>127.0.0.1</b><span>єдина адреса, яку слухає API</span></div>
+      </div>
+
+      <div class="w-sec" id="install">
+        <p class="w-rule">Установка</p>
+        <div class="w-code">brew install --cask ostapondo/plonk/plonk</div>
+        <p class="w-p" style="margin-top:16px">macOS 13 і новіший, Apple silicon. Accessibility — коли попросить, далі перезапуск. Screen Recording питається окремо, першого разу.</p>
+        <div class="w-cta"><a class="w-btn pri" href="#install">Завантажити 0.2.4</a></div>
+      </div>
+
+      <div class="w-foot">
+        <span>ZONES</span><span>WORKSPACES</span><span>HOTKEYS</span><span>AGENTS</span><span>VERIFY</span>
+        <span style="width:100%;margin-top:6px">MIT © OSTAPONDO · SWIFT 6 · 0.2.X, ONE AUTHOR</span>
+      </div>
+
+    </div>
+
+    <p class="s-note">Проти теперішнього сайту: <b>зникають картки з тінями</b>. Замість них волосяні лінії й одна сітка на всю сторінку — та сама сітка, що й у продукті. Кожна зона на схемі підписана дробом, бо це рівно те, чим вона є в API.</p>
+  </section>
+
+  <!-- ================= ЗАСТОСУНОК ================= -->
+  <section class="s-lane">
+    <h2><span>02</span> Застосунок</h2>
+    <p class="s-sub">Найтехнічніший з трьох напрямків, і найдешевший у SwiftUI: лінії замість тіней, моношрифт на цифрах, фіолетовий тільки на виділеному.</p>
+
+    <div class="a-scaler">
+      <div class="a-win">
+        <aside class="a-side">
+          <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> PLONK</span>
+          <div class="a-search"><span>Виконати команду</span><span>⌘K</span></div>
+          <div class="a-nav">Головна <em>1</em></div>
+          <div class="a-nav on">Зони <em>2</em></div>
+          <div class="a-nav">Робочі столи <em>3</em></div>
+          <div class="a-nav">Захоплення <em>4</em></div>
+          <div class="a-nav">Автоматизація <em>5</em></div>
+          <div class="a-nav">Налаштування <em>,</em></div>
+        </aside>
+        <main class="a-body">
+          <div class="a-head">
+            <h3 class="a-title">Зони</h3>
+            <span class="a-meta">Studio Display · 5120 × 2880</span>
+          </div>
+          <div class="a-sets">
+            <span class="a-chip">60/40</span>
+            <span class="a-chip">Halves</span>
+            <span class="a-chip on">Priority</span>
+            <span class="a-chip">Quarters</span>
+            <span class="a-chip">Thirds</span>
+            <span class="a-chip">+</span>
+          </div>
+          <div class="a-canvas">
+            <b><i>0.22 × 0.5</i>1</b>
+            <b class="sel"><i>0.46 × 1</i>2</b>
+            <b><i>0.32 × 0.5</i>3</b>
+            <b><i>0.22 × 0.5</i>4</b>
+            <b><i>0.32 × 0.5</i>5</b>
+          </div>
+          <div class="a-rows">
+            <div class="a-row">
+              <div><div class="t">Кидати вікна в зони</div><div class="s">Перетягування і краї екрана</div></div>
+              <span class="a-tog"></span>
+            </div>
+            <div class="a-row">
+              <div><div class="t">Зазор між зонами</div><div class="s">Однаковий по всьому набору</div></div>
+              <span class="a-kbd">8 px</span>
+            </div>
+            <div class="a-row">
+              <div><div class="t">Повернути як було</div><div class="s">Рамка до втручання Plonk</div></div>
+              <span class="a-kbd">⌃⌥0</span>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:14px">
+      <div class="a-cmd">
+        <div class="in"><i>›</i> zone <u>three</u></div>
+        <div class="it on">Покласти Safari в зону 3 <span>⏎</span></div>
+        <div class="it">Змінити набір на Thirds <span>⌃⌥⇧3</span></div>
+        <div class="it">Підняти стіл «review» <span>⌃⌥⇧R</span></div>
+        <div class="it">Тримати мак у тонусі 45 хв <span>—</span></div>
+      </div>
+
+      <div class="a-hud">
+        <div class="scr">
+          <div class="w-z" style="left:2%;top:5%;width:30%;height:90%"><span class="frac">0.30</span>1</div>
+          <div class="w-z on" style="left:34%;top:5%;width:42%;height:90%"><span class="frac">0.42</span>2</div>
+          <div class="w-z" style="left:78%;top:5%;width:20%;height:90%"><span class="frac">0.20</span>3</div>
+          <span class="a-badge">відпустіть → <i>зона 2</i> · ⌘ візьме дві</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="s-note">Дві речі, які тут працюють краще, ніж у 01 і 02: <b>підпис дробом просто в зоні</b> (те саме число, що йде в MCP — інтерфейс і API кажуть однаково), і палітра команд ⌘K як головний вхід, а не як додаток до мишки.</p>
+  </section>
+
+  <!-- ================= README ================= -->
+  <section class="s-lane">
+    <h2><span>03</span> README</h2>
+    <p class="s-sub">Найближче до того, що вже є в репозиторії — тому й найдешевше впровадити: банер, бейджі, одна схема.</p>
+
+    <div class="r-gh">
+      <div class="r-gh-bar"><b>ostapondo</b> / <b>Plonk</b> · README.md</div>
+      <div class="r-gh-body">
+
+        <div class="r-banner">
+          <svg viewBox="0 0 100 112" style="width:44px;height:49px"><use href="#cube"/></svg>
+          <h1>PLONK<br><em>put it there.</em></h1>
+          <p>A Mac window manager with zones you draw yourself.<br>macOS 13+ · Swift 6 · MIT · 0 dependencies</p>
+          <div class="grid"><b>1</b><b class="on">2</b><b>3</b><b>4</b><b>5</b></div>
+        </div>
+
+        <div class="r-badges">
+          <b><i>version</i><u>0.2.4</u></b>
+          <b><i>macOS</i><u>13+</u></b>
+          <b><i>swift</i><u>6</u></b>
+          <b><i>deps</i><u>0</u></b>
+          <b class="s"><i>mcp</i><u>20 tools</u></b>
+        </div>
+
+        <p><b>To plonk is to set a thing down exactly where it belongs.</b> Put a window in a zone by dragging it, by shortcut, by voice, or by asking an agent over MCP.</p>
+
+        <h3 class="r-h2">Three ways to move a window</h3>
+        <table class="r-tab">
+          <thead><tr><th>Input</th><th>What happens</th></tr></thead>
+          <tbody>
+            <tr><td>drag</td><td>Zones light up as you move a window. Hold ⌘ and it takes two at once</td></tr>
+            <tr><td>⌃⌥1 … ⌃⌥9</td><td>The numbered zones on that screen</td></tr>
+            <tr><td>⌃⌥0</td><td>Puts a window back where it was before Plonk touched it</td></tr>
+            <tr><td>⌃⌥V</td><td>Hold and name the place. Offline, on-device</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="r-h2">Install</h3>
+        <div class="r-pre">brew install --cask ostapondo/plonk/plonk</div>
+        <p>macOS 13 or newer, Apple silicon. Grant Accessibility when it asks, then relaunch.</p>
+
+        <h3 class="r-h2">For agents</h3>
+        <div class="r-pre">claude mcp add plonk -- npx -y plonk-mcp</div>
+        <p>Frames are fractions of a monitor's visible area, origin top-left, so <b>"left 60%"</b> is <code>{x: 0, y: 0, w: 0.6, h: 1}</code>.</p>
+
+      </div>
+    </div>
+
+    <p class="s-note">Банер тут не картинка з текстом, а <b>схема набору зон із номерами</b> — читач бачить продукт раніше, ніж перший рядок опису. Бейджі стають чорно-білими, крім одного фіолетового: MCP. Це те, чим Plonk відрізняється від Rectangle і Magnet.</p>
+  </section>
+
+</div>

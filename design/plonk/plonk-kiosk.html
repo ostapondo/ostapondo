@@ -1,0 +1,515 @@
+<title>Plonk Colour Deck</title>
+<style>
+/* ============================================================
+   НАПРЯМОК 02 — КОЛОДА
+   Ідея: у monobank головний предмет — картка. Її показують
+   великою, кольоровою, у стосі, і гортають убік.
+   Головний предмет Plonk — набір зон. Тож кожен набір зон і
+   кожна можливість тут теж картка: велика, кольорова, у колоді.
+   Світла тема, одна, свідомо.
+   ============================================================ */
+:root{
+  --paper:#ffffff;
+  --wash:#ececed;
+  --ink:#0b0b0d;
+  --dim:#6b6b73;
+  --line:#dcdce0;
+  --yellow:#ffd400;
+  --magenta:#ff2d78;
+  --blue:#2b5bff;
+  --mint:#00d2a0;
+  --night:#0b0b0d;
+  --r:36px;
+  --r-sm:20px;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Helvetica Neue",Arial,sans-serif;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--wash);color:var(--ink);
+  font-family:var(--text);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased
+}
+svg{display:block}
+
+/* ---------- оболонка ---------- */
+.s-wrap{max-width:520px;margin:0 auto;padding:0 12px 64px}
+.s-cover{padding:56px 10px 26px}
+.s-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--magenta);margin:0 0 18px}
+.s-cover h1{font-family:var(--display);font-size:clamp(48px,16vw,72px);font-weight:900;letter-spacing:-.05em;line-height:.88;margin:0 0 16px}
+.s-cover p{margin:0;color:var(--dim);font-size:17px;line-height:1.45;max-width:34ch}
+.s-cover p b{color:var(--ink);font-weight:600}
+.s-spec{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:26px 0 40px}
+.s-card{background:var(--paper);border-radius:var(--r-sm);padding:16px;border:1px solid var(--line)}
+.s-card.wide{grid-column:1/-1}
+.s-lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 10px}
+.s-sw{display:flex;flex-wrap:wrap;gap:8px}
+.s-sw i{width:38px;height:38px;border-radius:12px;display:block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+.s-type{font-family:var(--display);font-weight:900;letter-spacing:-.04em;font-size:28px;line-height:1}
+.s-type small{display:block;font-family:var(--mono);font-weight:400;letter-spacing:0;font-size:11px;color:var(--dim);margin-top:8px}
+.s-lane{margin:46px 0 0}
+.s-lane > h2{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:0 0 4px;padding:0 10px;display:flex;gap:10px}
+.s-lane > h2 span{color:var(--magenta)}
+.s-lane > .s-sub{margin:0 0 18px;padding:0 10px;color:var(--dim);font-size:14px;max-width:38ch}
+.s-note{margin:16px 0 0;padding:14px 16px;background:var(--paper);border-radius:var(--r-sm);border:1px solid var(--line);color:var(--dim);font-size:13.5px;line-height:1.5}
+.s-note b{color:var(--ink);font-weight:600}
+
+/* ============================================================
+   САЙТ — колода карток
+   ============================================================ */
+.w-deck{display:flex;flex-direction:column}
+.w-c{
+  border-radius:var(--r);padding:30px 24px;position:relative;
+  box-shadow:0 -2px 0 rgba(0,0,0,.06),0 -18px 40px rgba(0,0,0,.10)
+}
+.w-c + .w-c{margin-top:-22px}          /* картки лягають одна на одну */
+.w-c > *{position:relative}
+.w-c.paper{background:var(--paper)}
+.w-c.yellow{background:var(--yellow)}
+.w-c.magenta{background:var(--magenta);color:#fff}
+.w-c.blue{background:var(--blue);color:#fff}
+.w-c.mint{background:var(--mint)}
+.w-c.night{background:var(--night);color:#fff}
+
+.w-nav{display:flex;align-items:center;justify-content:space-between;background:var(--paper);border-radius:999px;padding:12px 16px;margin-bottom:12px;border:1px solid var(--line)}
+.w-brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em}
+.w-brand svg{width:26px;height:29px}
+.w-pill{background:var(--ink);color:#fff;border-radius:999px;padding:9px 16px;font-size:14px;font-weight:700;text-decoration:none}
+.w-pill:focus-visible{outline:3px solid var(--magenta);outline-offset:3px}
+
+.w-h1{font-family:var(--display);font-weight:900;letter-spacing:-.055em;line-height:.86;font-size:clamp(48px,15.5vw,70px);margin:0 0 20px;text-wrap:balance}
+.w-h1 em{font-style:normal;display:inline-block;padding:0 .12em;border-radius:.12em}
+.w-h2{font-family:var(--display);font-weight:900;letter-spacing:-.045em;line-height:.92;font-size:clamp(32px,10vw,44px);margin:0 0 14px;text-wrap:balance}
+.w-lead{margin:0 0 22px;font-size:17.5px;line-height:1.4;max-width:30ch;opacity:.75}
+.w-c.magenta .w-lead,.w-c.blue .w-lead,.w-c.night .w-lead{opacity:.85}
+.w-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px;opacity:.55;display:flex;align-items:center;gap:8px}
+.w-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.w-cta{display:flex;gap:9px;flex-wrap:wrap}
+.w-btn{display:inline-flex;align-items:center;border-radius:999px;padding:16px 26px;font-size:16.5px;font-weight:700;letter-spacing:-.01em;text-decoration:none}
+.w-btn.dark{background:var(--ink);color:#fff}
+.w-btn.light{background:rgba(0,0,0,.06);color:var(--ink)}
+.w-c.magenta .w-btn.light,.w-c.blue .w-btn.light{background:rgba(255,255,255,.18);color:#fff}
+.w-btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* стос екранів у герої */
+.w-stack{position:relative;height:210px;margin-top:26px}
+.w-scr{
+  position:absolute;left:50%;width:78%;aspect-ratio:16/10;border-radius:16px;
+  background:var(--paper);box-shadow:0 12px 30px rgba(0,0,0,.16);padding:8px;
+  display:grid;gap:5px;border:1px solid var(--line)
+}
+.w-scr b{border-radius:9px;background:var(--wash);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:#a3a3ab}
+.w-scr.s1{transform:translateX(-50%) rotate(-7deg) translateY(16px);z-index:1;grid-template-columns:1fr 1fr}
+.w-scr.s2{transform:translateX(-50%) rotate(4deg) translateY(6px);z-index:2;grid-template-columns:1fr 1fr 1fr}
+.w-scr.s3{transform:translateX(-50%) rotate(-1deg);z-index:3;grid-template-columns:.8fr 1.6fr .9fr;grid-template-rows:1fr 1fr}
+.w-scr.s3 b:nth-child(2){grid-row:span 2}
+.w-scr.s3 b.on{background:var(--blue);color:#fff}
+
+/* горизонтальна карусель наборів зон */
+.w-rail{
+  display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 24px 18px;margin:0 -24px;-webkit-overflow-scrolling:touch
+}
+.w-rail::-webkit-scrollbar{display:none}
+.w-set{
+  flex:0 0 70%;max-width:230px;scroll-snap-align:center;border-radius:22px;padding:14px;
+  background:rgba(0,0,0,.07)
+}
+.w-c.night .w-set{background:#17171b}
+.w-set .g{aspect-ratio:16/10;display:grid;gap:5px;border-radius:12px;overflow:hidden}
+.w-set .g b{background:rgba(255,255,255,.85);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:#8b8b93}
+.w-c.night .w-set .g b{background:#26262c;color:#7c7c88}
+.w-set .n{display:flex;justify-content:space-between;align-items:baseline;margin-top:11px;font-size:14px;font-weight:700}
+.w-set .n span{font-family:var(--mono);font-size:11px;opacity:.55;font-weight:400}
+.g.halves{grid-template-columns:1fr 1fr}
+.g.thirds{grid-template-columns:1fr 1fr 1fr}
+.g.sixty{grid-template-columns:1.5fr 1fr}
+.g.quarters{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.g.priority{grid-template-columns:.7fr 1.6fr .9fr;grid-template-rows:1fr 1fr}
+.g.priority b:nth-child(2){grid-row:span 2}
+
+/* гігантські клавіші */
+.w-keys{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.w-keys kbd{
+  font-family:var(--mono);font-size:19px;font-weight:600;background:rgba(255,255,255,.2);
+  border-radius:14px;padding:16px 18px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18),inset 0 0 0 1px rgba(255,255,255,.25)
+}
+.w-c.yellow .w-keys kbd,.w-c.mint .w-keys kbd{background:rgba(0,0,0,.09);box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+
+/* смуга цифр */
+.w-stats{display:grid;grid-template-columns:1fr 1fr;gap:22px 14px;margin-top:6px}
+.w-stat b{display:block;font-family:var(--display);font-weight:900;letter-spacing:-.06em;font-size:clamp(46px,15vw,62px);line-height:.85;font-variant-numeric:tabular-nums}
+.w-stat span{display:block;margin-top:9px;font-size:13.5px;line-height:1.3;opacity:.6}
+.w-stat.y b{color:var(--yellow)}
+.w-stat.m b{color:var(--magenta)}
+.w-stat.bl b{color:#6f92ff}
+.w-stat.mi b{color:var(--mint)}
+
+/* чат з агентом */
+.w-chat{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+.w-bub{border-radius:20px;padding:13px 16px;font-size:14.5px;line-height:1.4;max-width:88%}
+.w-bub.me{align-self:flex-end;background:#fff;color:var(--ink);border-bottom-right-radius:7px}
+.w-bub.it{align-self:flex-start;background:rgba(255,255,255,.16);border-bottom-left-radius:7px;font-family:var(--mono);font-size:13px}
+
+/* список дрібниць */
+.w-list{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column}
+.w-list li{display:flex;gap:14px;align-items:baseline;padding:15px 0;border-top:1px solid rgba(0,0,0,.1)}
+.w-c.night .w-list li{border-color:#25252b}
+.w-list li .k{font-family:var(--mono);font-size:12.5px;font-weight:600;flex:0 0 58px;opacity:.55}
+.w-list li b{font-size:16px;font-weight:700;letter-spacing:-.02em}
+.w-list li p{margin:3px 0 0;font-size:13.5px;line-height:1.35;opacity:.6}
+
+.w-code{background:var(--night);color:#8ef0c4;border-radius:16px;padding:16px 18px;font-family:var(--mono);font-size:13.5px;overflow-x:auto;white-space:nowrap}
+.w-c.night .w-code{background:#17171b}
+.w-checks{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.w-checks li{display:flex;gap:10px;font-size:15px;line-height:1.35}
+.w-checks li::before{content:"✓";font-weight:900;color:var(--blue)}
+.w-foot{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;opacity:.6;padding-top:6px}
+
+/* ============================================================
+   ЗАСТОСУНОК
+   ============================================================ */
+.a-scaler{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.a-win{
+  width:880px;zoom:.44;background:#f7f7f8;border-radius:26px;overflow:hidden;
+  box-shadow:0 0 0 1px var(--line),0 40px 80px rgba(0,0,0,.16);
+  display:grid;grid-template-columns:236px 1fr
+}
+@media (min-width:470px){.a-win{zoom:.52}}
+@media (min-width:620px){.a-win{zoom:.62}}
+.a-side{background:var(--paper);padding:20px 14px;display:flex;flex-direction:column;gap:5px;border-right:1px solid var(--line)}
+.a-side .brand{display:flex;align-items:center;gap:10px;padding:6px 8px 18px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.a-side .brand svg{width:28px;height:31px}
+.a-search{background:var(--wash);border-radius:12px;padding:11px 12px;color:#8b8b93;font-size:14px;display:flex;justify-content:space-between;margin-bottom:12px}
+.a-search em{font-family:var(--mono);font-style:normal;font-size:12px}
+.a-nav{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:12px;font-size:15px;color:#5f5f68}
+.a-nav .d{width:9px;height:9px;border-radius:3px;background:currentColor;opacity:.4}
+.a-nav.on{background:var(--blue);color:#fff;font-weight:700}
+.a-nav.on .d{opacity:1}
+.a-body{padding:22px;display:flex;flex-direction:column;gap:13px}
+.a-title{font-family:var(--display);font-weight:900;letter-spacing:-.045em;font-size:42px;line-height:1;margin:0}
+.a-sets{display:flex;gap:8px;flex-wrap:wrap}
+.a-chip{border-radius:999px;padding:9px 15px;font-size:14px;font-weight:600;background:var(--paper);color:#6b6b73;border:1px solid var(--line)}
+.a-chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.a-canvas{border-radius:20px;background:var(--paper);border:1px solid var(--line);padding:10px;display:grid;gap:8px;grid-template-columns:.8fr 1.6fr .9fr;grid-template-rows:1fr 1fr;aspect-ratio:16/9}
+.a-canvas > b{border-radius:13px;background:var(--wash);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;font-size:30px;color:#b6b6be}
+.a-canvas > b:nth-child(2){grid-row:span 2}
+.a-canvas > b.sel{background:rgba(43,91,255,.1);color:var(--blue);box-shadow:inset 0 0 0 2px var(--blue)}
+.a-row{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.a-row .t{font-size:15px;font-weight:600}
+.a-row .s{font-size:13px;color:#7c7c85;margin-top:2px}
+.a-tog{width:50px;height:29px;border-radius:999px;background:var(--mint);position:relative;flex:none}
+.a-tog::after{content:"";position:absolute;top:3px;right:3px;width:23px;height:23px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.a-kbd{font-family:var(--mono);font-size:13px;background:var(--wash);border-radius:9px;padding:7px 10px}
+
+.a-mb{width:340px;zoom:.86;background:rgba(252,252,253,.96);border-radius:18px;padding:12px;box-shadow:0 0 0 1px var(--line),0 26px 50px rgba(0,0,0,.22);display:flex;flex-direction:column;gap:5px}
+@media (min-width:470px){.a-mb{zoom:1}}
+.a-mb-head{display:flex;justify-content:space-between;align-items:center;padding:4px 8px 10px}
+.a-mb-head b{font-size:15px}
+.a-mb-head span{font-family:var(--mono);font-size:11px;color:#8b8b93}
+.a-mb-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:4px 4px 8px}
+.a-mb-grid b{aspect-ratio:1;border-radius:11px;background:var(--wash);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:#9a9aa2}
+.a-mb-grid b.on{background:var(--blue);color:#fff}
+.a-mi{display:flex;justify-content:space-between;padding:9px 10px;border-radius:11px;font-size:14px}
+.a-mi.on{background:var(--yellow);font-weight:700}
+.a-mi span{font-family:var(--mono);font-size:12px;color:#8b8b93}
+.a-mi.on span{color:rgba(0,0,0,.55)}
+
+/* ============================================================
+   README
+   ============================================================ */
+.r-gh{background:var(--paper);border:1px solid #d0d7de;border-radius:14px;overflow:hidden;font-size:14px;color:#1f2328}
+.r-gh-bar{display:flex;gap:6px;padding:11px 14px;border-bottom:1px solid #d0d7de;color:#59636e;font-size:12.5px;font-family:var(--mono)}
+.r-gh-bar b{color:#0969da;font-weight:400}
+.r-gh-body{padding:18px 16px 24px}
+.r-banner{border-radius:20px;background:var(--yellow);padding:26px 22px;display:flex;flex-direction:column;gap:16px;overflow:hidden}
+.r-banner h1{font-family:var(--display);font-weight:900;letter-spacing:-.055em;line-height:.86;font-size:clamp(38px,11vw,52px);margin:0}
+.r-banner p{margin:0;font-size:15px;line-height:1.35;max-width:30ch;opacity:.7}
+.r-banner .strip{display:flex;gap:6px;height:56px}
+.r-banner .strip b{border-radius:10px;flex:1;background:var(--ink)}
+.r-banner .strip b:nth-child(2){flex:2.2;background:var(--blue)}
+.r-banner .strip b:nth-child(3){background:var(--magenta)}
+.r-banner .strip b:nth-child(4){flex:.6;background:var(--mint)}
+.r-badges{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}
+.r-badges b{font-family:var(--mono);font-size:11px;border-radius:8px;overflow:hidden;display:inline-flex;font-weight:500}
+.r-badges b i{font-style:normal;padding:5px 8px;background:#eaeef2;color:#59636e}
+.r-badges b u{text-decoration:none;padding:5px 8px;font-weight:700}
+.r-h2{font-family:var(--display);font-size:26px;font-weight:900;letter-spacing:-.035em;margin:26px 0 10px;padding-bottom:8px;border-bottom:1px solid #d8dee4}
+.r-gh-body p{margin:0 0 12px;color:#1f2328;line-height:1.6}
+.r-pre{background:#f6f8fa;border-radius:10px;padding:13px 14px;font-family:var(--mono);font-size:12.5px;color:#0550ae;overflow-x:auto;white-space:nowrap;margin:0 0 12px}
+.r-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+.r-cards div{border-radius:14px;padding:13px;color:#fff}
+.r-cards div b{display:block;font-size:15px;font-weight:800;letter-spacing:-.02em}
+.r-cards div span{display:block;font-size:12.5px;line-height:1.3;opacity:.85;margin-top:4px}
+.r-tab{width:100%;border-collapse:collapse;font-size:13.5px;margin:0 0 12px}
+.r-tab td{border:1px solid #d0d7de;padding:9px 11px;vertical-align:top;line-height:1.45}
+.r-tab td:first-child{width:32%;font-weight:700;white-space:nowrap}
+
+.cube-top{fill:#fafaf8}
+.cube-l{fill:var(--magenta)}
+.cube-r{fill:var(--blue)}
+.cube-s{stroke:#0b0b0d;stroke-width:2.4;stroke-linejoin:round;fill:none}
+.cube-g{stroke:#0b0b0d;stroke-width:1.4;opacity:.5}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="cube" viewBox="0 0 100 112">
+    <polygon fill="#fafaf8" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff2d78" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#2b5bff" points="88,34 50,56 50,100 88,78"/>
+    <g stroke="#0b0b0d" stroke-width="1.4" opacity=".5" fill="none">
+      <path d="M24.67,41.33 L62.67,19.33 M37.33,48.67 L75.33,26.67 M24.67,26.67 L62.67,48.67 M37.33,19.33 L75.33,41.33"/>
+      <path d="M12,48.67 L50,70.67 M12,63.33 L50,85.33 M24.67,41.33 L24.67,85.33 M37.33,48.67 L37.33,92.67"/>
+      <path d="M88,48.67 L50,70.67 M88,63.33 L50,85.33 M75.33,41.33 L75.33,85.33 M62.67,48.67 L62.67,92.67"/>
+    </g>
+    <path fill="none" stroke="#0b0b0d" stroke-width="2.4" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+</svg>
+
+<div class="s-wrap">
+
+  <header class="s-cover">
+    <p class="s-kicker">Напрямок 02 з 3</p>
+    <h1>Колода</h1>
+    <p>У monobank головний предмет — картка: велика, кольорова, у стосі, і її гортають убік. У Plonk головний предмет — <b>набір зон</b>. Тут він теж картка.</p>
+  </header>
+
+  <div class="s-spec">
+    <div class="s-card wide">
+      <p class="s-lab">Палітра</p>
+      <div class="s-sw">
+        <i style="background:#ffffff"></i>
+        <i style="background:#ffd400"></i>
+        <i style="background:#ff2d78"></i>
+        <i style="background:#2b5bff"></i>
+        <i style="background:#00d2a0"></i>
+        <i style="background:#0b0b0d"></i>
+      </div>
+    </div>
+    <div class="s-card"><p class="s-lab">Шрифт</p><div class="s-type">Aa<small>SF Pro Display 900<br>інтерліньяж 0.86</small></div></div>
+    <div class="s-card"><p class="s-lab">Форма</p><div class="s-type" style="font-size:20px">36 px<small>радіус картки<br>нахльост −22 px</small></div></div>
+  </div>
+
+  <!-- ================= САЙТ ================= -->
+  <section class="s-lane">
+    <h2><span>01</span> Сайт</h2>
+    <p class="s-sub">Картки лягають одна на одну, як стос у гаманці. Набори зон гортаються вбік пальцем.</p>
+
+    <nav class="w-nav">
+      <span class="w-brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> Plonk</span>
+      <a class="w-pill" href="#install">Завантажити</a>
+    </nav>
+
+    <div class="w-deck">
+
+      <div class="w-c paper">
+        <p class="w-eyebrow">macOS 13+ · безкоштовно · MIT</p>
+        <h1 class="w-h1">Кожне вікно <em style="background:var(--yellow)">на своє</em> місце.</h1>
+        <p class="w-lead">Зони ви малюєте самі. Вікно потрапляє в них перетягуванням, клавішею, голосом — або реченням до агента.</p>
+        <div class="w-cta">
+          <a class="w-btn dark" href="#install">Завантажити</a>
+          <a class="w-btn light" href="#sets">Подивитись набори</a>
+        </div>
+        <div class="w-stack" aria-hidden="true">
+          <div class="w-scr s1"><b></b><b></b></div>
+          <div class="w-scr s2"><b></b><b></b><b></b></div>
+          <div class="w-scr s3"><b>1</b><b class="on">2</b><b>3</b><b>4</b><b>5</b></div>
+        </div>
+      </div>
+
+      <div class="w-c night" id="sets">
+        <p class="w-eyebrow">П'ять наборів у коробці</p>
+        <h2 class="w-h2">Гортайте.<br>Далі малюйте свій.</h2>
+        <div class="w-rail">
+          <div class="w-set"><div class="g priority"><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b></div><div class="n">Priority <span>5 зон</span></div></div>
+          <div class="w-set"><div class="g halves"><b>1</b><b>2</b></div><div class="n">Halves <span>2 зони</span></div></div>
+          <div class="w-set"><div class="g thirds"><b>1</b><b>2</b><b>3</b></div><div class="n">Thirds <span>3 зони</span></div></div>
+          <div class="w-set"><div class="g sixty"><b>1</b><b>2</b></div><div class="n">60 / 40 <span>2 зони</span></div></div>
+          <div class="w-set"><div class="g quarters"><b>1</b><b>2</b><b>3</b><b>4</b></div><div class="n">Quarters <span>4 зони</span></div></div>
+        </div>
+        <p class="w-lead" style="margin:6px 0 0">Поміняли набір на екрані — і вікна, що вже стояли в пронумерованих зонах, самі переїжджають туди, де тепер їхній номер.</p>
+      </div>
+
+      <div class="w-c yellow">
+        <p class="w-eyebrow">Спосіб перший</p>
+        <h2 class="w-h2">Просто тягніть.</h2>
+        <p class="w-lead">Зони світяться, поки вікно в руці. Затисніть ще й ⌘ — воно ляже одразу на дві.</p>
+        <div class="w-scr" style="position:static;transform:none;width:100%;grid-template-columns:1fr 1.4fr;border:0;background:rgba(0,0,0,.08);box-shadow:none">
+          <b style="background:rgba(255,255,255,.6)">1</b>
+          <b style="background:var(--ink);color:#fff">2</b>
+        </div>
+      </div>
+
+      <div class="w-c magenta">
+        <p class="w-eyebrow">Спосіб другий</p>
+        <h2 class="w-h2">Або клавішею.</h2>
+        <p class="w-lead">Дев'ять зон живуть на цифрах. Нуль — кнопка «вибач», повертає вікно туди, де воно було до Plonk.</p>
+        <div class="w-keys">
+          <kbd>⌃⌥1</kbd><kbd>⌃⌥2</kbd><kbd>⌃⌥←</kbd><kbd>⌃⌥0</kbd>
+        </div>
+      </div>
+
+      <div class="w-c blue">
+        <p class="w-eyebrow">Спосіб третій</p>
+        <h2 class="w-h2">Або скажіть уголос.</h2>
+        <p class="w-lead">Затисніть ⌃⌥V і назвіть місце. Розпізнавання йде всередині застосунку, офлайн, на пристрої — жодного слова назовні.</p>
+        <div class="w-chat">
+          <div class="w-bub me">«snap this left»</div>
+          <div class="w-bub it">Safari → зона 1</div>
+          <div class="w-bub me">«zone three»</div>
+          <div class="w-bub it">Terminal → зона 3</div>
+        </div>
+      </div>
+
+      <div class="w-c mint">
+        <p class="w-eyebrow">Спосіб четвертий, новий</p>
+        <h2 class="w-h2">Або попросіть агента.</h2>
+        <p class="w-lead">20 інструментів MCP: розкладки, робочі столи, зони, скриншоти, OCR, лінійка. Це не «покрутити чуже вікно» — це сам менеджер вікон.</p>
+        <div class="w-code" style="white-space:normal;color:#a8ffdf;line-height:1.7">браузер ліворуч на 60%, термінал згори праворуч<br>збережи це як стіл «review»<br>тримай мак у тонусі, поки йде білд</div>
+      </div>
+
+      <div class="w-c night">
+        <div class="w-stats">
+          <div class="w-stat y"><b>20</b><span>інструментів MCP</span></div>
+          <div class="w-stat m"><b>10</b><span>утиліт під однією іконкою</span></div>
+          <div class="w-stat bl"><b>0</b><span>залежностей</span></div>
+          <div class="w-stat mi"><b>0</b><span>байтів у хмару</span></div>
+        </div>
+        <ul class="w-list" style="margin-top:30px">
+          <li><span class="k">⌃⌥T</span><div><b>Текст з екрана</b><p>Скриншот, пауза у відео, діалог, який не дає виділити</p></div></li>
+          <li><span class="k">⌃⌥R</span><div><b>Лінійка</b><p>Скільки пікселів до краю. У пунктах теж</p></div></li>
+          <li><span class="k">—</span><div><b>Шматок екрана згори</b><p>Живий кроп над усім: лог білда, графік, дзвінок</p></div></li>
+          <li><span class="k">—</span><div><b>Не засинати</b><p>Справжні power assertions, не сіпалка курсора</p></div></li>
+        </ul>
+      </div>
+
+      <div class="w-c paper" id="install">
+        <p class="w-eyebrow">Установка</p>
+        <h2 class="w-h2">Один рядок — і воно ваше.</h2>
+        <div class="w-code">brew install --cask ostapondo/plonk/plonk</div>
+        <ul class="w-checks">
+          <li>macOS 13 і новіший, Apple silicon</li>
+          <li>Accessibility, коли попросить. Далі перезапуск</li>
+          <li>Ні Full Disk Access, ні Automation, ні Keychain</li>
+          <li>Ні акаунта, ні хмари, ні телеметрії</li>
+        </ul>
+        <div class="w-cta" style="margin-top:22px"><a class="w-btn dark" href="#install">Завантажити 0.2.4</a></div>
+        <div class="w-foot" style="margin-top:24px">MIT © ostapondo · Swift 6 · 0.2.x, один автор</div>
+      </div>
+
+    </div>
+
+    <p class="s-note">Проти теперішнього сайту: <b>світлий, але не блідий</b> — колір заливає цілу картку, а не живе в дрібних акцентах. Нахльост карток дає відчуття стосу вже на першому дотику скролу. Набори зон гортаються пальцем, як каруселька продуктів у monobank.</p>
+  </section>
+
+  <!-- ================= ЗАСТОСУНОК ================= -->
+  <section class="s-lane">
+    <h2><span>02</span> Застосунок</h2>
+    <p class="s-sub">Світла тема Plonk отримує ті самі картки: рядки налаштувань з рамкою й радіусом 16, вибране — суцільний синій.</p>
+
+    <div class="a-scaler">
+      <div class="a-win">
+        <aside class="a-side">
+          <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> Plonk</span>
+          <div class="a-search">Виконати команду <em>⌘K</em></div>
+          <div class="a-nav"><i class="d"></i> Головна</div>
+          <div class="a-nav on"><i class="d"></i> Зони</div>
+          <div class="a-nav"><i class="d"></i> Робочі столи</div>
+          <div class="a-nav"><i class="d"></i> Захоплення</div>
+          <div class="a-nav"><i class="d"></i> Автоматизація</div>
+          <div class="a-nav"><i class="d"></i> Налаштування</div>
+        </aside>
+        <main class="a-body">
+          <h3 class="a-title">Зони</h3>
+          <div class="a-sets">
+            <span class="a-chip">60 / 40</span>
+            <span class="a-chip">Halves</span>
+            <span class="a-chip on">Priority</span>
+            <span class="a-chip">Quarters</span>
+            <span class="a-chip">Thirds</span>
+            <span class="a-chip">+ Новий</span>
+          </div>
+          <div class="a-canvas"><b>1</b><b class="sel">2</b><b>3</b><b>4</b><b>5</b></div>
+          <div class="a-row">
+            <div><div class="t">Кидати вікна в зони</div><div class="s">Перетягування і краї екрана</div></div>
+            <span class="a-tog"></span>
+          </div>
+          <div class="a-row">
+            <div><div class="t">Показувати зони</div><div class="s">Поки тягнеш · з модифікатором</div></div>
+            <span class="a-kbd">⇧</span>
+          </div>
+          <div class="a-row">
+            <div><div class="t">Повернути як було</div><div class="s">Рамка до втручання Plonk</div></div>
+            <span class="a-kbd">⌃⌥0</span>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <div class="a-mb">
+        <div class="a-mb-head"><b>Plonk</b><span>2 екрани · Priority</span></div>
+        <div class="a-mb-grid"><b>1</b><b class="on">2</b><b>3</b><b>4</b><b>5</b></div>
+        <div class="a-mi on">Стіл «review» <span>⌃⌥⇧R</span></div>
+        <div class="a-mi">Текст з екрана <span>⌃⌥T</span></div>
+        <div class="a-mi">Лінійка <span>⌃⌥R</span></div>
+        <div class="a-mi">Не засинати <span>вимк.</span></div>
+      </div>
+    </div>
+
+    <p class="s-note">Ключова відмінність від напрямку 01: у застосунку колір <b>несе стан, а не настрій</b> — синій це «вибрано», м'ятний це «увімкнено», жовтий у меню це «зараз активний стіл». Палітра одна із сайтом, роль інша.</p>
+  </section>
+
+  <!-- ================= README ================= -->
+  <section class="s-lane">
+    <h2><span>03</span> README</h2>
+    <p class="s-sub">Жовтий банер видно в стрічці GitHub здалеку — саме те, чого бракує сірим README.</p>
+
+    <div class="r-gh">
+      <div class="r-gh-bar"><b>ostapondo</b> / <b>Plonk</b> · README.md</div>
+      <div class="r-gh-body">
+
+        <div class="r-banner">
+          <svg viewBox="0 0 100 112" style="width:48px;height:54px"><use href="#cube"/></svg>
+          <h1>Plonk</h1>
+          <p>To plonk is to set a thing down exactly where it belongs.</p>
+          <div class="strip"><b></b><b></b><b></b><b></b></div>
+        </div>
+
+        <div class="r-badges">
+          <b><i>version</i><u style="background:#ffd400">0.2.4</u></b>
+          <b><i>macOS</i><u style="background:#2b5bff;color:#fff">13+</u></b>
+          <b><i>swift</i><u style="background:#ff2d78;color:#fff">6</u></b>
+          <b><i>deps</i><u style="background:#00d2a0">0</u></b>
+          <b><i>mcp</i><u style="background:#0b0b0d;color:#fff">20 tools</u></b>
+        </div>
+
+        <p>A Mac window manager with <b>zones you draw yourself</b>. Put a window in one by dragging it, by shortcut, by voice, or by asking an agent over MCP.</p>
+
+        <h3 class="r-h2">Three ways to move a window</h3>
+        <div class="r-cards">
+          <div style="background:#ffd400;color:#0b0b0d"><b>Drag it</b><span>Zones light up. Hold ⌘ for two at once</span></div>
+          <div style="background:#ff2d78"><b>⌃⌥1 … 9</b><span>⌃⌥0 puts it back</span></div>
+          <div style="background:#2b5bff"><b>⌃⌥V</b><span>Say it. Offline, on-device</span></div>
+          <div style="background:#00d2a0;color:#0b0b0d"><b>Ask an agent</b><span>20 MCP tools</span></div>
+        </div>
+
+        <h3 class="r-h2">Install</h3>
+        <div class="r-pre">brew install --cask ostapondo/plonk/plonk</div>
+        <p>macOS 13 or newer, Apple silicon. Grant Accessibility when it asks, then relaunch.</p>
+
+        <h3 class="r-h2">What you get</h3>
+        <table class="r-tab">
+          <tr><td>Zones</td><td>Overlap them, gap them, hide the numbers, keep a list of apps Plonk never touches</td></tr>
+          <tr><td>Workspaces</td><td>Monitors are keyed by UUID, so unplugging one does not scramble them</td></tr>
+          <tr><td>Voice</td><td>Common commands run in the app, offline. Recognition is on-device</td></tr>
+        </table>
+
+      </div>
+    </div>
+
+    <p class="s-note">Чотири кольорові картки замість таблиці «три способи» — <b>найдешевша правка з найбільшим ефектом</b>: один SVG, який однаково читається на телефоні й на десктопі, у світлій і темній темі GitHub.</p>
+  </section>
+
+</div>
