@@ -1,0 +1,353 @@
+<title>Plonk Cube Mascot</title>
+<style>
+/* ============================================================
+   DECK · VARIANT B — MASCOT
+   The monobank move done properly: the warmth is carried by a
+   character, not by punctuation. The logo already is a cube, so
+   the cube gets a face — and a different face per section, which
+   is what emoji were standing in for in variant A.
+   The privacy section's cube has its eyes shut. That is the joke
+   and the argument at the same time.
+   ============================================================ */
+:root{
+  --paper:#fffdf9;--wash:#eeeae3;--ink:#12100e;--dim:#6d675f;--line:#ded8cf;
+  --sun:#ffcb2e;--rose:#ff4f81;--sea:#3a6bff;--leaf:#12c79a;--plum:#7b5cff;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Helvetica Neue",Arial,sans-serif;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--wash);color:var(--ink);font-family:var(--text);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+svg{display:block}
+
+.wrap{max-width:460px;margin:0 auto;padding:0 12px 70px}
+.hdr{padding:46px 10px 20px}
+.hdr .kick{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin:0 0 14px}
+.hdr h1{font-family:var(--display);font-size:clamp(40px,13vw,56px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin:0 0 12px}
+.hdr p{margin:0;color:var(--dim);font-size:16px;max-width:36ch}
+.hdr p b{color:var(--ink);font-weight:600}
+
+.nav{display:flex;align-items:center;justify-content:space-between;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 14px;margin-bottom:12px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;font-size:15px}
+.brand svg{width:26px;height:29px}
+.pill{border-radius:999px;padding:9px 16px;font-size:14px;font-weight:700;text-decoration:none;background:var(--ink);color:#fff}
+.pill:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+
+.deck{display:flex;flex-direction:column;gap:12px}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.c{border-radius:34px;padding:28px 22px;opacity:0;animation:rise .65s cubic-bezier(.2,.9,.3,1) forwards;position:relative;overflow:hidden}
+.c:nth-child(1){animation-delay:.05s}.c:nth-child(2){animation-delay:.13s}
+.c:nth-child(3){animation-delay:.21s}.c:nth-child(4){animation-delay:.29s}
+.c:nth-child(5){animation-delay:.37s}.c:nth-child(6){animation-delay:.45s}
+.c.paper{background:var(--paper)}
+.c.sun{background:radial-gradient(120% 90% at 20% 0%,#ffe58a,#ffcb2e 55%,#f2a900);color:#1c1400}
+.c.rose{background:radial-gradient(120% 90% at 15% 0%,#ff89ad,#ff4f81 55%,#d82c5f);color:#fff}
+.c.sea{background:radial-gradient(120% 90% at 20% 0%,#7d9bff,#3a6bff 55%,#1e3fcc);color:#fff}
+.c.leaf{background:radial-gradient(120% 90% at 20% 0%,#6ef0cc,#12c79a 55%,#019476);color:#04241b}
+.c.night{background:radial-gradient(120% 90% at 25% 0%,#2b2739,#12100e 60%);color:#fff}
+
+h2.big{font-family:var(--display);font-weight:900;letter-spacing:-.05em;line-height:.9;font-size:clamp(36px,11.5vw,50px);margin:0 0 14px;text-wrap:balance}
+h3.mid{font-family:var(--display);font-weight:900;letter-spacing:-.045em;line-height:.95;font-size:clamp(27px,8.5vw,36px);margin:0 0 10px;text-wrap:balance}
+.lead{margin:0 0 20px;font-size:17px;line-height:1.42;opacity:.78;max-width:31ch}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin:0 0 14px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:16px 26px;font-size:16.5px;font-weight:700;text-decoration:none}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.ghost{background:rgba(0,0,0,.07);color:inherit}
+.c.rose .btn.ghost,.c.sea .btn.ghost,.c.night .btn.ghost{background:rgba(255,255,255,.2);color:#fff}
+.btn:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+.cta{display:flex;gap:9px;flex-wrap:wrap}
+
+/* ---- the mascot ---- */
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1.5deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.mascot{width:118px;height:132px;animation:bob 4.2s ease-in-out infinite}
+.mascot .eye{transform-box:fill-box;transform-origin:center;animation:blink 5.5s ease-in-out infinite}
+.mascot .eye.b{animation-delay:.04s}
+.hero-top{display:flex;align-items:flex-end;gap:8px;margin-bottom:6px}
+.bubble{
+  background:var(--paper);border:2px solid var(--ink);border-radius:18px 18px 18px 5px;
+  padding:10px 14px;font-size:14.5px;font-weight:600;position:relative;margin-bottom:24px
+}
+.c.sun .bubble{background:#fffdf9}
+.face{width:46px;height:52px;flex:none}
+
+/* live screen */
+.screen{aspect-ratio:16/10;border-radius:18px;position:relative;overflow:hidden;background:rgba(0,0,0,.09);padding:8px;margin-top:20px}
+.c.paper .screen{background:var(--wash)}
+.z{position:absolute;border-radius:10px;border:2px dashed rgba(0,0,0,.16);display:flex;align-items:flex-end;padding:7px;font-family:var(--mono);font-size:12px;color:rgba(0,0,0,.32)}
+.c.night .z,.c.sea .z,.c.rose .z{border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.5)}
+.z.hot{border-style:solid;border-color:var(--plum);background:rgba(123,92,255,.2);color:#fff}
+.win{position:absolute;border-radius:10px;background:var(--paper);box-shadow:0 14px 28px rgba(0,0,0,.2);border:1.5px solid var(--ink)}
+.win .bar{height:13px;border-radius:8px 8px 0 0;background:var(--ink);display:flex;gap:3px;align-items:center;padding:0 6px}
+.win .bar i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.6)}
+@keyframes fly{
+  0%,10%{left:12%;top:20%;width:40%;height:48%}
+  42%,66%{left:34%;top:4%;width:41%;height:92%}
+  92%,100%{left:12%;top:20%;width:40%;height:48%}
+}
+@keyframes glow{
+  0%,16%{border-style:dashed;border-color:rgba(0,0,0,.16);background:transparent;color:rgba(0,0,0,.32)}
+  26%,70%{border-style:solid;border-color:#7b5cff;background:rgba(123,92,255,.2);color:#fff}
+  86%,100%{border-style:dashed;border-color:rgba(0,0,0,.16);background:transparent;color:rgba(0,0,0,.32)}
+}
+.win.fly{animation:fly 6.5s cubic-bezier(.34,1.3,.4,1) infinite}
+.z.glow{animation:glow 6.5s ease infinite}
+
+/* rows carried by faces */
+.rows{display:flex;flex-direction:column;margin-top:14px}
+.rw{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1.5px solid rgba(0,0,0,.12)}
+.c.rose .rw,.c.sea .rw,.c.night .rw{border-color:rgba(255,255,255,.22)}
+.rw b{font-size:16.5px;font-weight:700;letter-spacing:-.02em;display:block}
+.rw p{margin:3px 0 0;font-size:13.5px;line-height:1.4;opacity:.72}
+
+.keys{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.keys kbd{font-family:var(--mono);font-size:17px;font-weight:600;border-radius:14px;padding:14px 16px;background:rgba(0,0,0,.1);box-shadow:inset 0 -3px 0 rgba(0,0,0,.1)}
+.c.rose .keys kbd,.c.sea .keys kbd,.c.night .keys kbd{background:rgba(255,255,255,.2);box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+
+/* sets rail */
+.rail-mask{overflow:hidden;margin:18px -22px 0}
+@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.rail{display:flex;gap:10px;width:max-content;animation:roll 24s linear infinite}
+.set{width:148px;border-radius:20px;padding:11px;background:rgba(255,255,255,.2)}
+.c.paper .set{background:var(--wash)}
+.set .g{aspect-ratio:16/10;display:grid;gap:4px}
+.set .g b{background:rgba(255,255,255,.9);border-radius:6px}
+.c.night .set .g b{background:#2c2836}
+.set .n{margin-top:9px;font-size:13px;font-weight:700;display:flex;justify-content:space-between}
+.set .n span{font-family:var(--mono);font-size:10.5px;opacity:.6;font-weight:400}
+.g.halves{grid-template-columns:1fr 1fr}
+.g.thirds{grid-template-columns:1fr 1fr 1fr}
+.g.sixty{grid-template-columns:1.5fr 1fr}
+.g.quarters{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.g.prio{grid-template-columns:.7fr 1.5fr .9fr;grid-template-rows:1fr 1fr}
+.g.prio b:nth-child(2){grid-row:span 2}
+
+/* desk illustration, drawn not photographed */
+.desks{display:grid;gap:9px;margin-top:16px}
+.desk{background:rgba(255,255,255,.18);border-radius:18px;padding:13px}
+.c.paper .desk{background:var(--wash)}
+.desk .t{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.desk .t b{font-size:15.5px;font-weight:800;letter-spacing:-.02em}
+.desk .t span{font-family:var(--mono);font-size:11px;opacity:.6}
+.desk .mon{display:flex;gap:7px;height:50px}
+.desk .mon i{flex:1;border-radius:8px;display:block;background:rgba(0,0,0,.16)}
+.desk .mon i.p{background:var(--plum)}
+.desk .mon i.s{background:var(--sea)}
+.desk .mon i.r{background:var(--rose)}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:20px 14px}
+.stat b{display:block;font-family:var(--display);font-weight:900;letter-spacing:-.06em;font-size:clamp(42px,13.5vw,56px);line-height:.85;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:7px;font-size:13px;line-height:1.3;opacity:.65}
+
+.code{border-radius:16px;padding:15px 17px;font-family:var(--mono);font-size:13.5px;overflow-x:auto;white-space:nowrap;background:#12100e;color:#8ef0c4}
+.checks{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;font-size:15px;line-height:1.35}
+.checks li::before{content:"";width:9px;height:9px;border-radius:3px;background:currentColor;flex:none;margin-top:7px;opacity:.5}
+.foot{display:flex;flex-wrap:wrap;gap:7px 16px;font-size:13px;opacity:.55;margin-top:22px}
+.note{margin:16px 0 0;padding:14px 16px;background:var(--paper);border:1px solid var(--line);border-radius:18px;color:var(--dim);font-size:13.5px;line-height:1.55}
+.note b{color:var(--ink);font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .c{opacity:1;animation:none}
+  .mascot,.mascot .eye,.rail,.win.fly,.z.glow{animation:none}
+  .win.fly{left:34%;top:4%;width:41%;height:92%}
+  .z.glow{border-style:solid;border-color:#7b5cff;background:rgba(123,92,255,.2);color:#fff}
+}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <!-- the plain logo, for the nav -->
+  <symbol id="cube" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#12100e" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+
+  <!-- one face per mood. this is what the emoji were standing in for -->
+  <symbol id="f-wink" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <ellipse cx="25" cy="63" rx="5.2" ry="6.4" fill="#fffdf9"/>
+    <ellipse cx="26.2" cy="64.6" rx="2.6" ry="3.2" fill="#12100e"/>
+    <path d="M34,72 Q39,67 44,72" stroke="#12100e" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M27,77 Q33,83 40,80" stroke="#12100e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path fill="none" stroke="#12100e" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+
+  <symbol id="f-focus" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <ellipse cx="25" cy="63" rx="5.4" ry="2.6" fill="#fffdf9"/>
+    <ellipse cx="25" cy="63" rx="2.4" ry="2.2" fill="#12100e"/>
+    <ellipse cx="39" cy="71" rx="5.4" ry="2.6" fill="#fffdf9"/>
+    <ellipse cx="39" cy="71" rx="2.4" ry="2.2" fill="#12100e"/>
+    <path d="M28,79 L39,82" stroke="#12100e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path fill="none" stroke="#12100e" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+
+  <symbol id="f-talk" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <ellipse cx="25" cy="61" rx="5.2" ry="6.4" fill="#fffdf9"/>
+    <ellipse cx="26.2" cy="62.6" rx="2.6" ry="3.2" fill="#12100e"/>
+    <ellipse cx="39" cy="69" rx="5.2" ry="6.4" fill="#fffdf9"/>
+    <ellipse cx="40.2" cy="70.6" rx="2.6" ry="3.2" fill="#12100e"/>
+    <ellipse cx="33" cy="80" rx="4" ry="5" fill="#12100e"/>
+    <path fill="none" stroke="#12100e" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+
+  <symbol id="f-shut" viewBox="0 0 100 112">
+    <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+    <path d="M20,64 Q25,58 30,64" stroke="#12100e" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M34,72 Q39,66 44,72" stroke="#12100e" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M27,78 Q33,84 40,81" stroke="#12100e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path fill="none" stroke="#12100e" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="hdr">
+    <p class="kick">Deck · variant B</p>
+    <h1>Mascot</h1>
+    <p>The cube gets a face, and a different one per section. <b>Every emoji from variant A is replaced by something only Plonk could use.</b></p>
+  </header>
+
+  <nav class="nav">
+    <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> Plonk</span>
+    <a class="pill" href="#get">Get it — free</a>
+  </nav>
+
+  <div class="deck">
+
+    <div class="c paper">
+      <div class="hero-top">
+        <!-- inlined rather than <use>, because this one blinks -->
+        <svg class="mascot" viewBox="0 0 100 112" aria-label="The Plonk cube, looking friendly">
+          <polygon fill="#fffdf9" points="12,34 50,12 88,34 50,56"/>
+          <polygon fill="#ff4f81" points="12,34 50,56 50,100 12,78"/>
+          <polygon fill="#3a6bff" points="88,34 50,56 50,100 88,78"/>
+          <g>
+            <ellipse class="eye" cx="25" cy="63" rx="5.2" ry="6.4" fill="#fffdf9"/>
+            <ellipse class="eye" cx="26.2" cy="64.6" rx="2.6" ry="3.2" fill="#12100e"/>
+            <ellipse class="eye b" cx="39" cy="71" rx="5.2" ry="6.4" fill="#fffdf9"/>
+            <ellipse class="eye b" cx="40.2" cy="72.6" rx="2.6" ry="3.2" fill="#12100e"/>
+          </g>
+          <path d="M27,78 Q33,84 40,81" stroke="#12100e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path fill="none" stroke="#12100e" stroke-width="2.6" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+        </svg>
+        <span class="bubble">So — where does this one go?</span>
+      </div>
+
+      <h2 class="big">Windows,<br>put away neatly.</h2>
+      <p class="lead">Draw the boxes you actually want. Then drop windows into them: with a drag, with a key, or by saying so out loud.</p>
+      <div class="cta">
+        <a class="btn dark" href="#get">Get Plonk</a>
+        <a class="btn ghost" href="#ways">Show me first</a>
+      </div>
+      <div class="screen">
+        <div class="z" style="left:2%;top:3%;width:29%;height:94%">1</div>
+        <div class="z glow" style="left:34%;top:3%;width:41%;height:94%">2</div>
+        <div class="z" style="left:78%;top:3%;width:20%;height:45%">3</div>
+        <div class="z" style="left:78%;top:52%;width:20%;height:45%">4</div>
+        <div class="win fly" style="left:12%;top:20%;width:40%;height:48%"><div class="bar"><i></i><i></i><i></i></div></div>
+      </div>
+    </div>
+
+    <div class="c sun" id="ways">
+      <p class="eyebrow">Three ways</p>
+      <h3 class="mid">Whichever your hands prefer.</h3>
+      <div class="rows">
+        <div class="rw">
+          <svg class="face" viewBox="0 0 100 112"><use href="#f-wink"/></svg>
+          <div><b>Drag it</b><p>The zones light up while the window is in your hand. Hold ⌘ and it takes two at once.</p></div>
+        </div>
+        <div class="rw">
+          <svg class="face" viewBox="0 0 100 112"><use href="#f-focus"/></svg>
+          <div><b>Press a key</b><p>Nine zones live on the digits. Zero is the oops key — it puts a window back exactly where it was.</p></div>
+        </div>
+        <div class="rw">
+          <svg class="face" viewBox="0 0 100 112"><use href="#f-talk"/></svg>
+          <div><b>Say it</b><p>Hold ⌃⌥V and name the place. It listens on the Mac, offline. Nobody hears you but the laptop.</p></div>
+        </div>
+      </div>
+      <div class="keys"><kbd>⌃⌥1</kbd><kbd>⌃⌥←</kbd><kbd>⌃⌥0</kbd><kbd>⌃⌥V</kbd></div>
+    </div>
+
+    <div class="c night">
+      <p class="eyebrow">Five in the box</p>
+      <h3 class="mid">Or draw your own.<br>It takes a minute.</h3>
+      <p class="lead" style="margin-bottom:0">Click a zone to cut it in half. ⇧-click cuts the other way. That is the whole editor — there is no more of it.</p>
+      <div class="rail-mask">
+        <div class="rail">
+          <div class="set"><div class="g prio"><b></b><b></b><b></b><b></b><b></b></div><div class="n">Priority <span>5</span></div></div>
+          <div class="set"><div class="g halves"><b></b><b></b></div><div class="n">Halves <span>2</span></div></div>
+          <div class="set"><div class="g thirds"><b></b><b></b><b></b></div><div class="n">Thirds <span>3</span></div></div>
+          <div class="set"><div class="g sixty"><b></b><b></b></div><div class="n">60 / 40 <span>2</span></div></div>
+          <div class="set"><div class="g quarters"><b></b><b></b><b></b><b></b></div><div class="n">Quarters <span>4</span></div></div>
+          <div class="set"><div class="g prio"><b></b><b></b><b></b><b></b><b></b></div><div class="n">Priority <span>5</span></div></div>
+          <div class="set"><div class="g halves"><b></b><b></b></div><div class="n">Halves <span>2</span></div></div>
+          <div class="set"><div class="g thirds"><b></b><b></b><b></b></div><div class="n">Thirds <span>3</span></div></div>
+          <div class="set"><div class="g sixty"><b></b><b></b></div><div class="n">60 / 40 <span>2</span></div></div>
+          <div class="set"><div class="g quarters"><b></b><b></b><b></b><b></b></div><div class="n">Quarters <span>4</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c rose">
+      <p class="eyebrow">Desks</p>
+      <h3 class="mid">It remembers which monitor.</h3>
+      <p class="lead">Save the desk once. Close the lot, go home, come back — and it builds itself again on the right screens, with the right files already open.</p>
+      <div class="desks">
+        <div class="desk">
+          <div class="t"><b>review</b><span>2 displays</span></div>
+          <div class="mon"><i class="p"></i><i class="s"></i><i></i></div>
+        </div>
+        <div class="desk">
+          <div class="t"><b>writing</b><span>1 display</span></div>
+          <div class="mon"><i class="r"></i><i></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c leaf">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <svg style="width:74px;height:83px;flex:none" viewBox="0 0 100 112"><use href="#f-shut"/></svg>
+        <p class="eyebrow" style="margin:0">Privacy</p>
+      </div>
+      <h3 class="mid">It isn't watching you.</h3>
+      <p class="lead">No account, no cloud, no telemetry. Plonk moves rectangles around and that is all it wants from your Mac.</p>
+      <p class="lead">And you needn't take our word for it — every release comes with a receipt you can check yourself.</p>
+      <div class="code" style="color:#a8ffdf">gh attestation verify Plonk-0.2.4.zip -R ostapondo/plonk</div>
+    </div>
+
+    <div class="c paper" id="get">
+      <h3 class="mid">One line, and it's yours.</h3>
+      <div class="code">brew install --cask ostapondo/plonk/plonk</div>
+      <ul class="checks">
+        <li>macOS 13 or newer, Apple silicon</li>
+        <li>Say yes to Accessibility, then relaunch</li>
+        <li>No Full Disk Access, no Automation, no Keychain</li>
+        <li>Gets along fine with Rectangle and Magnet</li>
+      </ul>
+      <div class="stats" style="margin-top:26px">
+        <div class="stat"><b>20</b><span>tools for your agent</span></div>
+        <div class="stat"><b>10</b><span>utilities, one icon</span></div>
+      </div>
+      <div class="cta" style="margin-top:24px"><a class="btn dark" href="#get">Download 0.2.4</a></div>
+      <div class="foot">MIT © ostapondo · Swift 6 · still early, and there's only one of me</div>
+    </div>
+
+  </div>
+
+  <p class="note"><b>Why I'd pick this one.</b> The face does everything an emoji did, but it is yours — nobody else's landing page can use it, and it turns up again in the menu bar icon, the empty states, the first-run screen and the 404. And one joke does real work: on the privacy card <b>the cube has its eyes shut</b>, which is the argument and the charm in the same drawing. The cost is honest, though: someone has to draw five faces properly, and a mascot that is drawn badly is worse than no mascot.</p>
+
+</div>

@@ -1,0 +1,321 @@
+<title>Plonk Gradient Deck</title>
+<style>
+/* ============================================================
+   DECK · VARIANT C — GRADIENT
+   No emoji and no character. Colour itself is the personality:
+   a mesh that drifts behind everything, glass cards floating on
+   it, headlines cut out of a gradient, and a row of cubes in
+   four colourways — the logo turned into a pattern.
+   Zones are filled with gradients too, so the product graphic
+   and the brand graphic are literally the same object.
+   ============================================================ */
+:root{
+  --ink:#0e0c18;--dim:#5d5872;--paper:#ffffff;--line:rgba(14,12,24,.1);
+  --sun:#ffc531;--rose:#ff3d84;--sea:#3f6bff;--mint:#12d3a4;--plum:#8b5cf6;--sky:#25c8ff;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Helvetica Neue",Arial,sans-serif;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#f3f1f8;color:var(--ink);font-family:var(--text);
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;position:relative;min-height:100%
+}
+svg{display:block}
+
+/* the drifting mesh, behind everything */
+.mesh{position:fixed;inset:-20%;z-index:-1;filter:blur(52px);opacity:.85;pointer-events:none}
+.mesh i{position:absolute;display:block;border-radius:50%}
+.mesh .a{width:58%;height:44%;left:-6%;top:2%;background:#ff3d84}
+.mesh .b{width:54%;height:42%;right:-8%;top:14%;background:#3f6bff}
+.mesh .c{width:52%;height:40%;left:8%;bottom:6%;background:#12d3a4}
+.mesh .d{width:46%;height:36%;right:2%;bottom:-4%;background:#ffc531}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(9%,7%) scale(1.18)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-8%,10%) scale(.92)}}
+@keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(7%,-8%) scale(1.14)}}
+@keyframes float4{0%,100%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-10%,-6%) scale(.95)}}
+.mesh .a{animation:float1 19s ease-in-out infinite}
+.mesh .b{animation:float2 23s ease-in-out infinite}
+.mesh .c{animation:float3 21s ease-in-out infinite}
+.mesh .d{animation:float4 25s ease-in-out infinite}
+
+.wrap{max-width:460px;margin:0 auto;padding:0 12px 70px}
+.hdr{padding:46px 10px 20px}
+.hdr .kick{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);margin:0 0 14px}
+.hdr h1{font-family:var(--display);font-size:clamp(40px,13vw,56px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin:0 0 12px}
+.hdr p{margin:0;color:var(--dim);font-size:16px;max-width:36ch}
+.hdr p b{color:var(--ink);font-weight:600}
+
+/* glass */
+.glass{
+  background:rgba(255,255,255,.62);
+  -webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 10px 40px rgba(14,12,24,.1),inset 0 1px 0 rgba(255,255,255,.8)
+}
+.nav{display:flex;align-items:center;justify-content:space-between;border-radius:999px;padding:9px 14px;margin-bottom:12px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;font-size:15px}
+.brand svg{width:25px;height:28px}
+.pill{border-radius:999px;padding:9px 17px;font-size:14px;font-weight:700;text-decoration:none;color:#fff;
+  background:linear-gradient(115deg,#8b5cf6,#ff3d84 55%,#ffc531);background-size:200% 200%;animation:pan 9s ease infinite}
+@keyframes pan{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.pill:focus-visible{outline:3px solid var(--sea);outline-offset:3px}
+
+.deck{display:flex;flex-direction:column;gap:12px}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.c{border-radius:32px;padding:28px 22px;opacity:0;animation:rise .65s cubic-bezier(.2,.9,.3,1) forwards;overflow:hidden}
+.c:nth-child(1){animation-delay:.05s}.c:nth-child(2){animation-delay:.13s}
+.c:nth-child(3){animation-delay:.21s}.c:nth-child(4){animation-delay:.29s}
+.c:nth-child(5){animation-delay:.37s}.c:nth-child(6){animation-delay:.45s}
+.c.ink{background:linear-gradient(155deg,rgba(23,20,42,.94),rgba(10,9,18,.96));color:#fff;border:1px solid rgba(255,255,255,.09);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+
+h2.big{font-family:var(--display);font-weight:900;letter-spacing:-.055em;line-height:.88;font-size:clamp(38px,12vw,52px);margin:0 0 14px;text-wrap:balance}
+h3.mid{font-family:var(--display);font-weight:900;letter-spacing:-.045em;line-height:.94;font-size:clamp(27px,8.5vw,36px);margin:0 0 10px;text-wrap:balance}
+.grad-text{
+  background:linear-gradient(100deg,#8b5cf6,#ff3d84 42%,#ff8a3d 70%,#ffc531);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% 100%;animation:pan 11s ease infinite
+}
+.lead{margin:0 0 20px;font-size:17px;line-height:1.42;color:var(--dim);max-width:31ch}
+.c.ink .lead{color:rgba(255,255,255,.72)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 14px}
+.c.ink .eyebrow{color:rgba(255,255,255,.5)}
+
+.btn{display:inline-flex;align-items:center;border-radius:999px;padding:16px 26px;font-size:16.5px;font-weight:700;text-decoration:none}
+.btn.grad{color:#fff;background:linear-gradient(115deg,#8b5cf6,#ff3d84 55%,#ffc531);background-size:200% 200%;animation:pan 9s ease infinite}
+.btn.ghost{background:rgba(14,12,24,.06);color:var(--ink)}
+.c.ink .btn.ghost{background:rgba(255,255,255,.14);color:#fff}
+.btn:focus-visible{outline:3px solid var(--sea);outline-offset:3px}
+.cta{display:flex;gap:9px;flex-wrap:wrap}
+
+/* the cube band — the logo as a pattern */
+@keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.cubes{display:flex;justify-content:center;gap:6px;margin:4px 0 18px}
+.cubes svg{width:52px;height:58px;animation:hover 4.6s ease-in-out infinite}
+.cubes svg:nth-child(2){animation-delay:.35s}
+.cubes svg:nth-child(3){animation-delay:.7s}
+.cubes svg:nth-child(4){animation-delay:1.05s}
+
+/* screen with gradient zones */
+.screen{aspect-ratio:16/10;border-radius:18px;position:relative;overflow:hidden;background:rgba(14,12,24,.07);padding:8px;margin-top:20px}
+.c.ink .screen{background:rgba(255,255,255,.06)}
+.z{position:absolute;border-radius:11px;display:flex;align-items:flex-end;padding:8px;font-family:var(--mono);font-size:12px;font-weight:600;color:#fff}
+.z.g1{background:linear-gradient(160deg,#8b5cf6,#5b3df0)}
+.z.g2{background:linear-gradient(160deg,#ff6aa0,#ff3d84)}
+.z.g3{background:linear-gradient(160deg,#45d9ff,#3f6bff)}
+.z.g4{background:linear-gradient(160deg,#5ff0cd,#12d3a4);color:#04241b}
+.z.g5{background:linear-gradient(160deg,#ffe08a,#ffc531);color:#1c1400}
+.z.ghost{background:none;border:2px dashed rgba(255,255,255,.5);color:rgba(255,255,255,.7)}
+.win{position:absolute;border-radius:11px;background:rgba(255,255,255,.9);box-shadow:0 16px 34px rgba(14,12,24,.28);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.win .bar{height:13px;border-radius:9px 9px 0 0;background:rgba(14,12,24,.1);display:flex;gap:3px;align-items:center;padding:0 6px}
+.win .bar i{width:5px;height:5px;border-radius:50%;background:rgba(14,12,24,.24)}
+@keyframes fly{
+  0%,10%{left:11%;top:19%;width:41%;height:50%}
+  42%,66%{left:33%;top:4%;width:42%;height:92%}
+  92%,100%{left:11%;top:19%;width:41%;height:50%}
+}
+@keyframes lift{
+  0%,16%{opacity:.45;transform:scale(.965)}
+  28%,70%{opacity:1;transform:scale(1)}
+  86%,100%{opacity:.45;transform:scale(.965)}
+}
+.win.fly{animation:fly 6.5s cubic-bezier(.34,1.3,.4,1) infinite}
+.z.lift{animation:lift 6.5s ease infinite}
+
+/* rows */
+.rows{display:flex;flex-direction:column;margin-top:12px}
+.rw{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-top:1px solid var(--line)}
+.c.ink .rw{border-color:rgba(255,255,255,.14)}
+.rw .chip{width:38px;height:38px;border-radius:13px;flex:none;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:13px;font-weight:700;color:#fff}
+.rw .chip.a{background:linear-gradient(150deg,#8b5cf6,#5b3df0)}
+.rw .chip.b{background:linear-gradient(150deg,#ff6aa0,#ff3d84)}
+.rw .chip.c{background:linear-gradient(150deg,#45d9ff,#3f6bff)}
+.rw b{font-size:16.5px;font-weight:700;letter-spacing:-.02em;display:block}
+.rw p{margin:3px 0 0;font-size:13.5px;line-height:1.4;color:var(--dim)}
+.c.ink .rw p{color:rgba(255,255,255,.66)}
+
+.keys{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.keys kbd{font-family:var(--mono);font-size:16px;font-weight:600;border-radius:13px;padding:13px 15px;
+  background:rgba(14,12,24,.06);box-shadow:inset 0 -2px 0 rgba(14,12,24,.08)}
+.c.ink .keys kbd{background:rgba(255,255,255,.12);box-shadow:inset 0 -2px 0 rgba(0,0,0,.2)}
+
+/* sets rail */
+.rail-mask{overflow:hidden;margin:18px -22px 0}
+@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.rail{display:flex;gap:10px;width:max-content;animation:roll 24s linear infinite}
+.set{width:146px;border-radius:20px;padding:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.16)}
+.set .g{aspect-ratio:16/10;display:grid;gap:4px}
+.set .g b{border-radius:6px;background:linear-gradient(150deg,rgba(255,255,255,.5),rgba(255,255,255,.22))}
+.set .n{margin-top:9px;font-size:12.5px;font-weight:700;display:flex;justify-content:space-between}
+.set .n span{font-family:var(--mono);font-size:10.5px;opacity:.6;font-weight:400}
+.g.halves{grid-template-columns:1fr 1fr}
+.g.thirds{grid-template-columns:1fr 1fr 1fr}
+.g.sixty{grid-template-columns:1.5fr 1fr}
+.g.quarters{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.g.prio{grid-template-columns:.7fr 1.5fr .9fr;grid-template-rows:1fr 1fr}
+.g.prio b:nth-child(2){grid-row:span 2}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:20px 14px}
+.stat b{display:block;font-family:var(--display);font-weight:900;letter-spacing:-.06em;font-size:clamp(42px,13.5vw,56px);line-height:.85;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:7px;font-size:13px;line-height:1.3;color:rgba(255,255,255,.6)}
+
+.code{border-radius:16px;padding:15px 17px;font-family:var(--mono);font-size:13.5px;overflow-x:auto;white-space:nowrap;
+  background:rgba(14,12,24,.9);color:#8ef0c4}
+.checks{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.checks li{display:flex;gap:11px;font-size:15px;line-height:1.35}
+.checks li::before{content:"";width:10px;height:10px;border-radius:4px;flex:none;margin-top:6px;
+  background:linear-gradient(150deg,#8b5cf6,#ff3d84)}
+.foot{display:flex;flex-wrap:wrap;gap:7px 16px;font-size:13px;color:var(--dim);margin-top:22px}
+.note{margin:16px 0 0;padding:15px 17px;border-radius:20px;color:var(--dim);font-size:13.5px;line-height:1.55}
+.note b{color:var(--ink);font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .c{opacity:1;animation:none}
+  .mesh i,.pill,.btn.grad,.grad-text,.cubes svg,.rail,.win.fly,.z.lift{animation:none}
+  .win.fly{left:33%;top:4%;width:42%;height:92%}
+  .z.lift{opacity:1;transform:none}
+}
+</style>
+
+<div class="mesh" aria-hidden="true"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i></div>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="cube" viewBox="0 0 100 112">
+    <polygon fill="#ffffff" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff3d84" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3f6bff" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#0e0c18" stroke-width="2.5" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="cube-b" viewBox="0 0 100 112">
+    <polygon fill="#ffffff" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#8b5cf6" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#25c8ff" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#0e0c18" stroke-width="2.5" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="cube-c" viewBox="0 0 100 112">
+    <polygon fill="#ffffff" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ffc531" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#12d3a4" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#0e0c18" stroke-width="2.5" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="cube-d" viewBox="0 0 100 112">
+    <polygon fill="#ffffff" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#12d3a4" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#ff3d84" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#0e0c18" stroke-width="2.5" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="hdr">
+    <p class="kick">Deck · variant C</p>
+    <h1>Gradient</h1>
+    <p>No emoji, no character — <b>colour does the whole job</b>. A mesh drifts behind the page, cards float on it as glass, and every zone is filled with a gradient, so the brand graphic and the product graphic are the same object.</p>
+  </header>
+
+  <nav class="nav glass">
+    <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> Plonk</span>
+    <a class="pill" href="#get">Get it — free</a>
+  </nav>
+
+  <div class="deck">
+
+    <div class="c glass">
+      <div class="cubes" aria-hidden="true">
+        <svg viewBox="0 0 100 112"><use href="#cube"/></svg>
+        <svg viewBox="0 0 100 112"><use href="#cube-b"/></svg>
+        <svg viewBox="0 0 100 112"><use href="#cube-c"/></svg>
+        <svg viewBox="0 0 100 112"><use href="#cube-d"/></svg>
+      </div>
+      <h2 class="big">Give every window <span class="grad-text">a place to live.</span></h2>
+      <p class="lead">Draw the boxes you actually want. Then drop windows into them — with a drag, a key, or by saying so.</p>
+      <div class="cta">
+        <a class="btn grad" href="#get">Get Plonk</a>
+        <a class="btn ghost" href="#ways">Show me first</a>
+      </div>
+      <div class="screen">
+        <div class="z g1 lift" style="left:2%;top:3%;width:29%;height:94%">1</div>
+        <div class="z g2 lift" style="left:34%;top:3%;width:41%;height:94%">2</div>
+        <div class="z g3 lift" style="left:78%;top:3%;width:20%;height:45%">3</div>
+        <div class="z g4 lift" style="left:78%;top:52%;width:20%;height:45%">4</div>
+        <div class="win fly" style="left:11%;top:19%;width:41%;height:50%"><div class="bar"><i></i><i></i><i></i></div></div>
+      </div>
+    </div>
+
+    <div class="c glass" id="ways">
+      <p class="eyebrow">Three ways</p>
+      <h3 class="mid">Whichever your hands prefer.</h3>
+      <div class="rows">
+        <div class="rw"><span class="chip a">01</span><div><b>Drag it</b><p>The zones light up while the window is in your hand. Hold ⌘ and it takes two at once.</p></div></div>
+        <div class="rw"><span class="chip b">02</span><div><b>Press a key</b><p>Nine zones live on the digits. Zero is the oops key — it puts a window back exactly where it was.</p></div></div>
+        <div class="rw"><span class="chip c">03</span><div><b>Say it</b><p>Hold ⌃⌥V and name the place. It listens on the Mac, offline. Nobody hears you but the laptop.</p></div></div>
+      </div>
+      <div class="keys"><kbd>⌃⌥1</kbd><kbd>⌃⌥←</kbd><kbd>⌃⌥0</kbd><kbd>⌃⌥V</kbd></div>
+    </div>
+
+    <div class="c ink">
+      <p class="eyebrow">Five in the box</p>
+      <h3 class="mid">Or draw your own.<br>It takes a minute.</h3>
+      <p class="lead" style="margin-bottom:0">Click a zone to cut it in half. ⇧-click cuts the other way. That is the whole editor — there is no more of it.</p>
+      <div class="rail-mask">
+        <div class="rail">
+          <div class="set"><div class="g prio"><b></b><b></b><b></b><b></b><b></b></div><div class="n">Priority <span>5</span></div></div>
+          <div class="set"><div class="g halves"><b></b><b></b></div><div class="n">Halves <span>2</span></div></div>
+          <div class="set"><div class="g thirds"><b></b><b></b><b></b></div><div class="n">Thirds <span>3</span></div></div>
+          <div class="set"><div class="g sixty"><b></b><b></b></div><div class="n">60 / 40 <span>2</span></div></div>
+          <div class="set"><div class="g quarters"><b></b><b></b><b></b><b></b></div><div class="n">Quarters <span>4</span></div></div>
+          <div class="set"><div class="g prio"><b></b><b></b><b></b><b></b><b></b></div><div class="n">Priority <span>5</span></div></div>
+          <div class="set"><div class="g halves"><b></b><b></b></div><div class="n">Halves <span>2</span></div></div>
+          <div class="set"><div class="g thirds"><b></b><b></b><b></b></div><div class="n">Thirds <span>3</span></div></div>
+          <div class="set"><div class="g sixty"><b></b><b></b></div><div class="n">60 / 40 <span>2</span></div></div>
+          <div class="set"><div class="g quarters"><b></b><b></b><b></b><b></b></div><div class="n">Quarters <span>4</span></div></div>
+        </div>
+      </div>
+      <div class="stats" style="margin-top:26px">
+        <div class="stat"><b>20</b><span>tools for your agent</span></div>
+        <div class="stat"><b>10</b><span>utilities, one icon</span></div>
+      </div>
+    </div>
+
+    <div class="c glass">
+      <p class="eyebrow">Desks</p>
+      <h3 class="mid">It remembers <span class="grad-text">which monitor.</span></h3>
+      <p class="lead">Save the desk once. Close the lot, go home, come back — and it builds itself again on the right screens, with the right files already open.</p>
+      <div class="screen" style="aspect-ratio:16/7">
+        <div class="z g1" style="left:2%;top:6%;width:30%;height:88%">Safari</div>
+        <div class="z g3" style="left:34%;top:6%;width:38%;height:88%">Terminal</div>
+        <div class="z g5" style="left:74%;top:6%;width:24%;height:88%">Notes</div>
+      </div>
+    </div>
+
+    <div class="c glass">
+      <p class="eyebrow">Privacy</p>
+      <h3 class="mid">Nothing leaves your Mac.</h3>
+      <p class="lead">No account, no cloud, no telemetry. Plonk moves rectangles around, and that is all it wants from your machine.</p>
+      <p class="lead">You needn't take our word for it, either — every release comes with a receipt you can check yourself.</p>
+      <div class="code">gh attestation verify Plonk-0.2.4.zip -R ostapondo/plonk</div>
+    </div>
+
+    <div class="c glass" id="get">
+      <h3 class="mid">One line, and it's yours.</h3>
+      <div class="code" style="margin-top:14px">brew install --cask ostapondo/plonk/plonk</div>
+      <ul class="checks">
+        <li>macOS 13 or newer, Apple silicon</li>
+        <li>Say yes to Accessibility, then relaunch</li>
+        <li>No Full Disk Access, no Automation, no Keychain</li>
+        <li>Gets along fine with Rectangle and Magnet</li>
+      </ul>
+      <div class="cta" style="margin-top:22px"><a class="btn grad" href="#get">Download 0.2.4</a></div>
+      <div class="foot">MIT © ostapondo · Swift 6 · still early, and there's only one of me</div>
+    </div>
+
+  </div>
+
+  <p class="note glass"><b>Where this wins:</b> it is the only one of the three where the decoration is the product — a zone filled with a gradient is both the brand graphic and a real screenshot of the overlay. It also scales without anyone drawing anything ever again. <b>Where it is risky:</b> glass and mesh are the house style of about half the software on the internet right now, so it will look current for two years and dated in three. The mascot in variant B will not.</p>
+
+</div>
