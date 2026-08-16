@@ -1,0 +1,498 @@
+<title>Plonk Hotkeys, Three Ways</title>
+<style>
+/* ============================================================
+   ОБОЛОНКА ПОРІВНЯННЯ
+   Навмисно тиха: три зразки всередині мають власні, дуже гучні
+   палітри, і оболонка не має з ними змагатися. Нейтраль із
+   легким синім ухилом, волосяні лінії, моношрифт на службовому.
+   ============================================================ */
+:root{
+  --bg:#0a0b0e;
+  --bg-2:#101218;
+  --ink:#e9eaf0;
+  --dim:#868a9b;
+  --dimmer:#4e5265;
+  --line:#1e202a;
+  --line-2:#2c2f3d;
+  --accent:#8b7cf6;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased
+}
+svg{display:block}
+
+.wrap{max-width:540px;margin:0 auto;padding:0 14px 72px}
+.cover{padding:54px 2px 8px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.cover h1{font-family:var(--display);font-size:clamp(38px,11.5vw,54px);font-weight:900;letter-spacing:-.045em;line-height:.94;margin:0 0 16px;text-wrap:balance}
+.cover p{margin:0 0 14px;color:var(--dim);font-size:16.5px;max-width:38ch}
+.cover p b{color:var(--ink);font-weight:600}
+
+h2.sec{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+  margin:52px 0 0;padding:0 0 9px;border-bottom:1px solid var(--line);display:flex;gap:12px
+}
+h2.sec span{color:var(--accent)}
+.sub{margin:13px 0 20px;color:var(--dim);font-size:14.5px;max-width:42ch}
+.sub b{color:var(--ink);font-weight:600}
+
+/* карта сайту */
+.map{width:100%;min-width:100%;border-collapse:collapse;font-size:13.5px;display:block;overflow-x:auto}
+.map td:first-child,.map td:last-child{white-space:nowrap}
+.map th{
+  text-align:left;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dimmer);padding:0 14px 9px 0;border-bottom:1px solid var(--line)
+}
+.map td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim);line-height:1.45}
+.map td:first-child{font-family:var(--mono);color:var(--ink)}
+.map tr.now td:first-child{color:var(--accent)}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;border-radius:4px;padding:3px 7px;white-space:nowrap}
+.tag.has{background:rgba(139,124,246,.16);color:#b3a6ff}
+.tag.md{background:#1a1d26;color:var(--dim)}
+
+/* рамка зразка */
+.spec{margin:22px 0 0}
+.spec-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dimmer);padding:0 2px 9px
+}
+.spec-bar b{color:var(--ink);font-weight:600;letter-spacing:.1em}
+.spec-body{border:1px solid var(--line-2);border-radius:14px;overflow:hidden}
+.verdict{margin:16px 0 0;padding:15px 0 0;border-top:1px solid var(--line);color:var(--dim);font-size:13.5px;line-height:1.6}
+.verdict b{color:var(--ink);font-weight:600}
+
+/* ============================================================
+   ЗРАЗОК 01 — ПЛИТКА
+   ============================================================ */
+.d1{
+  --v:#7b5cff;--co:#ff6a4d;--am:#ffc24d;--bl:#3b9bff;--pan:#121215;--ln:#2a2a31;--dm:#8b8b93;
+  background:#000;color:#fff;padding:10px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif
+}
+.d1 .nav{display:flex;align-items:center;justify-content:space-between;background:var(--pan);border-radius:999px;padding:12px 16px;margin-bottom:10px}
+.d1 .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.02em}
+.d1 .brand svg{width:23px;height:26px}
+.d1 .crumb{font-family:var(--mono);font-size:11px;color:var(--dm)}
+.d1 .t{border-radius:26px;padding:22px}
+.d1 .t.dark{background:var(--pan)}
+.d1 .t.v{background:var(--v)}
+.d1 .t.c{background:var(--co);color:#170d06}
+.d1 .t.a{background:var(--am);color:#170d06}
+.d1 .t.b{background:var(--bl);color:#04121f}
+.d1 .stack{display:flex;flex-direction:column;gap:10px}
+.d1 h1{font-family:var(--display);font-weight:900;letter-spacing:-.05em;line-height:.9;font-size:clamp(42px,13.5vw,58px);margin:0 0 14px}
+.d1 .lead{margin:0;font-size:16.5px;line-height:1.4;color:var(--dm);max-width:30ch}
+.d1 .lead b{color:#fff;font-weight:600}
+.d1 .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin:0 0 12px}
+.d1 h2{font-family:var(--display);font-weight:900;letter-spacing:-.04em;line-height:.96;font-size:clamp(26px,8vw,34px);margin:0 0 16px}
+/* карта клавіш */
+.d1 .map3{display:grid;grid-template-columns:1fr 1.25fr 1fr;grid-template-rows:repeat(3,1fr);gap:6px;aspect-ratio:16/10;background:#000;border-radius:16px;padding:8px;margin-top:18px}
+.d1 .map3 b{border-radius:9px;background:#1b1b20;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;font-weight:600;color:#7a7a86}
+.d1 .map3 b.mid{background:var(--v);color:#fff}
+.d1 .map3 b.edge{background:#26262e;color:#c9c9d4}
+.d1 .cap{font-family:var(--mono);font-size:11px;color:var(--dm);margin:10px 0 0;text-align:center}
+/* рядки клавіш */
+.d1 .rows{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.d1 .row{display:flex;gap:12px;align-items:flex-start;background:rgba(0,0,0,.16);border-radius:14px;padding:13px 14px}
+.d1 .t.dark .row{background:#000}
+.d1 .row .k{font-family:var(--mono);font-size:13px;font-weight:700;flex:0 0 84px;line-height:1.5}
+.d1 .row .d{font-size:14.5px;line-height:1.35;opacity:.82}
+.d1 .t.dark .row .d{color:var(--dm);opacity:1}
+.d1 .foot{display:flex;flex-wrap:wrap;gap:8px 16px;padding:20px 22px;color:var(--dm);font-size:13px}
+
+/* ============================================================
+   ЗРАЗОК 02 — КОЛОДА
+   ============================================================ */
+.d2{
+  --ye:#ffd400;--mg:#ff2d78;--bu:#2b5bff;--mi:#00d2a0;--pa:#fff;--wa:#ececed;--nk:#0b0b0d;
+  background:var(--wa);color:var(--nk);padding:12px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif
+}
+.d2 .nav{display:flex;align-items:center;justify-content:space-between;background:var(--pa);border:1px solid #dcdce0;border-radius:999px;padding:11px 15px;margin-bottom:12px}
+.d2 .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.02em}
+.d2 .brand svg{width:23px;height:26px}
+.d2 .crumb{font-family:var(--mono);font-size:11px;color:#8b8b93}
+.d2 .deck{display:flex;flex-direction:column}
+.d2 .c{border-radius:32px;padding:26px 22px;position:relative;box-shadow:0 -2px 0 rgba(0,0,0,.05),0 -16px 34px rgba(0,0,0,.09)}
+.d2 .c + .c{margin-top:-18px}
+.d2 .c.paper{background:var(--pa)}
+.d2 .c.ye{background:var(--ye)}
+.d2 .c.mg{background:var(--mg);color:#fff}
+.d2 .c.bu{background:var(--bu);color:#fff}
+.d2 .c.mi{background:var(--mi)}
+.d2 .c.nk{background:var(--nk);color:#fff}
+.d2 h1{font-family:var(--display);font-weight:900;letter-spacing:-.055em;line-height:.88;font-size:clamp(44px,14vw,62px);margin:0 0 16px}
+.d2 h1 em{font-style:normal;background:var(--ye);border-radius:.1em;padding:0 .1em}
+.d2 .lead{margin:0;font-size:17px;line-height:1.4;opacity:.7;max-width:30ch}
+.d2 .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 12px;opacity:.55;display:flex;align-items:center;gap:8px}
+.d2 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.d2 h2{font-family:var(--display);font-weight:900;letter-spacing:-.045em;line-height:.94;font-size:clamp(28px,8.5vw,38px);margin:0 0 14px}
+.d2 .map3{display:grid;grid-template-columns:1fr 1.25fr 1fr;grid-template-rows:repeat(3,1fr);gap:6px;aspect-ratio:16/10;background:rgba(0,0,0,.07);border-radius:18px;padding:8px;margin-top:18px}
+.d2 .map3 b{border-radius:11px;background:var(--pa);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;font-weight:700;color:#a0a0a8}
+.d2 .map3 b.edge{background:var(--nk);color:#fff}
+.d2 .map3 b.mid{background:var(--bu);color:#fff}
+.d2 .cap{font-family:var(--mono);font-size:11px;opacity:.5;margin:10px 0 0;text-align:center}
+.d2 .keys{display:flex;flex-direction:column;margin-top:14px}
+.d2 .keys .row{display:flex;gap:14px;align-items:baseline;padding:14px 0;border-top:1px solid rgba(0,0,0,.12)}
+.d2 .c.mg .row,.d2 .c.bu .row,.d2 .c.nk .row{border-color:rgba(255,255,255,.22)}
+.d2 .keys .k{font-family:var(--mono);font-size:13.5px;font-weight:700;flex:0 0 92px;line-height:1.5}
+.d2 .keys .d{font-size:15px;line-height:1.35;opacity:.75}
+.d2 .bigkeys{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.d2 .bigkeys kbd{font-family:var(--mono);font-size:17px;font-weight:600;background:rgba(0,0,0,.09);border-radius:13px;padding:14px 15px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+.d2 .c.mg .bigkeys kbd,.d2 .c.bu .bigkeys kbd,.d2 .c.nk .bigkeys kbd{background:rgba(255,255,255,.18);box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.d2 .foot{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;opacity:.55;padding:18px 22px 4px}
+
+/* ============================================================
+   ЗРАЗОК 03 — МОНО
+   ============================================================ */
+.d3{
+  --sg:#8b7cf6;--ln:#212128;--ln2:#33333d;--dm:#7d7d88;--dmr:#4a4a54;--pan:#0f0f13;
+  background:#08080a;color:#f2f2f4;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif
+}
+.d3 .nav{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--ln);font-family:var(--mono);font-size:11.5px}
+.d3 .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:13.5px;letter-spacing:.02em}
+.d3 .brand svg{width:20px;height:23px}
+.d3 .crumb{color:var(--dmr)}
+.d3 .sec{padding:24px 18px;border-bottom:1px solid var(--ln)}
+.d3 .sec:last-child{border-bottom:0}
+.d3 .sec.pan{background:var(--pan)}
+.d3 .rule{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dmr);display:flex;align-items:center;gap:12px;margin:0 0 16px}
+.d3 .rule::after{content:"";flex:1;height:1px;background:var(--ln)}
+.d3 h1{font-family:var(--mono);font-weight:700;letter-spacing:-.065em;line-height:.94;font-size:clamp(34px,10.5vw,48px);margin:0 0 16px}
+.d3 h1 em{font-style:normal;color:var(--sg)}
+.d3 .lead{margin:0;color:var(--dm);font-size:15.5px;line-height:1.55;max-width:36ch}
+.d3 .lead b{color:#f2f2f4;font-weight:600}
+.d3 .map3{
+  display:grid;grid-template-columns:1fr 1.25fr 1fr;grid-template-rows:repeat(3,1fr);gap:5px;
+  aspect-ratio:16/10;border:1px solid var(--ln2);border-radius:6px;padding:6px;margin-top:20px;background:var(--pan)
+}
+.d3 .map3 b{border:1px solid var(--ln2);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;color:var(--dmr);position:relative}
+.d3 .map3 b.edge{color:#f2f2f4;border-color:#3f4250}
+.d3 .map3 b.mid{border-color:var(--sg);background:rgba(139,124,246,.12);color:var(--sg)}
+.d3 .map3 b i{position:absolute;bottom:4px;right:5px;font-style:normal;font-size:8.5px;color:var(--dmr)}
+.d3 .cap{font-family:var(--mono);font-size:10.5px;color:var(--dmr);margin:10px 0 0;text-align:center}
+.d3 .grp{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dmr);margin:22px 0 0;padding:0 0 8px;border-bottom:1px solid var(--ln)}
+.d3 .tab{width:100%;border-collapse:collapse;font-size:13.5px}
+.d3 .tab td{padding:11px 10px 11px 0;border-bottom:1px solid var(--ln);vertical-align:top;color:var(--dm);line-height:1.45}
+.d3 .tab td:first-child{font-family:var(--mono);color:#f2f2f4;white-space:nowrap;width:104px}
+.d3 .tab tr:last-child td{border-bottom:0}
+.d3 .note{margin:16px 0 0;font-size:13.5px;color:var(--dm);line-height:1.6}
+.d3 .note b{color:#f2f2f4;font-weight:600}
+.d3 .foot{font-family:var(--mono);font-size:11px;color:var(--dmr);display:flex;flex-wrap:wrap;gap:6px 14px;padding:16px 18px}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="cube1" viewBox="0 0 100 112">
+    <polygon fill="#f5f5f3" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff6a4d" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3b9bff" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#0a0a0c" stroke-width="2.4" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="cube2" viewBox="0 0 100 112">
+    <polygon fill="#fafaf8" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff2d78" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#2b5bff" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#0b0b0d" stroke-width="2.4" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+  <symbol id="cube3" viewBox="0 0 100 112">
+    <polygon fill="#f2f2f0" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#3a3a44" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#8b7cf6" points="88,34 50,56 50,100 88,78"/>
+    <path fill="none" stroke="#08080a" stroke-width="2.4" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="cover">
+    <p class="kicker">Сайт · внутрішні сторінки</p>
+    <h1>Hotkeys,<br>три рази</h1>
+    <p>Спершу карта: <b>що взагалі є на сайті</b> і чого немає. Далі та сама сторінка довідки по клавішах у трьох напрямках — на справжньому вмісті <code>docs/hotkeys.md</code>, усі чотирнадцять рядків.</p>
+    <p>Довідка — найважча сторінка з дев'яти. Якщо напрямок витримує таблицю з чотирнадцяти комбінацій, він витримає решту.</p>
+  </header>
+
+  <h2 class="sec"><span>·</span> Карта сайту</h2>
+  <p class="sub">Головна — єдина сторінка, яка існує як сторінка. Решта дев'ять живуть у репозиторії як Markdown, і головна веде на них <b>назовні, на github.com</b>. Тобто в дизайн їх треба не перефарбувати, а спершу створити.</p>
+
+  <table class="map">
+    <thead><tr><th>Адреса</th><th>Що на ній</th><th>Стан</th></tr></thead>
+    <tbody>
+      <tr><td>/</td><td>Головна: зони, три способи, агенти, приватність, установка</td><td><span class="tag has">є сторінка</span></td></tr>
+      <tr><td>/zones</td><td>Редактор, перекриття, span на ⌘, набори, зазори, винятки — 13 рядків</td><td><span class="tag md">лише .md</span></td></tr>
+      <tr><td>/workspaces</td><td>Стіл, який можна прибрати. Файли на старті, монітори по UUID, застереження</td><td><span class="tag md">лише .md</span></td></tr>
+      <tr class="now"><td>/hotkeys</td><td>Уся розкладка на ⌃⌥. Схема екрана + 14 рядків</td><td><span class="tag has">нижче ×3</span></td></tr>
+      <tr><td>/features</td><td>Не засинати, скриншоти, OCR, лінійка, пін, довідка, курсор, оновлення</td><td><span class="tag md">лише .md</span></td></tr>
+      <tr><td>/agents</td><td>20 інструментів MCP, багатоагентні правила, HTTP-транспорт, CLI</td><td><span class="tag md">лише .md</span></td></tr>
+      <tr><td>/verify</td><td>Кожна обіцянка про приватність + команда, якою її перевірити</td><td><span class="tag md">лише .md</span></td></tr>
+      <tr><td>/clients/cursor</td><td>Однасторінківка налаштування</td><td><span class="tag md">лише .md</span></td></tr>
+      <tr><td>/clients/zed</td><td>Однасторінківка налаштування</td><td><span class="tag md">лише .md</span></td></tr>
+      <tr><td>/clients/cline</td><td>Однасторінківка налаштування</td><td><span class="tag md">лише .md</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ================= ЗРАЗОК 01 ================= -->
+  <h2 class="sec"><span>01</span> Плитка</h2>
+  <p class="sub">Групи клавіш стають кольоровими плитками. Колір тут — <b>розділювач, а не прикраса</b>: він каже, де закінчується «розкласти вікно» і починається «захопити екран».</p>
+
+  <div class="spec">
+    <div class="spec-bar"><b>/hotkeys</b><span>напрямок 01</span></div>
+    <div class="spec-body">
+      <div class="d1">
+        <nav class="nav">
+          <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube1"/></svg> Plonk</span>
+          <span class="crumb">Довідка / Клавіші</span>
+        </nav>
+
+        <div class="stack">
+          <div class="t dark">
+            <h1>Усе на<br>⌃⌥.</h1>
+            <p class="lead">Кожну комбінацію можна <b>перепризначити</b>, і будь-яку — просто зняти.</p>
+            <div class="map3" aria-hidden="true">
+              <b>U</b><b class="edge">↑</b><b>I</b>
+              <b class="edge">←</b><b class="mid">C</b><b class="edge">→</b>
+              <b>J</b><b class="edge">↓</b><b>K</b>
+            </div>
+            <p class="cap">↩ — на весь екран · C — по центру</p>
+          </div>
+
+          <div class="t v">
+            <p class="eyebrow">Покласти вікно</p>
+            <h2>Куди воно сяде.</h2>
+            <div class="rows">
+              <div class="row"><span class="k">↑ ↓ ← →<br>U I J K<br>↩ · C</span><span class="d">Половини, чверті, на весь екран, по центру</span></div>
+              <div class="row"><span class="k">1 — 9</span><span class="d">У зону з таким номером на цьому екрані</span></div>
+              <div class="row"><span class="k">0</span><span class="d">Назад, у ту рамку, що була до Plonk</span></div>
+            </div>
+          </div>
+
+          <div class="t c">
+            <p class="eyebrow">Набори зон</p>
+            <h2>Змінити всю сітку.</h2>
+            <div class="rows">
+              <div class="row"><span class="k">⇧1 — ⇧9</span><span class="d">Замінити набір зон на цьому екрані цілком</span></div>
+              <div class="row"><span class="k">L</span><span class="d">Набори списком на екрані: обрати, або E — редагувати</span></div>
+              <div class="row"><span class="k">Z</span><span class="d">Блимнути зонами, щоб побачити, де вони</span></div>
+            </div>
+          </div>
+
+          <div class="t a">
+            <p class="eyebrow">Фокус</p>
+            <h2>Перейти у вікно.</h2>
+            <div class="rows">
+              <div class="row"><span class="k">⇧← ⇧→<br>⇧↑ ⇧↓</span><span class="d">У вікно, яке справді в тому боці — не в те, яким користувались востаннє</span></div>
+              <div class="row"><span class="k">`</span><span class="d">Наступне вікно в цій зоні</span></div>
+            </div>
+          </div>
+
+          <div class="t b">
+            <p class="eyebrow">Захопити</p>
+            <h2>Зняти з екрана.</h2>
+            <div class="rows">
+              <div class="row"><span class="k">S · T</span><span class="d">Виділити ділянку · дістати з неї текст</span></div>
+              <div class="row"><span class="k">P · ⇧P</span><span class="d">Приколоти живий кроп згори · приколоти застиглий</span></div>
+              <div class="row"><span class="k">R</span><span class="d">Виміряти те, що під курсором</span></div>
+            </div>
+          </div>
+
+          <div class="t dark">
+            <p class="eyebrow">Решта</p>
+            <h2>І чотири на додачу.</h2>
+            <div class="rows">
+              <div class="row"><span class="k">⇧/</span><span class="d">Усі клавіші застосунку, що зараз попереду</span></div>
+              <div class="row"><span class="k">/ · \</span><span class="d">Знайти курсор · перекинути на наступний екран</span></div>
+              <div class="row"><span class="k">V</span><span class="d">Тримати й говорити</span></div>
+              <div class="row"><span class="k">A</span><span class="d">Палітра команд: виконати будь-що на ім'я, або написати речення агентові</span></div>
+            </div>
+          </div>
+
+          <div class="t dark foot">
+            <span>Зони</span><span>Робочі столи</span><span>Решта</span><span>README</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="verdict"><b>Що вийшло:</b> сторінка гортається як стрічка, кожна група читається з відстані. <b>Що болить:</b> чотирнадцять рядків розтягуються на шість екранів телефона, і швидко знайти одну комбінацію оком важче, ніж у таблиці. Це сторінка, яку <b>читають</b>, а не сторінка, до якої <b>повертаються</b>.</p>
+  </div>
+
+  <!-- ================= ЗРАЗОК 02 ================= -->
+  <h2 class="sec"><span>02</span> Колода</h2>
+  <p class="sub">Той самий поділ на групи, але картки лягають у стос, а рядки всередині — звичайним списком з волосяною лінією. Найтихіший з трьох на довгому тексті.</p>
+
+  <div class="spec">
+    <div class="spec-bar"><b>/hotkeys</b><span>напрямок 02</span></div>
+    <div class="spec-body">
+      <div class="d2">
+        <nav class="nav">
+          <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube2"/></svg> Plonk</span>
+          <span class="crumb">Довідка / Клавіші</span>
+        </nav>
+
+        <div class="deck">
+          <div class="c paper">
+            <p class="eyebrow">Довідка</p>
+            <h1>Усе на <em>⌃⌥</em></h1>
+            <p class="lead">Кожну комбінацію можна перепризначити, і будь-яку — просто зняти.</p>
+            <div class="map3" aria-hidden="true">
+              <b>U</b><b class="edge">↑</b><b>I</b>
+              <b class="edge">←</b><b class="mid">C</b><b class="edge">→</b>
+              <b>J</b><b class="edge">↓</b><b>K</b>
+            </div>
+            <p class="cap">↩ — на весь екран · C — по центру</p>
+          </div>
+
+          <div class="c ye">
+            <p class="eyebrow">Покласти вікно</p>
+            <h2>Куди воно сяде</h2>
+            <div class="bigkeys"><kbd>⌃⌥←</kbd><kbd>⌃⌥U</kbd><kbd>⌃⌥↩</kbd><kbd>⌃⌥C</kbd></div>
+            <div class="keys">
+              <div class="row"><span class="k">стрілки<br>U I J K</span><span class="d">Половини та чверті</span></div>
+              <div class="row"><span class="k">↩ · C</span><span class="d">На весь екран · по центру</span></div>
+              <div class="row"><span class="k">1 — 9</span><span class="d">У зону з таким номером</span></div>
+              <div class="row"><span class="k">0</span><span class="d">Назад, у рамку до Plonk</span></div>
+            </div>
+          </div>
+
+          <div class="c mg">
+            <p class="eyebrow">Набори зон</p>
+            <h2>Змінити всю сітку</h2>
+            <div class="keys">
+              <div class="row"><span class="k">⇧1 — ⇧9</span><span class="d">Замінити набір на цьому екрані цілком</span></div>
+              <div class="row"><span class="k">L</span><span class="d">Набори списком: обрати, E — редагувати, N — новий</span></div>
+              <div class="row"><span class="k">Z</span><span class="d">Блимнути зонами</span></div>
+            </div>
+          </div>
+
+          <div class="c bu">
+            <p class="eyebrow">Фокус</p>
+            <h2>Перейти у вікно</h2>
+            <div class="keys">
+              <div class="row"><span class="k">⇧ стрілки</span><span class="d">У вікно, яке справді в тому боці</span></div>
+              <div class="row"><span class="k">`</span><span class="d">Наступне вікно в цій зоні</span></div>
+            </div>
+          </div>
+
+          <div class="c mi">
+            <p class="eyebrow">Захопити</p>
+            <h2>Зняти з екрана</h2>
+            <div class="keys">
+              <div class="row"><span class="k">S · T</span><span class="d">Виділити ділянку · дістати з неї текст</span></div>
+              <div class="row"><span class="k">P · ⇧P</span><span class="d">Приколоти живий кроп · приколоти застиглий</span></div>
+              <div class="row"><span class="k">R</span><span class="d">Виміряти те, що під курсором</span></div>
+            </div>
+          </div>
+
+          <div class="c nk">
+            <p class="eyebrow">Решта</p>
+            <h2>І чотири на додачу</h2>
+            <div class="keys">
+              <div class="row"><span class="k">⇧/</span><span class="d">Усі клавіші застосунку, що попереду</span></div>
+              <div class="row"><span class="k">/ · \</span><span class="d">Знайти курсор · на наступний екран</span></div>
+              <div class="row"><span class="k">V</span><span class="d">Тримати й говорити</span></div>
+              <div class="row"><span class="k">A</span><span class="d">Палітра команд, або речення агентові</span></div>
+            </div>
+            <div class="foot"><span>Зони</span><span>Робочі столи</span><span>Решта</span><span>README</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="verdict"><b>Що вийшло:</b> найкраще з трьох читається довгий опис — рядок описи має повітря, і око не втомлюється. <b>Що болить:</b> нахльост карток, який чудово працює на головній, тут з'їдає верх кожної групи, і на шести картках поспіль жест починає здаватися механічним. Для сторінок-довідок нахльост варто прибрати, лишивши тільки колір.</p>
+  </div>
+
+  <!-- ================= ЗРАЗОК 03 ================= -->
+  <h2 class="sec"><span>03</span> Моно</h2>
+  <p class="sub">Групи лишаються, але стають підписами над таблицею. Клавіша і опис — дві колонки, які не рухаються. Схема екрана підписана дробами, як і скрізь у цьому напрямку.</p>
+
+  <div class="spec">
+    <div class="spec-bar"><b>/hotkeys</b><span>напрямок 03</span></div>
+    <div class="spec-body">
+      <div class="d3">
+        <nav class="nav">
+          <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube3"/></svg> PLONK</span>
+          <span class="crumb">DOCS / HOTKEYS</span>
+        </nav>
+
+        <div class="sec">
+          <p class="rule">Довідка</p>
+          <h1>Усе на ⌃⌥.<br><em>Усе знімається.</em></h1>
+          <p class="lead">Кожна комбінація <b>перепризначається</b>, будь-яку можна лишити порожньою. Нижче — те, що стоїть із коробки.</p>
+          <div class="map3" aria-hidden="true">
+            <b>U<i>0.5×0.5</i></b><b class="edge">↑<i>1×0.5</i></b><b>I<i>0.5×0.5</i></b>
+            <b class="edge">←<i>0.5×1</i></b><b class="mid">C<i>0.6×0.6</i></b><b class="edge">→<i>0.5×1</i></b>
+            <b>J<i>0.5×0.5</i></b><b class="edge">↓<i>1×0.5</i></b><b>K<i>0.5×0.5</i></b>
+          </div>
+          <p class="cap">↩ = 1 × 1 · дріб — частка видимої площі екрана</p>
+        </div>
+
+        <div class="sec pan">
+          <p class="grp">Покласти вікно</p>
+          <table class="tab">
+            <tr><td>⌃⌥ ← ↑ → ↓</td><td>Половини</td></tr>
+            <tr><td>⌃⌥ U I J K</td><td>Чверті</td></tr>
+            <tr><td>⌃⌥↩ · ⌃⌥C</td><td>На весь екран · по центру</td></tr>
+            <tr><td>⌃⌥1 — ⌃⌥9</td><td>У зону, на якій оверлей малює цей номер</td></tr>
+            <tr><td>⌃⌥0</td><td>Повернути рамку, яку вікно мало до Plonk</td></tr>
+          </table>
+
+          <p class="grp">Набори зон</p>
+          <table class="tab">
+            <tr><td>⌃⌥⇧1 — 9</td><td>Замінити набір на екрані, де курсор. Вікна, що вже стоять у пронумерованій зоні, їдуть за своїм номером</td></tr>
+            <tr><td>⌃⌥L</td><td>Набори списком: стрілки або цифра — вибір, ↩ — застосувати, E — редактор, N — новий</td></tr>
+            <tr><td>⌃⌥Z</td><td>Блимнути зонами</td></tr>
+          </table>
+
+          <p class="grp">Фокус</p>
+          <table class="tab">
+            <tr><td>⌃⌥⇧ стрілки</td><td>У вікно, яке справді в тому напрямку, а не в те, яким користувались востаннє</td></tr>
+            <tr><td>⌃⌥`</td><td>Наступне вікно в цій зоні</td></tr>
+          </table>
+
+          <p class="grp">Захопити</p>
+          <table class="tab">
+            <tr><td>⌃⌥S · ⌃⌥T</td><td>Виділити ділянку · дістати з неї текст</td></tr>
+            <tr><td>⌃⌥P · ⌃⌥⇧P</td><td>Приколоти живий кроп згори · приколоти застиглий</td></tr>
+            <tr><td>⌃⌥R</td><td>Виміряти те, що під курсором</td></tr>
+          </table>
+
+          <p class="grp">Решта</p>
+          <table class="tab">
+            <tr><td>⌃⌥⇧/</td><td>Усі клавіші застосунку, що зараз попереду</td></tr>
+            <tr><td>⌃⌥/ · ⌃⌥\</td><td>Знайти курсор · перекинути його на наступний екран</td></tr>
+            <tr><td>⌃⌥V</td><td>Тримати й говорити</td></tr>
+            <tr><td>⌃⌥A</td><td>Палітра команд: виконати будь-що на ім'я, або написати речення агентові</td></tr>
+          </table>
+
+          <p class="note"><b>Чотирнадцять рядків, один екран прокрутки.</b> Префікс ⌃⌥ винесено в заголовок і повторюється в таблиці лише там, де без нього рядок читався б неоднозначно.</p>
+        </div>
+
+        <div class="foot"><span>ZONES</span><span>WORKSPACES</span><span>FEATURES</span><span>AGENTS</span><span>README</span></div>
+      </div>
+    </div>
+    <p class="verdict"><b>Що вийшло:</b> уся довідка вміщається приблизно в один-два екрани телефона, комбінація знаходиться оком за секунду, і колонка клавіш вирівняна, бо моношрифт. <b>Що болить:</b> сторінка виглядає як документація, а не як продукт — після яскравої головної перехід відчувається різким.</p>
+  </div>
+
+  <h2 class="sec"><span>·</span> Висновок</h2>
+  <p class="sub" style="max-width:44ch">Три напрямки програють і виграють у різних місцях, і це не проблема вибору — це підказка, що <b>сторінки сайту не однакові</b>.</p>
+  <table class="map">
+    <thead><tr><th>Сторінка</th><th>Що на ній переважає</th><th>Кому пасує</th></tr></thead>
+    <tbody>
+      <tr><td>/</td><td>Переконати за 10 секунд</td><td>01 Плитка</td></tr>
+      <tr><td>/zones</td><td>Схеми, поведінка, приклади</td><td>01 або 02</td></tr>
+      <tr><td>/workspaces</td><td>Опис і одне застереження</td><td>02 Колода</td></tr>
+      <tr><td>/hotkeys</td><td>Таблиця, до якої повертаються</td><td>03 Моно</td></tr>
+      <tr><td>/features</td><td>Десять довгих абзаців</td><td>02 Колода</td></tr>
+      <tr><td>/agents</td><td>Інструменти, JSON, CLI</td><td>03 Моно</td></tr>
+      <tr><td>/verify</td><td>Обіцянка + команда, парами</td><td>03 Моно</td></tr>
+      <tr><td>/clients/×3</td><td>Три кроки й блок коду</td><td>03 Моно</td></tr>
+    </tbody>
+  </table>
+  <p class="verdict" style="margin-top:20px">Найпрактичніший розклад — <b>01 на головній, 03 на довідкових</b>, з однією спільною палітрою і однією типографікою, щоб перехід не читався як інший сайт. Це не компроміс: у monobank так само — головна кричить кольором, а тарифи й умови набрані спокійно й щільно.</p>
+
+</div>
