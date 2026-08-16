@@ -1,0 +1,630 @@
+<title>Plonk App Screens</title>
+<style>
+/* ============================================================
+   PLONK — THE APP, IN THE TILE DIRECTION
+   Every screen here is drawn at phone width on purpose. The
+   earlier mockups were an 880 px window shrunk with zoom, which
+   is unreadable on a phone. A menu bar panel and a command
+   palette are already about this wide, so those are 1:1; the
+   main window is shown as its two panes, one after the other,
+   which is what a Mac window actually is.
+   Animation is only used where the app itself moves: a window
+   snapping, zones flashing, a set being swapped, awake counting
+   down. Nothing loops for decoration.
+   ============================================================ */
+:root{
+  --ground:#000000;
+  --ink:#ffffff;
+  --dim:#8b8b93;
+  --dimmer:#5a5a64;
+  --panel:#121215;
+  --panel-2:#1b1b20;
+  --line:#2a2a31;
+  --violet:#7b5cff;
+  --coral:#ff6a4d;
+  --amber:#ffc24d;
+  --blue:#3b9bff;
+  --green:#3ddc84;
+  --ink-on-warm:#170d06;
+  --r:28px;
+  --r-sm:16px;
+  --gap:10px;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Helvetica Neue",Arial,sans-serif;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);font-family:var(--text);
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased
+}
+svg{display:block}
+
+/* ---------- shell ---------- */
+.wrap{max-width:460px;margin:0 auto;padding:0 var(--gap) 72px}
+.cover{padding:54px 12px 26px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--violet);margin:0 0 18px}
+.cover h1{font-family:var(--display);font-size:clamp(42px,13.5vw,58px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin:0 0 16px;text-wrap:balance}
+.cover p{margin:0 0 12px;color:var(--dim);font-size:16.5px;max-width:36ch}
+.cover p b{color:var(--ink);font-weight:600}
+
+h2.lane{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+  margin:46px 0 0;padding:0 12px 8px;display:flex;gap:12px;align-items:baseline
+}
+h2.lane span{color:var(--violet)}
+.lane-sub{margin:0 0 16px;padding:0 12px;color:var(--dim);font-size:14px;max-width:40ch}
+.note{margin:12px 0 0;padding:0 12px;color:var(--dimmer);font-size:13px;line-height:1.5}
+.note b{color:var(--dim);font-weight:600}
+
+/* ---------- generic tile ---------- */
+.t{border-radius:var(--r);padding:20px;margin-top:var(--gap)}
+.t.dark{background:var(--panel)}
+.t.violet{background:var(--violet)}
+.t.coral{background:var(--coral);color:var(--ink-on-warm)}
+.t.amber{background:var(--amber);color:var(--ink-on-warm)}
+.t.blue{background:var(--blue);color:#04121f}
+.t.flat{padding:0;background:none}
+.t-cap{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  opacity:.55;margin:0 0 14px;display:flex;justify-content:space-between;gap:10px
+}
+
+/* ============================================================
+   1 · MENU BAR — 1:1, this is the real width
+   ============================================================ */
+.mbstrip{
+  display:flex;align-items:center;justify-content:flex-end;gap:14px;
+  background:rgba(255,255,255,.07);border-radius:10px 10px 0 0;padding:6px 12px;
+  font-size:12px;color:#c9c9d4;font-family:var(--text)
+}
+.mbstrip .ic{font-family:var(--mono);font-size:12px}
+.mbstrip .ic.on{color:var(--violet);font-weight:700}
+.mb{
+  background:rgba(20,20,24,.98);border-radius:16px;padding:10px;
+  box-shadow:0 0 0 1px var(--line),0 24px 50px rgba(0,0,0,.7);
+  display:flex;flex-direction:column;gap:3px
+}
+.mb-head{display:flex;align-items:center;justify-content:space-between;padding:5px 8px 9px}
+.mb-head b{font-size:14.5px;letter-spacing:-.01em}
+.mb-head span{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+.mb-zones{display:grid;grid-template-columns:.8fr 1.5fr .9fr;grid-template-rows:1fr 1fr;gap:5px;height:96px;padding:2px 4px 8px}
+.mb-zones b{
+  border-radius:8px;background:var(--panel-2);display:flex;align-items:flex-end;padding:6px;
+  font-family:var(--mono);font-size:11px;color:var(--dimmer)
+}
+.mb-zones b:nth-child(2){grid-row:span 2}
+.mb-zones b.on{background:rgba(123,92,255,.2);color:#fff;box-shadow:inset 0 0 0 1.5px var(--violet)}
+.mi{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:10px;font-size:14px}
+.mi.on{background:var(--violet);font-weight:600}
+.mi .sh{font-family:var(--mono);font-size:11.5px;color:var(--dim);white-space:nowrap}
+.mi.on .sh{color:rgba(255,255,255,.8)}
+.mi .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:7px;flex:none}
+.mb-sep{height:1px;background:var(--line);margin:5px 8px}
+
+/* ============================================================
+   2 · DRAG → SNAP, animated
+   ============================================================ */
+.screen{
+  aspect-ratio:16/10;border-radius:14px;position:relative;overflow:hidden;
+  background:linear-gradient(155deg,#191c33,#0c0e18 55%,#1d1426)
+}
+.screen.plain{background:#0b0b10}
+.z{
+  position:absolute;border-radius:7px;border:1.5px dashed rgba(255,255,255,.26);
+  font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.45);
+  display:flex;align-items:flex-end;padding:6px
+}
+.z.on{
+  border-style:solid;border-color:var(--violet);background:rgba(123,92,255,.2);color:#fff;
+  box-shadow:0 0 0 1px var(--violet),0 10px 26px rgba(123,92,255,.4)
+}
+.win{
+  position:absolute;border-radius:7px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.34);box-shadow:0 16px 36px rgba(0,0,0,.55)
+}
+.win .bar{height:12px;border-radius:6px 6px 0 0;background:rgba(255,255,255,.2);display:flex;gap:3px;align-items:center;padding:0 5px}
+.win .bar i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.55)}
+
+@keyframes snapwin{
+  0%,8%   {left:14%;top:22%;width:38%;height:46%}
+  38%,58% {left:33.5%;top:5%;width:41%;height:90%}
+  88%,100%{left:14%;top:22%;width:38%;height:46%}
+}
+@keyframes snapzone{
+  0%,14%  {border-style:dashed;border-color:rgba(255,255,255,.26);background:transparent;box-shadow:none;color:rgba(255,255,255,.45)}
+  22%,62% {border-style:solid;border-color:#7b5cff;background:rgba(123,92,255,.2);box-shadow:0 0 0 1px #7b5cff;color:#fff}
+  80%,100%{border-style:dashed;border-color:rgba(255,255,255,.26);background:transparent;box-shadow:none;color:rgba(255,255,255,.45)}
+}
+@keyframes fadetoast{
+  0%,12%  {opacity:0;transform:translate(-50%,10px)}
+  22%,60% {opacity:1;transform:translate(-50%,0)}
+  74%,100%{opacity:0;transform:translate(-50%,10px)}
+}
+.win.snapping{animation:snapwin 6s cubic-bezier(.34,1.28,.42,1) infinite}
+.z.snapping{animation:snapzone 6s ease infinite}
+.toast{
+  position:absolute;left:50%;bottom:7%;transform:translate(-50%,0);
+  background:rgba(8,8,10,.9);border-radius:999px;padding:8px 15px;font-size:12px;font-weight:600;
+  white-space:nowrap;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 10px 26px rgba(0,0,0,.6)
+}
+.toast em{font-style:normal;color:var(--violet)}
+.toast.timed{animation:fadetoast 6s ease infinite}
+
+/* ============================================================
+   3 · ZONE FLASH  ⌃⌥Z
+   ============================================================ */
+@keyframes flashz{
+  0%,6%   {opacity:0;transform:scale(.97)}
+  14%,44% {opacity:1;transform:scale(1)}
+  60%,100%{opacity:0;transform:scale(.97)}
+}
+.z.flashing{animation:flashz 4.5s ease infinite;border-style:solid;border-color:rgba(123,92,255,.85);background:rgba(123,92,255,.14);color:#cdc2ff}
+.z.flashing:nth-of-type(2){animation-delay:.08s}
+.z.flashing:nth-of-type(3){animation-delay:.16s}
+.z.flashing:nth-of-type(4){animation-delay:.24s}
+.z.flashing:nth-of-type(5){animation-delay:.32s}
+
+/* ============================================================
+   4 · SET SWAP  ⌃⌥⇧1—9
+   ============================================================ */
+@keyframes s1{
+  0%,26%{left:2%;top:2%;width:47%;height:96%;opacity:1}
+  33%,59%{left:2%;top:2%;width:31.3%;height:96%;opacity:1}
+  66%,92%{left:2%;top:2%;width:22%;height:46%;opacity:1}
+  100%{left:2%;top:2%;width:47%;height:96%;opacity:1}
+}
+@keyframes s2{
+  0%,26%{left:51%;top:2%;width:47%;height:96%;opacity:1}
+  33%,59%{left:35.3%;top:2%;width:31.3%;height:96%;opacity:1}
+  66%,92%{left:26%;top:2%;width:46%;height:96%;opacity:1}
+  100%{left:51%;top:2%;width:47%;height:96%;opacity:1}
+}
+@keyframes s3{
+  0%,26%{left:68.6%;top:2%;width:29.4%;height:96%;opacity:0}
+  33%,59%{left:68.6%;top:2%;width:29.4%;height:96%;opacity:1}
+  66%,92%{left:74%;top:2%;width:24%;height:46%;opacity:1}
+  100%{left:68.6%;top:2%;width:29.4%;height:96%;opacity:0}
+}
+@keyframes s4{
+  0%,59%{left:2%;top:52%;width:22%;height:46%;opacity:0}
+  66%,92%{left:2%;top:52%;width:22%;height:46%;opacity:1}
+  100%{left:2%;top:52%;width:22%;height:46%;opacity:0}
+}
+@keyframes s5{
+  0%,59%{left:74%;top:52%;width:24%;height:46%;opacity:0}
+  66%,92%{left:74%;top:52%;width:24%;height:46%;opacity:1}
+  100%{left:74%;top:52%;width:24%;height:46%;opacity:0}
+}
+@keyframes lab1{0%,26%{opacity:1}31%,100%{opacity:0}}
+@keyframes lab2{0%,30%{opacity:0}33%,59%{opacity:1}64%,100%{opacity:0}}
+@keyframes lab3{0%,63%{opacity:0}66%,92%{opacity:1}97%,100%{opacity:0}}
+.swap .z{border-style:solid;border-color:var(--line);background:var(--panel-2);color:var(--dim)}
+.swap .z.k1{animation:s1 12s ease-in-out infinite}
+.swap .z.k2{animation:s2 12s ease-in-out infinite;border-color:var(--violet);background:rgba(123,92,255,.16);color:#fff}
+.swap .z.k3{animation:s3 12s ease-in-out infinite}
+.swap .z.k4{animation:s4 12s ease-in-out infinite}
+.swap .z.k5{animation:s5 12s ease-in-out infinite}
+.setlab{
+  position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:11px;
+  background:rgba(8,8,10,.85);border-radius:6px;padding:5px 9px;color:#fff;
+  box-shadow:0 0 0 1px rgba(255,255,255,.14)
+}
+.setlab.l1{animation:lab1 12s linear infinite}
+.setlab.l2{animation:lab2 12s linear infinite}
+.setlab.l3{animation:lab3 12s linear infinite}
+
+/* ============================================================
+   5 · COMMAND PALETTE  ⌃⌥A
+   ============================================================ */
+.pal{background:rgba(16,16,20,.98);border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px var(--line),0 26px 54px rgba(0,0,0,.75)}
+.pal .in{display:flex;align-items:center;gap:9px;padding:15px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:15px}
+.pal .in .p{color:var(--violet)}
+.pal .in .caret{width:2px;height:17px;background:var(--violet);display:inline-block}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.pal .in .caret{animation:blink 1.1s steps(1) infinite}
+.pal .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;font-size:14px;color:var(--dim)}
+.pal .row.on{background:var(--violet);color:#fff;font-weight:600}
+.pal .row .sh{font-family:var(--mono);font-size:11.5px;color:var(--dimmer)}
+.pal .row.on .sh{color:rgba(255,255,255,.78)}
+.pal .row .tagx{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:#000;color:var(--dim);border-radius:5px;padding:3px 6px}
+.pal .row.on .tagx{background:rgba(0,0,0,.28);color:#fff}
+
+/* ============================================================
+   6 · MAIN WINDOW — the two panes, one after the other
+   ============================================================ */
+.side{background:#000;border-radius:var(--r-sm);padding:14px 10px;display:flex;flex-direction:column;gap:3px}
+.side .brand{display:flex;align-items:center;gap:9px;padding:5px 8px 14px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.side .brand svg{width:24px;height:27px}
+.side .brand .v{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--dim);font-weight:400}
+.side .find{background:var(--panel);border-radius:10px;padding:10px 11px;color:var(--dim);font-size:13.5px;display:flex;justify-content:space-between;margin-bottom:10px}
+.side .find em{font-family:var(--mono);font-style:normal;font-size:11.5px}
+.nav{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:10px;font-size:14.5px;color:var(--dim)}
+.nav .d{width:8px;height:8px;border-radius:3px;background:currentColor;opacity:.5;flex:none}
+.nav.on{background:var(--violet);color:#fff;font-weight:700}
+.nav.on .d{opacity:1}
+.nav .sub{margin-left:auto;font-family:var(--mono);font-size:11px;opacity:.6}
+
+.page-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 14px}
+.page-h h3{font-family:var(--display);font-weight:900;letter-spacing:-.045em;font-size:34px;line-height:1;margin:0}
+.page-h .meta{font-family:var(--mono);font-size:11px;color:var(--dim);text-align:right}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{border-radius:999px;padding:8px 13px;font-size:13.5px;font-weight:600;background:var(--panel-2);color:var(--dim)}
+.chip.on{background:var(--ink);color:#000}
+.row{background:var(--panel-2);border-radius:14px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:7px}
+.t.dark .row{background:#000}
+.row .tt{font-size:14.5px;font-weight:600}
+.row .ss{font-size:12.5px;color:var(--dim);margin-top:2px;line-height:1.3}
+.tog{width:46px;height:27px;border-radius:999px;background:var(--violet);position:relative;flex:none}
+.tog::after{content:"";position:absolute;top:3px;right:3px;width:21px;height:21px;border-radius:50%;background:#fff}
+.tog.off{background:#33333c}
+.tog.off::after{right:auto;left:3px}
+.kbd{font-family:var(--mono);font-size:12.5px;background:#000;border-radius:8px;padding:6px 9px;white-space:nowrap}
+.t.dark .kbd{background:var(--panel-2)}
+.seg{display:flex;background:#000;border-radius:11px;padding:3px;gap:3px}
+.seg b{flex:1;text-align:center;padding:8px 6px;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--dim)}
+.seg b.on{background:var(--violet);color:#fff}
+
+/* workspace card */
+.ws{background:var(--panel-2);border-radius:16px;padding:14px;margin-bottom:8px}
+.ws .top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+.ws .top b{font-size:15.5px;font-weight:700;letter-spacing:-.02em}
+.ws .top .sh{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.ws .mini{display:grid;gap:4px;height:52px;grid-template-columns:1fr 1.5fr .8fr;margin-bottom:10px}
+.ws .mini i{border-radius:6px;background:#000;display:block}
+.ws .mini i.a{background:rgba(123,92,255,.35)}
+.ws .mini i.b{background:rgba(59,155,255,.32)}
+.ws .mini i.c{background:rgba(255,106,77,.3)}
+.ws .apps{display:flex;flex-wrap:wrap;gap:5px}
+.ws .apps span{font-size:12px;background:#000;border-radius:7px;padding:5px 8px;color:var(--dim)}
+.ws .apps span em{font-style:normal;color:var(--violet)}
+
+/* awake */
+@keyframes drain{0%{width:100%}100%{width:0%}}
+.awake{background:#000;border-radius:14px;padding:14px 15px}
+.awake .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.awake .top b{font-size:15px}
+.awake .top .n{font-family:var(--mono);font-size:13px;color:var(--green);font-variant-numeric:tabular-nums}
+.awake .track{height:7px;border-radius:999px;background:#1e1e24;overflow:hidden}
+.awake .track i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green),var(--amber));animation:drain 9s linear infinite}
+.awake .why{margin:10px 0 0;font-size:12.5px;color:var(--dim);font-family:var(--mono)}
+
+/* ruler */
+.dim{position:absolute;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10.5px;color:var(--amber)}
+.dim::before,.dim::after{content:"";position:absolute;background:var(--amber)}
+.dim.h{height:1px;background:var(--amber)}
+.dim.h::before{left:0;top:-4px;width:1px;height:9px}
+.dim.h::after{right:0;top:-4px;width:1px;height:9px}
+.dim.h span{background:#000;padding:2px 5px;border-radius:4px;position:relative;top:-1px}
+.dim.v{width:1px;background:var(--amber);flex-direction:column}
+.dim.v::before{top:0;height:1px;width:9px;left:-4px}
+.dim.v::after{bottom:0;height:1px;width:9px;left:-4px}
+.dim.v span{background:#000;padding:2px 5px;border-radius:4px;position:relative;left:16px}
+.crosshair{position:absolute;width:15px;height:15px;border:1.5px solid var(--amber);border-radius:50%}
+
+/* ocr */
+@keyframes sweep{
+  0%,10%{clip-path:inset(0 100% 0 0)}
+  40%,70%{clip-path:inset(0 0 0 0)}
+  95%,100%{clip-path:inset(0 100% 0 0)}
+}
+.ocrbox{position:absolute;border:1.5px solid var(--blue);background:rgba(59,155,255,.14);border-radius:4px}
+.ocrbox .lines{position:absolute;inset:7px;display:flex;flex-direction:column;gap:5px;animation:sweep 5s ease infinite}
+.ocrbox .lines i{height:5px;border-radius:3px;background:rgba(255,255,255,.6);display:block}
+.ocrout{
+  margin-top:10px;background:#000;border-radius:12px;padding:12px 13px;font-family:var(--mono);
+  font-size:12.5px;color:#cfe6ff;line-height:1.6
+}
+.ocrout b{color:var(--blue);display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+
+/* notice panel */
+.notice{background:rgba(20,20,24,.97);border-radius:14px;padding:13px 14px;box-shadow:0 0 0 1px var(--line),0 18px 40px rgba(0,0,0,.6);display:flex;gap:12px;align-items:flex-start}
+.notice .ic{width:34px;height:34px;border-radius:10px;background:var(--violet);flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700}
+.notice .ic.g{background:var(--green);color:#04140a}
+.notice .ic.a{background:var(--amber);color:var(--ink-on-warm)}
+.notice b{font-size:14px;display:block}
+.notice p{margin:3px 0 0;font-size:12.5px;color:var(--dim);line-height:1.4}
+.notice .thumb{width:52px;height:34px;border-radius:7px;background:linear-gradient(140deg,#2a2350,#12121a);flex:none;box-shadow:inset 0 0 0 1px var(--line)}
+
+/* permission */
+.perm{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.16)}
+.perm:last-child{border-bottom:0}
+.perm b{font-size:14.5px;font-weight:700;display:block}
+.perm p{margin:2px 0 0;font-size:12.5px;line-height:1.35;opacity:.7}
+.perm .st{font-family:var(--mono);font-size:11.5px;background:rgba(0,0,0,.2);border-radius:999px;padding:6px 11px;white-space:nowrap;font-weight:600}
+.perm .st.ok{background:rgba(0,0,0,.75);color:var(--green)}
+
+@media (prefers-reduced-motion:reduce){
+  .win.snapping,.z.snapping,.toast.timed,.z.flashing,
+  .swap .z,.setlab,.pal .in .caret,.awake .track i,.ocrbox .lines{
+    animation:none !important
+  }
+  .z.flashing{opacity:1;transform:none}
+  .swap .z.k1{left:2%;top:2%;width:22%;height:46%;opacity:1}
+  .swap .z.k2{left:26%;top:2%;width:46%;height:96%;opacity:1}
+  .swap .z.k3{left:74%;top:2%;width:24%;height:46%;opacity:1}
+  .swap .z.k4{left:2%;top:52%;width:22%;height:46%;opacity:1}
+  .swap .z.k5{left:74%;top:52%;width:24%;height:46%;opacity:1}
+  .setlab.l1,.setlab.l2{opacity:0}
+  .setlab.l3{opacity:1}
+  .win.snapping{left:33.5%;top:5%;width:41%;height:90%}
+  .ocrbox .lines{clip-path:none}
+}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="cube" viewBox="0 0 100 112">
+    <polygon fill="#f5f5f3" points="12,34 50,12 88,34 50,56"/>
+    <polygon fill="#ff6a4d" points="12,34 50,56 50,100 12,78"/>
+    <polygon fill="#3b9bff" points="88,34 50,56 50,100 88,78"/>
+    <g stroke="#0a0a0c" stroke-width="1.4" opacity=".55" fill="none">
+      <path d="M24.67,41.33 L62.67,19.33 M37.33,48.67 L75.33,26.67 M24.67,26.67 L62.67,48.67 M37.33,19.33 L75.33,41.33"/>
+      <path d="M12,48.67 L50,70.67 M12,63.33 L50,85.33 M24.67,41.33 L24.67,85.33 M37.33,48.67 L37.33,92.67"/>
+      <path d="M88,48.67 L50,70.67 M88,63.33 L50,85.33 M75.33,41.33 L75.33,85.33 M62.67,48.67 L62.67,92.67"/>
+    </g>
+    <path fill="none" stroke="#0a0a0c" stroke-width="2.4" stroke-linejoin="round" d="M12,34 L50,12 L88,34 L88,78 L50,100 L12,78 Z M12,34 L50,56 L88,34 M50,56 L50,100"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="cover">
+    <p class="kicker">Direction 01 · Tile</p>
+    <h1>The app<br>itself.</h1>
+    <p>Fourteen screens from inside Plonk, drawn <b>at phone width</b> rather than shrunk down from a Mac window.</p>
+    <p>The ones that move, move because the app moves: a window snapping into a zone, zones flashing on ⌃⌥Z, a whole set being swapped, keep-awake running down.</p>
+  </header>
+
+  <!-- 1 -->
+  <h2 class="lane"><span>01</span> Menu bar</h2>
+  <p class="lane-sub">Actual size — a menu bar panel is about as wide as a phone, so this is 1:1.</p>
+  <div class="t dark">
+    <p class="t-cap"><span>Click the icon</span><span>360 × auto</span></p>
+    <div class="mbstrip"><span class="ic">◐</span><span class="ic">◫</span><span class="ic on">▣ Plonk</span><span>14:22</span></div>
+    <div class="mb">
+      <div class="mb-head"><b>Plonk</b><span>2 displays · Priority</span></div>
+      <div class="mb-zones"><b>1</b><b class="on">2</b><b>3</b><b>4</b><b>5</b></div>
+      <div class="mi on">Workspace “review” <span class="sh">⌃⌥⇧R</span></div>
+      <div class="mi">Workspace “writing” <span class="sh">⌃⌥⇧W</span></div>
+      <div class="mb-sep"></div>
+      <div class="mi">Text off the screen <span class="sh">⌃⌥T</span></div>
+      <div class="mi">Grab a region <span class="sh">⌃⌥S</span></div>
+      <div class="mi">Ruler <span class="sh">⌃⌥R</span></div>
+      <div class="mi">Pin a crop <span class="sh">⌃⌥P</span></div>
+      <div class="mb-sep"></div>
+      <div class="mi"><span><span class="dot"></span> Keep awake · 41 min left</span><span class="sh">stop</span></div>
+      <div class="mi">Hold to talk <span class="sh">⌃⌥V</span></div>
+      <div class="mi">Command palette <span class="sh">⌃⌥A</span></div>
+    </div>
+  </div>
+  <p class="note">The zone grid at the top is the panel's whole point: <b>it is the current set, and it is clickable</b>. The front window goes into whichever rectangle you tap, so the menu is a fourth way to place a window, next to drag, key and voice.</p>
+
+  <!-- 2 -->
+  <h2 class="lane"><span>02</span> Dragging a window</h2>
+  <p class="lane-sub">The overlay you see while a window is in your hand. It loops.</p>
+  <div class="t dark">
+    <p class="t-cap"><span>Drag to snap</span><span>hold ⌘ for two</span></p>
+    <div class="screen">
+      <div class="z" style="left:2%;top:4%;width:29%;height:92%">1</div>
+      <div class="z snapping" style="left:33.5%;top:4%;width:41%;height:92%">2</div>
+      <div class="z" style="left:77%;top:4%;width:21%;height:44%">3</div>
+      <div class="z" style="left:77%;top:52%;width:21%;height:44%">4</div>
+      <div class="win snapping" style="left:14%;top:22%;width:38%;height:46%"><div class="bar"><i></i><i></i><i></i></div></div>
+      <div class="toast timed">Release for <em>zone 2</em> · ⌘ takes two</div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <h2 class="lane"><span>03</span> Flash the zones</h2>
+  <p class="lane-sub">⌃⌥Z, when you have forgotten what this screen is cut into.</p>
+  <div class="t dark">
+    <p class="t-cap"><span>⌃⌥Z</span><span>Priority · 5 zones</span></p>
+    <div class="screen plain">
+      <div class="z flashing" style="left:2%;top:4%;width:22%;height:44%">1</div>
+      <div class="z flashing" style="left:26%;top:4%;width:46%;height:92%">2</div>
+      <div class="z flashing" style="left:74%;top:4%;width:24%;height:44%">3</div>
+      <div class="z flashing" style="left:2%;top:52%;width:22%;height:44%">4</div>
+      <div class="z flashing" style="left:74%;top:52%;width:24%;height:44%">5</div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <h2 class="lane"><span>04</span> Swapping the whole set</h2>
+  <p class="lane-sub">⌃⌥⇧1–9. Halves → Thirds → Priority, and the window already in zone 2 follows its number across.</p>
+  <div class="t violet">
+    <p class="t-cap" style="opacity:.7"><span>⌃⌥⇧1 — ⌃⌥⇧9</span><span>this screen only</span></p>
+    <div class="screen plain swap">
+      <div class="z k1">1</div>
+      <div class="z k2">2</div>
+      <div class="z k3">3</div>
+      <div class="z k4">4</div>
+      <div class="z k5">5</div>
+      <span class="setlab l1">Halves</span>
+      <span class="setlab l2">Thirds</span>
+      <span class="setlab l3">Priority</span>
+    </div>
+  </div>
+  <p class="note">The violet rectangle is the one holding a window. Watch it keep its number while the grid changes shape around it — <b>that is the behaviour no preset-grid manager has</b>, and it is very hard to explain in a sentence.</p>
+
+  <!-- 5 -->
+  <h2 class="lane"><span>05</span> Command palette</h2>
+  <p class="lane-sub">⌃⌥A. Run anything by name — or type a whole sentence and it goes to the agent.</p>
+  <div class="t dark">
+    <div class="pal">
+      <div class="in"><span class="p">›</span> browser left 60, terminal top right<span class="caret"></span></div>
+      <div class="row on">Send to the agent <span class="tagx">MCP</span></div>
+      <div class="row">Put Safari in zone 1 <span class="sh">⏎</span></div>
+      <div class="row">Swap this screen to Thirds <span class="sh">⌃⌥⇧3</span></div>
+      <div class="row">Launch workspace “review” <span class="sh">⌃⌥⇧R</span></div>
+      <div class="row">Keep awake until a process exits <span class="tagx">awake</span></div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <h2 class="lane"><span>06</span> Main window · sidebar</h2>
+  <p class="lane-sub">A Mac window is two panes. This is the left one, at full width; the pages that follow are the right one.</p>
+  <div class="t dark">
+    <div class="side">
+      <span class="brand"><svg viewBox="0 0 100 112"><use href="#cube"/></svg> Plonk <span class="v">0.2.4</span></span>
+      <div class="side find">Run a command <em>⌃⌥A</em></div>
+      <div class="nav"><i class="d"></i> Home</div>
+      <div class="nav on"><i class="d"></i> Zones <span class="sub">Priority</span></div>
+      <div class="nav"><i class="d"></i> Workspaces <span class="sub">4</span></div>
+      <div class="nav"><i class="d"></i> Capture</div>
+      <div class="nav"><i class="d"></i> Automation <span class="sub">MCP on</span></div>
+      <div class="nav"><i class="d"></i> Settings</div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <h2 class="lane"><span>07</span> Zones</h2>
+  <p class="lane-sub">The page you spend the most time on. Title at 900 weight, settings as separate tiles rather than a ruled table.</p>
+  <div class="t dark">
+    <div class="page-h">
+      <h3>Zones</h3>
+      <span class="meta">Studio Display<br>5120 × 2880</span>
+    </div>
+    <div class="chips">
+      <span class="chip">60 / 40</span><span class="chip">Halves</span>
+      <span class="chip on">Priority</span><span class="chip">Quarters</span>
+      <span class="chip">Thirds</span><span class="chip">+ New set</span>
+    </div>
+    <div class="screen plain" style="margin-bottom:12px">
+      <div class="z" style="left:2%;top:4%;width:22%;height:44%">1</div>
+      <div class="z on" style="left:26%;top:4%;width:46%;height:92%">2</div>
+      <div class="z" style="left:74%;top:4%;width:24%;height:44%">3</div>
+      <div class="z" style="left:2%;top:52%;width:22%;height:44%">4</div>
+      <div class="z" style="left:74%;top:52%;width:24%;height:44%">5</div>
+    </div>
+    <div class="row"><div><div class="tt">Drag to snap</div><div class="ss">Drop windows into zones or screen edges</div></div><span class="tog"></span></div>
+    <div class="row"><div><div class="tt">Show zones</div><div class="ss">While dragging, or only with a modifier</div></div><span class="kbd">⇧</span></div>
+    <div class="row"><div><div class="tt">Gap</div><div class="ss">Real space kept around every window</div></div><span class="kbd">8 px</span></div>
+    <div class="row"><div><div class="tt">Numbers on the overlay</div><div class="ss">Off hides them while dragging</div></div><span class="tog"></span></div>
+    <div class="row"><div><div class="tt">Apps Plonk never touches</div><div class="ss">Games, remote desktops, anything with its own geometry</div></div><span class="kbd">6 apps</span></div>
+  </div>
+
+  <!-- 8 -->
+  <h2 class="lane"><span>08</span> Zone editor</h2>
+  <p class="lane-sub">Click a zone to split it, ⇧-click to split the other way, drag a divider, ✕ to delete and let the neighbours heal over the gap.</p>
+  <div class="t coral">
+    <p class="t-cap" style="opacity:.75"><span>Editing · Priority</span><span>unsaved</span></p>
+    <div class="screen plain">
+      <div class="z" style="left:2%;top:4%;width:22%;height:44%">1</div>
+      <div class="z on" style="left:26%;top:4%;width:46%;height:92%">2 <span style="margin-left:auto;font-size:10px">0.46 × 1</span></div>
+      <div class="z" style="left:74%;top:4%;width:24%;height:44%">3</div>
+      <div class="z" style="left:2%;top:52%;width:22%;height:44%">4</div>
+      <div class="z" style="left:74%;top:52%;width:24%;height:44%">5</div>
+      <div class="toast">Click to split · <em>⇧</em>-click for the other way</div>
+    </div>
+    <div class="seg" style="margin-top:12px"><b class="on">Split</b><b>Resize</b><b>Delete</b><b>Number</b></div>
+  </div>
+
+  <!-- 9 -->
+  <h2 class="lane"><span>09</span> Workspaces</h2>
+  <p class="lane-sub">A desk you can put away. Each card shows the shape it will rebuild and which apps come back.</p>
+  <div class="t dark">
+    <div class="page-h"><h3>Desks</h3><span class="meta">4 saved</span></div>
+    <div class="ws">
+      <div class="top"><b>review</b><span class="sh">⌃⌥⇧R</span></div>
+      <div class="mini"><i class="a"></i><i class="b"></i><i class="c"></i></div>
+      <div class="apps"><span>Safari <em>· 6 tabs</em></span><span>Terminal</span><span>Notes</span><span>2 displays</span></div>
+    </div>
+    <div class="ws">
+      <div class="top"><b>writing</b><span class="sh">⌃⌥⇧W</span></div>
+      <div class="mini" style="grid-template-columns:2fr 1fr"><i class="a"></i><i class="c"></i></div>
+      <div class="apps"><span>iA Writer <em>· ~/drafts</em></span><span>Music</span><span>1 display</span></div>
+    </div>
+    <div class="row" style="margin-top:10px"><div><div class="tt">Move apps that are already open</div><div class="ss">Off leaves them alone and opens only what is missing</div></div><span class="tog"></span></div>
+    <div class="row"><div><div class="tt">Pull everything onto one screen</div><div class="ss">For when the second monitor is not there</div></div><span class="tog off"></span></div>
+  </div>
+
+  <!-- 10 -->
+  <h2 class="lane"><span>10</span> Keep awake</h2>
+  <p class="lane-sub">Real power assertions. The session ends by itself — after N minutes, at a wall-clock time, or the moment a process exits.</p>
+  <div class="t amber">
+    <p class="t-cap" style="opacity:.7"><span>Awake</span><span>display on</span></p>
+    <div class="awake">
+      <div class="top"><b style="color:#fff">npm run build</b><span class="n">41:08</span></div>
+      <div class="track"><i></i></div>
+      <p class="why">holding until the process exits · pid 48213</p>
+    </div>
+    <div class="seg" style="margin-top:10px"><b>15 min</b><b>1 hour</b><b>Until 18:00</b><b class="on">While a process runs</b></div>
+    <div class="row" style="background:rgba(0,0,0,.14);margin-top:10px"><div><div class="tt" style="color:var(--ink-on-warm)">Pause on battery</div><div class="ss" style="color:rgba(23,13,6,.65)">Resume automatically while charging</div></div><span class="tog"></span></div>
+  </div>
+
+  <!-- 11 -->
+  <h2 class="lane"><span>11</span> Text off the screen</h2>
+  <p class="lane-sub">⌃⌥T selects an area and copies the words in it, including text that is only pixels. Recognition is on-device.</p>
+  <div class="t blue">
+    <p class="t-cap" style="opacity:.75"><span>⌃⌥T</span><span>on-device</span></p>
+    <div class="screen plain">
+      <div class="ocrbox" style="left:12%;top:20%;width:64%;height:52%">
+        <div class="lines">
+          <i style="width:88%"></i><i style="width:96%"></i><i style="width:72%"></i><i style="width:84%"></i><i style="width:46%"></i>
+        </div>
+      </div>
+    </div>
+    <div class="ocrout">
+      <b>Copied to the clipboard</b>
+      Error: EADDRINUSE 127.0.0.1:7654<br>another instance is already listening
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <h2 class="lane"><span>12</span> Ruler</h2>
+  <p class="lane-sub">⌃⌥R, then hover: how far the pointer can travel each way before it meets an edge. Points and pixels both.</p>
+  <div class="t dark">
+    <p class="t-cap"><span>⌃⌥R</span><span>click copies · space re-reads</span></p>
+    <div class="screen plain">
+      <div style="position:absolute;left:16%;top:24%;width:52%;height:44%;border-radius:6px;background:#1a1a21;box-shadow:inset 0 0 0 1px #2f2f38"></div>
+      <span class="crosshair" style="left:41%;top:44%"></span>
+      <div class="dim h" style="left:16%;top:18%;width:52%"><span>712 pt · 1424 px</span></div>
+      <div class="dim v" style="left:11%;top:24%;height:44%"><span>398 pt</span></div>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <h2 class="lane"><span>13</span> Notices</h2>
+  <p class="lane-sub">A panel in the top-right corner, not Notification Center: no permission to ask for, nothing left in your history, and it can show the screenshot instead of describing it.</p>
+  <div class="t flat">
+    <div class="notice" style="margin-bottom:8px">
+      <span class="ic g">✓</span>
+      <div><b>Workspace “review” is back</b><p>6 windows across 2 displays · 1.4 s</p></div>
+    </div>
+    <div class="notice" style="margin-bottom:8px">
+      <span class="ic">▣</span>
+      <div><b>Region copied</b><p>Saved at native resolution</p></div>
+      <span class="thumb"></span>
+    </div>
+    <div class="notice">
+      <span class="ic a">!</span>
+      <div><b>Display unplugged</b><p>Windows from “Studio Display” are parked. They go back when it returns</p></div>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <h2 class="lane"><span>14</span> First launch</h2>
+  <p class="lane-sub">The only screen every single user sees. Two permissions, and it says what each one is actually for.</p>
+  <div class="t violet">
+    <div class="page-h"><h3 style="font-size:30px">Two<br>permissions.</h3></div>
+    <div class="perm">
+      <div><b>Accessibility</b><p>To move and resize other apps' windows. This is the whole job</p></div>
+      <span class="st ok">Granted</span>
+    </div>
+    <div class="perm">
+      <div><b>Screen Recording</b><p>Only for capture, OCR and the ruler. Asked for the first time you use one</p></div>
+      <span class="st">Grant</span>
+    </div>
+    <div class="perm">
+      <div><b>Everything else</b><p>No Full Disk Access, no Automation, no Keychain, no account</p></div>
+      <span class="st ok">Not needed</span>
+    </div>
+  </div>
+  <p class="note">This is the screen worth designing hardest. <b>It is where a window manager loses people</b> — an unexplained macOS permission sheet, then a relaunch. Saying what each grant buys, and that the rest is not asked for, is the whole pitch of the privacy page delivered at the moment it matters.</p>
+
+  <h2 class="lane"><span>·</span> Notes</h2>
+  <p class="lane-sub" style="max-width:44ch">Colour does one job in the app and a different one on the site. On the site it separates sections. Here it marks a mode: violet is placing, coral is editing, amber is awake, blue is capture. A user who has seen the site already knows the code.</p>
+  <p class="note" style="margin-top:14px">Everything above is HTML and CSS, so it is a mockup, not a build. In SwiftUI the parts that carry over directly are the palette, the 28/16 px radii, the 900-weight page titles and the settings-row-as-tile. <b>The animations are the app's real behaviour</b>, not page decoration — the snap, the flash and the set swap already exist, they are just not shown anywhere.</p>
+
+</div>
